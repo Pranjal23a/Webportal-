@@ -46,10 +46,6 @@
 </head>
 
 
-
-
-
-
 <body>
 
     <!-- Navbar -->
@@ -105,35 +101,6 @@
     </div>
     
 
-
-
-    <!-- Not in use -->
-    <div class="offcanvas offcanvas-start text-bg-dark " id="" style=" width: 30%;  padding: 5px; border: 7px double #182747; border-radius: 10px;background-color: aliceblue; background-size: cover; ">
-        <div id="login">
-            <img src="LOGONEW.png" class="center" style="margin-bottom:30px; width:auto ">
-            <h3 style="text-align: center;color:#25316d; padding-bottom: 50px;">LOGIN TO YOUR ACCOUNT</h3>
-
-
-            <form action="student_login.php" method="POST">
-                <!-- Check if any error -->
-                <?php if (isset($_GET['error'])) { ?>
-                    <p class="error"> <?php echo $_GET['error']; ?></p>
-                <?php } ?>
-                <div class="form-group">
-                    <label for="username" style="color:#25316d;">STUDENT ID</label>
-                    <input type="username" id="username" name="username" class="form-control " required placeholder="Student ID">
-                </div>
-                <div class="form-group">
-                    <label for="password" style="color:#25316d; padding-top: 30px;">PASSWORD</label>
-                    <input type="password" name="password" class="form-control " required placeholder="Password">
-                </div>
-                <button id="btn1" type="submit" class="btn " style="margin-top: 35px; margin-bottom: 38px;">Login</button>
-            </form>
-        </div>
-    </div>
-
-
-
     <!-- modal teacher -->
     <div class="modal fade" id="demo3">
         <div class="modal-dialog modal-dialog-centered">
@@ -170,32 +137,6 @@
         </div>
     </div>
 
-
-
-<!-- Not in use -->
-    <div class="offcanvas offcanvas-end text-bg-dark " id="demo4" style="padding: 5px; border: 7px double #182747; border-radius: 10px;background-color: aliceblue; background-size: cover; ">
-        <div id="login">
-            <img src="LOGONEW.png" class="center" style="margin-bottom:30px; width:auto ">
-            <h3 style="text-align: center;color:#25316d; padding-bottom: 50px;">LOGIN TO YOUR ACCOUNT</h3>
-
-
-            <form action="teacher_login.php" method="POST">
-                <!-- Check if any error -->
-                <?php if (isset($_GET['error'])) { ?>
-                    <p class="error"> <?php echo $_GET['error']; ?></p>
-                <?php } ?>
-                <div class="form-group">
-                    <label for="username" style="color:#25316d;">TEACHER ID</label>
-                    <input type="username" id="username" name="username" class="form-control " required placeholder="Teacher ID">
-                </div>
-                <div class="form-group">
-                    <label for="password" style="color:#25316d; padding-top: 30px;">PASSWORD</label>
-                    <input type="password" name="password" class="form-control " required placeholder="Password">
-                </div>
-                <button id="btn1" type="submit" class="btn" style="margin-top: 35px; margin-bottom: 38px;">Login</button>
-            </form>
-        </div>
-    </div>
     <!-- modal admin --> 
     <div class="modal fade" id="demo2">
         <div class="modal-dialog modal-dialog-centered">
@@ -230,38 +171,6 @@
             </div>
         </div>
     </div>
-
-
-
-
-    <!-- Not in use -->
-    <div class="offcanvas offcanvas-end text-bg-dark " id="" style="width: 30%; padding: 5px; border: 7px double #182747; border-radius: 10px;background-color: aliceblue; background-size: cover; ">
-        <div id="login">
-            <img src="LOGONEW.png" class="center" style="margin-bottom:30px; width:auto ">
-            <h3 style="text-align: center;color:#25316d; padding-bottom: 50px;">LOGIN TO YOUR ACCOUNT</h3>
-
-
-            <form action="admin_login.php" method="POST">
-                <!-- Check if any error -->
-                <?php if (isset($_GET['error'])) { ?>
-                    <p class="error"> <?php echo $_GET['error']; ?></p>
-                <?php } ?>
-                <div class="form-group">
-                    <label for="username" style="color:#25316d;">ADMIN ID</label>
-                    <input type="username" id="username" name="username" class="form-control " required placeholder="Admin ID">
-                </div>
-                <div class="form-group">
-                    <label for="password" style="color:#25316d; padding-top: 30px;">PASSWORD</label>
-                    <input type="password" name="password" class="form-control " required placeholder="Password">
-                </div>
-                <button id="btn1" type="submit" class="btn" style="margin-top: 35px; margin-bottom: 38px;">Login</button>
-            </form>
-        </div>
-    </div>
-
-
-
-
 
 
     <section>
