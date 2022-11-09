@@ -24,7 +24,6 @@ if (isset($_SESSION['admin_ID']) && isset($_SESSION['admin_name']) && isset($_SE
 
 
         <style type="text/css">
-
             .vertical-nav {
                 min-width: 17rem;
                 width: 17rem;
@@ -95,6 +94,7 @@ if (isset($_SESSION['admin_ID']) && isset($_SESSION['admin_name']) && isset($_SE
             }
         </style>
     </head>
+
     <body>
         <script>
             $(function() {
@@ -268,39 +268,116 @@ if (isset($_SESSION['admin_ID']) && isset($_SESSION['admin_name']) && isset($_SE
 
 
                     <hr>
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style=" background-color: #182747;">
-                            Select Batch
-                        </button>
-                        <hr>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <button type="button" class="btn btn-primary" style=" background-color: #182747;" data-bs-toggle="collapse" data-bs-target="#demo">Select Batch And Year</button>
+                    <div id="demo" class="collapse">
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-1 col-md-1 btn-magin">
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style=" background-color: #182747;">
+                                        Ist
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
 
-                            <ul class="nav nav-pills flex-column" role="tablist">
-                                <li class="nav-item">
-                                    <a class="dropdown-item" data-bs-toggle="pill" href="#B1">B1</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="dropdown-item" data-bs-toggle="pill" href="#B2">B2</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="dropdown-item" data-bs-toggle="pill" href="#B3">B3</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="dropdown-item" data-bs-toggle="pill" href="#B4">B4</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="dropdown-item" data-bs-toggle="pill" href="#B5">B5</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="dropdown-item" data-bs-toggle="pill" href="#B6">B6</a>
-                                </li>
-                            </ul>
-                        </ul>
+                                        <ul class="nav nav-pills flex-column" role="tablist">
+                                            <li class="nav-item">
+                                                <a class="dropdown-item" data-bs-toggle="pill" href="#A11">A1</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="dropdown-item" data-bs-toggle="pill" href="#A12">A2</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="dropdown-item" data-bs-toggle="pill" href="#B11">B1</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="dropdown-item" data-bs-toggle="pill" href="#B12">B2</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="dropdown-item" data-bs-toggle="pill" href="#B13">B3</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="dropdown-item" data-bs-toggle="pill" href="#B14">B4</a>
+                                            </li>
+                                        </ul>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-1 col-md-1 btn-magin">
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style=" background-color: #182747;">
+                                        IInd
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+
+                                        <ul class="nav nav-pills flex-column" role="tablist">
+                                            <li class="nav-item">
+                                                <a class="dropdown-item" data-bs-toggle="pill" href="#A21">A1</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="dropdown-item" data-bs-toggle="pill" href="#B21">B1</a>
+                                            </li>
+                                        </ul>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-1 col-md-1 btn-magin">
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style=" background-color: #182747;">
+                                        IIIrd
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+
+                                        <ul class="nav nav-pills flex-column" role="tablist">
+                                            <li class="nav-item">
+                                                <a class="dropdown-item" data-bs-toggle="pill" href="#A31">A1</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="dropdown-item" data-bs-toggle="pill" href="#B31">B1</a>
+                                            </li>
+                                        </ul>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-1 col-md-1 btn-magin">
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style=" background-color: #182747;">
+                                        IVth
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+
+                                        <ul class="nav nav-pills flex-column" role="tablist">
+                                            <li class="nav-item">
+                                                <a class="dropdown-item" data-bs-toggle="pill" href="#A41">A1</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="dropdown-item" data-bs-toggle="pill" href="#B41">B1</a>
+                                            </li>
+                                        </ul>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-1 col-md-1 btn-magin">
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style=" background-color: #182747;">
+                                        Search Student By
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+
+                                        <ul class="nav nav-pills flex-column" role="tablist">
+                                            <li class="nav-item">
+                                                <a class="dropdown-item" data-bs-toggle="pill" href="#id">ID</a>
+                                            </li>
+                                        </ul>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                    <hr>
                     <div class="tab-content">
-                        <div id="B1" class="container tab-pane fade">
+                        <div id="A11" class="container tab-pane fade">
                             <?php
-                            $sql1 = "SELECT * FROM student where batch='B1'";
+                            $sql1 = "SELECT * FROM student where batch='A1' AND semester='1'";
                             $result1 = mysqli_query($conn, $sql1);
                             ?>
                             <table id="content" class="table table-bordered table-hover">
@@ -355,9 +432,9 @@ if (isset($_SESSION['admin_ID']) && isset($_SESSION['admin_name']) && isset($_SE
                                 </tbody>
                             </table>
                         </div>
-                        <div id="B2" class="container tab-pane fade">
+                        <div id="A12" class="container tab-pane fade">
                             <?php
-                            $sql1 = "SELECT * FROM student where batch='B2'";
+                            $sql1 = "SELECT * FROM student where batch='A2' AND semester='1'";
                             $result1 = mysqli_query($conn, $sql1);
                             ?>
                             <table id="content" class="table table-bordered table-hover">
@@ -412,9 +489,9 @@ if (isset($_SESSION['admin_ID']) && isset($_SESSION['admin_name']) && isset($_SE
                                 </tbody>
                             </table>
                         </div>
-                        <div id="B3" class="container tab-pane fade">
+                        <div id="B11" class="container tab-pane fade">
                             <?php
-                            $sql1 = "SELECT * FROM student where batch='B3'";
+                            $sql1 = "SELECT * FROM student where batch='B1' AND semester='1'";
                             $result1 = mysqli_query($conn, $sql1);
                             ?>
                             <table id="content" class="table table-bordered table-hover">
@@ -469,9 +546,9 @@ if (isset($_SESSION['admin_ID']) && isset($_SESSION['admin_name']) && isset($_SE
                                 </tbody>
                             </table>
                         </div>
-                        <div id="B4" class="container tab-pane fade">
+                        <div id="B12" class="container tab-pane fade">
                             <?php
-                            $sql1 = "SELECT * FROM student where batch='B4'";
+                            $sql1 = "SELECT * FROM student where batch='B2' AND semester='1'";
                             $result1 = mysqli_query($conn, $sql1);
                             ?>
                             <table id="content" class="table table-bordered table-hover">
@@ -526,9 +603,9 @@ if (isset($_SESSION['admin_ID']) && isset($_SESSION['admin_name']) && isset($_SE
                                 </tbody>
                             </table>
                         </div>
-                        <div id="B5" class="container tab-pane fade">
+                        <div id="B13" class="container tab-pane fade">
                             <?php
-                            $sql1 = "SELECT * FROM student where batch='B5'";
+                            $sql1 = "SELECT * FROM student where batch='B3' AND semester='1'";
                             $result1 = mysqli_query($conn, $sql1);
                             ?>
                             <table id="content" class="table table-bordered table-hover">
@@ -583,9 +660,9 @@ if (isset($_SESSION['admin_ID']) && isset($_SESSION['admin_name']) && isset($_SE
                                 </tbody>
                             </table>
                         </div>
-                        <div id="B6" class="container tab-pane fade">
+                        <div id="B14" class="container tab-pane fade">
                             <?php
-                            $sql1 = "SELECT * FROM student where batch='B6'";
+                            $sql1 = "SELECT * FROM student where batch='B4' AND semester='1'";
                             $result1 = mysqli_query($conn, $sql1);
                             ?>
                             <table id="content" class="table table-bordered table-hover">
@@ -640,6 +717,463 @@ if (isset($_SESSION['admin_ID']) && isset($_SESSION['admin_name']) && isset($_SE
                                 </tbody>
                             </table>
                         </div>
+                        <div id="A21" class="container tab-pane fade">
+                            <?php
+                            $sql1 = "SELECT * FROM student where batch='A1' AND semester='3'";
+                            $result1 = mysqli_query($conn, $sql1);
+                            ?>
+                            <table id="content" class="table table-bordered table-hover">
+                                <thead class="table-success">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Academic Year</th>
+                                        <th>Program</th>
+                                        <th>Semester</th>
+                                        <th>Gender</th>
+                                        <th>Batch</th>
+                                        <th>Hostal Room</th>
+                                        <th>Profile</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    while ($info = $result1->fetch_assoc()) {
+
+                                    ?>
+                                        <tr>
+                                            <td>
+                                                <?php echo "{$info['student_ID']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo "{$info['student_name']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo "{$info['academic_year']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo "{$info['program']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo "{$info['semester']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo "{$info['gender']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo "{$info['batch']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo "{$info['hostal_room_no']}"; ?>
+                                            </td>
+                                            <td>
+                                                <img src="<?php echo $info['image_link']; ?>" alt="Profile" width="80">
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div id="B21" class="container tab-pane fade">
+                            <?php
+                            $sql1 = "SELECT * FROM student where batch='B1' AND semester='3'";
+                            $result1 = mysqli_query($conn, $sql1);
+                            ?>
+                            <table id="content" class="table table-bordered table-hover">
+                                <thead class="table-success">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Academic Year</th>
+                                        <th>Program</th>
+                                        <th>Semester</th>
+                                        <th>Gender</th>
+                                        <th>Batch</th>
+                                        <th>Hostal Room</th>
+                                        <th>Profile</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    while ($info = $result1->fetch_assoc()) {
+
+                                    ?>
+                                        <tr>
+                                            <td>
+                                                <?php echo "{$info['student_ID']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo "{$info['student_name']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo "{$info['academic_year']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo "{$info['program']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo "{$info['semester']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo "{$info['gender']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo "{$info['batch']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo "{$info['hostal_room_no']}"; ?>
+                                            </td>
+                                            <td>
+                                                <img src="<?php echo $info['image_link']; ?>" alt="Profile" width="80">
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div id="A31" class="container tab-pane fade">
+                            <?php
+                            $sql1 = "SELECT * FROM student where batch='A1' AND semester='5'";
+                            $result1 = mysqli_query($conn, $sql1);
+                            ?>
+                            <table id="content" class="table table-bordered table-hover">
+                                <thead class="table-success">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Academic Year</th>
+                                        <th>Program</th>
+                                        <th>Semester</th>
+                                        <th>Gender</th>
+                                        <th>Batch</th>
+                                        <th>Hostal Room</th>
+                                        <th>Profile</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    while ($info = $result1->fetch_assoc()) {
+
+                                    ?>
+                                        <tr>
+                                            <td>
+                                                <?php echo "{$info['student_ID']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo "{$info['student_name']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo "{$info['academic_year']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo "{$info['program']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo "{$info['semester']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo "{$info['gender']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo "{$info['batch']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo "{$info['hostal_room_no']}"; ?>
+                                            </td>
+                                            <td>
+                                                <img src="<?php echo $info['image_link']; ?>" alt="Profile" width="80">
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div id="B31" class="container tab-pane fade">
+                            <?php
+                            $sql1 = "SELECT * FROM student where batch='B1' AND semester='5'";
+                            $result1 = mysqli_query($conn, $sql1);
+                            ?>
+                            <table id="content" class="table table-bordered table-hover">
+                                <thead class="table-success">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Academic Year</th>
+                                        <th>Program</th>
+                                        <th>Semester</th>
+                                        <th>Gender</th>
+                                        <th>Batch</th>
+                                        <th>Hostal Room</th>
+                                        <th>Profile</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    while ($info = $result1->fetch_assoc()) {
+
+                                    ?>
+                                        <tr>
+                                            <td>
+                                                <?php echo "{$info['student_ID']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo "{$info['student_name']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo "{$info['academic_year']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo "{$info['program']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo "{$info['semester']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo "{$info['gender']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo "{$info['batch']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo "{$info['hostal_room_no']}"; ?>
+                                            </td>
+                                            <td>
+                                                <img src="<?php echo $info['image_link']; ?>" alt="Profile" width="80">
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div id="A41" class="container tab-pane fade">
+                            <?php
+                            $sql1 = "SELECT * FROM student where batch='A1' AND semester='7'";
+                            $result1 = mysqli_query($conn, $sql1);
+                            ?>
+                            <table id="content" class="table table-bordered table-hover">
+                                <thead class="table-success">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Academic Year</th>
+                                        <th>Program</th>
+                                        <th>Semester</th>
+                                        <th>Gender</th>
+                                        <th>Batch</th>
+                                        <th>Hostal Room</th>
+                                        <th>Profile</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    while ($info = $result1->fetch_assoc()) {
+
+                                    ?>
+                                        <tr>
+                                            <td>
+                                                <?php echo "{$info['student_ID']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo "{$info['student_name']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo "{$info['academic_year']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo "{$info['program']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo "{$info['semester']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo "{$info['gender']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo "{$info['batch']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo "{$info['hostal_room_no']}"; ?>
+                                            </td>
+                                            <td>
+                                                <img src="<?php echo $info['image_link']; ?>" alt="Profile" width="80">
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div id="B41" class="container tab-pane fade">
+                            <?php
+                            $sql1 = "SELECT * FROM student where batch='B1' AND semester='7'";
+                            $result1 = mysqli_query($conn, $sql1);
+                            ?>
+                            <table id="content" class="table table-bordered table-hover">
+                                <thead class="table-success">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Academic Year</th>
+                                        <th>Program</th>
+                                        <th>Semester</th>
+                                        <th>Gender</th>
+                                        <th>Batch</th>
+                                        <th>Hostal Room</th>
+                                        <th>Profile</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    while ($info = $result1->fetch_assoc()) {
+
+                                    ?>
+                                        <tr>
+                                            <td>
+                                                <?php echo "{$info['student_ID']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo "{$info['student_name']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo "{$info['academic_year']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo "{$info['program']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo "{$info['semester']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo "{$info['gender']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo "{$info['batch']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo "{$info['hostal_room_no']}"; ?>
+                                            </td>
+                                            <td>
+                                                <img src="<?php echo $info['image_link']; ?>" alt="Profile" width="80">
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="id" class="container tab-pane fade">
+
+                            <h2>Search By ID</h2>
+                            <form action="" method="POST" autocomplete="off">
+                                <div>
+                                    <label for="ids">Student ID</label>
+                                    <input type="text" name="ids" style="margin-left: 9%;" id="" required>
+                                </div>
+                                <div>
+                                    <input type="submit" class="btn btn-primary" name="searchid" value="Search">
+                                </div>
+                            </form>
+                            <br>
+                            <?php
+
+                            if (isset($_POST['searchid'])) {
+                                $id = $_POST['ids'];
+                                $check = "SELECT * FROM student WHERE student_ID='$id'";
+                                $check_user = mysqli_query($conn, $check);
+
+                                $row_count = mysqli_num_rows($check_user);
+                                if ($row_count > 0) {
+
+                                    $sql1 = "SELECT * FROM student where student_ID='$id'";
+                                    $result1 = mysqli_query($conn, $sql1);
+                            ?>
+                                    <table id="content" class="table table-bordered table-hover">
+                                        <thead class="table-success">
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Name</th>
+                                                <th>Academic Year</th>
+                                                <th>Program</th>
+                                                <th>Semester</th>
+                                                <th>Gender</th>
+                                                <th>Batch</th>
+                                                <th>Hostal Room</th>
+                                                <th>Profile</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            while ($info = $result1->fetch_assoc()) {
+
+                                            ?>
+                                                <tr>
+                                                    <td>
+                                                        <?php echo "{$info['student_ID']}"; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo "{$info['student_name']}"; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo "{$info['academic_year']}"; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo "{$info['program']}"; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo "{$info['semester']}"; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo "{$info['gender']}"; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo "{$info['batch']}"; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo "{$info['hostal_room_no']}"; ?>
+                                                    </td>
+                                                    <td>
+                                                        <img src="<?php echo $info['image_link']; ?>" alt="Profile" width="80">
+                                                    </td>
+                                                </tr>
+                                            <?php
+                                            } ?>
+                                        </tbody>
+                                    </table>
+                                <?php
+                                } else {
+                                ?>
+                                    <table id="content" class="table table-bordered table-hover">
+                                        <thead class="table-success">
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Name</th>
+                                                <th>Academic Year</th>
+                                                <th>Program</th>
+                                                <th>Semester</th>
+                                                <th>Gender</th>
+                                                <th>Batch</th>
+                                                <th>Hostal Room</th>
+                                                <th>Profile</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <?php echo "Record Not Found!!"; ?>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                            <?php  }
+                            }
+                            ?>
+
+                        </div>
+
                     </div>
                     <hr>
                 </div>
@@ -695,7 +1229,6 @@ if (isset($_SESSION['admin_ID']) && isset($_SESSION['admin_name']) && isset($_SE
 
                         </div>
                     </form>
-                    <hr>
                     <?php
                     if (isset($_POST['register_student'])) {
                         $userid = $_POST['userid'];
@@ -731,6 +1264,7 @@ if (isset($_SESSION['admin_ID']) && isset($_SESSION['admin_name']) && isset($_SE
                         }
                     }
                     ?>
+                    <hr>
                 </div>
 
                 <!-- Student Registration End -->
