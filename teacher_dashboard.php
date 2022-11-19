@@ -1,5 +1,7 @@
 <?php
 session_start();
+include "_dbconnect_teacher.php";
+
 if (isset($_SESSION['teacher_ID']) && isset($_SESSION['teacher_name']) && isset($_SESSION['image_link'])) {
 ?>
     <!DOCTYPE html>
@@ -148,7 +150,7 @@ if (isset($_SESSION['teacher_ID']) && isset($_SESSION['teacher_name']) && isset(
                         </a>
                     </div>
                     <h2 class="" style="color: white; margin-right: 5%;">JIIT - Webportal</h2>
-                    <a href="logout.php" class="btn btn-secondary btn-sm" role="button" style="margin-left: 2%;" >Log Out</a>
+                    <a href="logout.php" class="btn btn-secondary btn-sm" role="button" style="margin-left: 2%;">Log Out</a>
                 </div>
             </nav>
         </section>
@@ -162,7 +164,7 @@ if (isset($_SESSION['teacher_ID']) && isset($_SESSION['teacher_name']) && isset(
                 <div class="py-4 px-3 mb-4 bg-light">
                     <div class="media d-flex align-items-center"><img src="<?php echo $_SESSION['image_link']; ?>" alt="Profile" width="120" class="mr-3 rounded-circle img-thumbnail shadow-sm">
                         <div class="media-body">
-                            <h4 class="m-0"><?php echo $_SESSION['teacher_name'];?></h4>
+                            <h4 class="m-0"><?php echo $_SESSION['teacher_name']; ?></h4>
                             <p class="font-weight-light text-muted mb-0">Teacher</p>
                         </div>
                     </div>
@@ -188,7 +190,7 @@ if (isset($_SESSION['teacher_ID']) && isset($_SESSION['teacher_name']) && isset(
                                     <li class="nav-item">
                                         <a href="#t12" class="nav-link text-dark m-1" data-bs-toggle="tab" style="border:1px solid black;">
                                             <!-- <i class="fa fa-address-card mr-3 text-primary fa-fw"></i> -->
-                                            <img src="listimage2.png" alt="image" style="margin-right: 4px;"> Hostal Information
+                                            <img src="listimage2.png" alt="image" style="margin-right: 4px;"> New Password/Image
                                         </a>
                                     </li>
                                 </ul>
@@ -214,7 +216,7 @@ if (isset($_SESSION['teacher_ID']) && isset($_SESSION['teacher_name']) && isset(
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="#t22" class="nav-link text-dark m-1" data-bs-toggle="tab"style="border:1px solid black;">
+                                        <a href="#t22" class="nav-link text-dark m-1" data-bs-toggle="tab" style="border:1px solid black;">
                                             <!-- <i class="fa fa-address-card mr-3 text-primary fa-fw"></i> -->
                                             <img src="listimage2.png" alt="image" style="margin-right: 4px;"> Updating Attendance
                                         </a>
@@ -284,14 +286,153 @@ if (isset($_SESSION['teacher_ID']) && isset($_SESSION['teacher_name']) && isset(
                 <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold  m-2" style="font-size: 30px;">≡</small></button>
             </div>
 
-            <!-- <div class="page-content tab-content p-2" id="content">
-                <div id="t11" class="page-content container tab-pane">
-                <h4 class="m-0"><?php echo $_SESSION['teacher_id']; ?></h4>
+
+            <div class="page-content tab-content p-2" id="content">
+
+                <div id="t11" class="container-sm tab-pane fade">
+                    <hr>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 btn-magin">
+                            <h4 style="margin-bottom: 15px;">Personal Information</h4>
+                            <table class="table table-bordered" style=" border: 2px solid black;">
+                                <tbody>
+                                    <tr>
+                                        <td class="table-success">ID</td>
+                                        <td><?php echo "{$_SESSION['teacher_ID']}"; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="table-success">Name</td>
+                                        <td><?php echo "{$_SESSION['teacher_name']}"; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="table-success">Department</td>
+                                        <td><?php echo "{$_SESSION['department']}"; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="table-success">Gender</td>
+                                        <td><?php echo "{$_SESSION['gender']}"; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="table-success">Hostal Room Number</td>
+                                        <td><?php echo "{$_SESSION['hostal_room_no']}"; ?></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <hr>
+                    </div>
                 </div>
-                <div id="t12" class="page-content container tab-pane">
-                <h4 class="m-0"><?php echo $_SESSION['ID']; ?></h4>
+
+                <div id="t12" class="container-sm tab-pane fade">
+                    <hr>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 btn-magin">
+
+                            <h2>Change Password</h2>
+                            <form action="#" method="POST" autocomplete="off">
+                                <div>
+                                    <label for="stdid">TEACHER ID</label>
+                                    <?php
+                                    $id = $_SESSION['teacher_ID'];
+                                    ?>
+                                    <input type="text" name="stdid" style="margin-left: 9%;" readonly value="<?php echo $id; ?>" id="" required>
+                                </div>
+                                <div>
+                                    <label for="password">New Password</label>
+                                    <input type="text" name="password" style="margin-left: 9%;" id="" required>
+                                </div>
+                                <div>
+                                    <input type="submit" class="btn btn-primary" name="changepassword" value="Change">
+                                    <!-- <button id="btn1" type="submit" name="register_student" class="btn " style="margin-top: 35px; margin-bottom: 38px;">Register</button> -->
+
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-lg-6 col-md-6 btn-magin">
+                            <h2>Change Image</h2>
+                            <form action="#" method="POST" autocomplete="off">
+                                <div>
+                                    <label for="stdid">TEACHER ID</label>
+                                    <?php
+                                    $id = $_SESSION['teacher_ID'];
+                                    ?>
+                                    <input type="text" name="stdid" style="margin-left: 9%;" readonly value="<?php echo $id; ?>" id="" required>
+                                </div>
+                                <div>
+                                    <label for="img">New Image Path</label>
+                                    <input type="text" name="img" style="margin-left: 9%;" id="" required>
+                                </div>
+                                <div>
+                                    <input type="submit" class="btn btn-primary" name="changeimage" value="Change">
+                                    <!-- <button id="btn1" type="submit" name="register_student" class="btn " style="margin-top: 35px; margin-bottom: 38px;">Register</button> -->
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <hr>
+                    <?php
+
+                    if (isset($_POST['changepassword'])) {
+                        $id = $_POST['stdid'];
+                        $pass = $_POST['password'];
+
+                        $check = "SELECT * FROM teacher WHERE teacher_ID='$id'";
+                        $check_user = mysqli_query($conn, $check);
+
+                        $row_count = mysqli_num_rows($check_user);
+                        if ($row_count == 1) {
+                            $cid = $_SESSION['teacher_ID'];
+                            $sql = "UPDATE teacher SET password='$pass' WHERE teacher_ID= '$cid'";
+                            $result = mysqli_query($conn, $sql);
+                            if ($result) {
+                                echo ("<script>alert('Successfully Password Changed!')</script>");
+                                echo ("<script>window.location = 'teacher_dashboard.php';</script>");
+                                exit();
+                            } else {
+                                echo "<script>alert('Unsuccessfull!')</script>";
+                                echo ("<script>window.location = 'teacher_dashboard.php';</script>");
+                                exit();
+                            }
+                        } else {
+                            echo "<script>alert('Invalid User!!!')</script>";
+                            echo ("<script>window.location = 'teacher_dashboard.php';</script>");
+                            exit();
+                        }
+                    }
+                    if (isset($_POST['changeimage'])) {
+                        $id = $_POST['stdid'];
+                        $image = $_POST['img'];
+
+                        $check = "SELECT * FROM teacher WHERE teacher_ID='$id'";
+                        $check_user = mysqli_query($conn, $check);
+
+                        $row_count = mysqli_num_rows($check_user);
+                        if ($row_count == 1) {
+                            $cid = $_SESSION['teacher_ID'];
+                            $sql = "UPDATE teacher SET image_link='$image' WHERE teacher_ID= '$cid'";
+                            $result = mysqli_query($conn, $sql);
+                            if ($result) {
+                                echo ("<script>alert('Successfully Image Changed!')</script>");
+                                echo ("<script>window.location = 'teacher_dashboard.php';</script>");
+                                exit();
+                            } else {
+                                echo "<script>alert('Unsuccessfull!')</script>";
+                                echo ("<script>window.location = 'teacher_dashboard.php';</script>");
+                                exit();
+                            }
+                        } else {
+                            echo "<script>alert('Invalid User!!!')</script>";
+                            echo ("<script>window.location = 'teacher_dashboard.php';</script>");
+                            exit();
+                        }
+                    }
+                    ?>
+
                 </div>
-            </div> -->
+
+
+            </div>
+
 
         </section>
 
