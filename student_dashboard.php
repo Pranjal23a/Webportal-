@@ -2,7 +2,7 @@
 session_start();
 include "_dbconnect_student.php";
 
-if (isset($_SESSION['student_ID']) && isset($_SESSION['student_name']) && isset($_SESSION['image_link'])) {
+if (isset($_SESSION['student_ID']) && isset($_SESSION['student_name']) && isset($_SESSION['image_link']) && isset($_SESSION['batch'])) {
 ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -197,7 +197,7 @@ if (isset($_SESSION['student_ID']) && isset($_SESSION['student_name']) && isset(
                         <h2 class="accordion-header" id="headingThree">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
 
-                                <img src="listimage.png" alt="image" style="margin-right: 8px;"> Course Details
+                                <img src="listimage.png" alt="image" style="margin-right: 8px;"> Attendance Details
                             </button>
                         </h2>
                         <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
@@ -206,13 +206,13 @@ if (isset($_SESSION['student_ID']) && isset($_SESSION['student_name']) && isset(
                                     <li class="nav-item">
                                         <a href="#t31" id="" class="nav-link text-dark m-1" data-bs-toggle="tab" style="border:1px solid black;">
                                             <!-- <i class="fa fa-th-large mr-3 text-primary fa-fw"></i> -->
-                                            <img src="listimage2.png" alt="image" style="margin-right: 4px;"> Course Information
+                                            <img src="listimage2.png" alt="image" style="margin-right: 4px;"> My Class Attendance
                                         </a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="#t32" class="nav-link text-dark m-1" data-bs-toggle="tab" style="border:1px solid black;">
                                             <!-- <i class="fa fa-address-card mr-3 text-primary fa-fw"></i> -->
-                                            <img src="listimage2.png" alt="image" style="margin-right: 4px;"> Course Teacher
+                                            <img src="listimage2.png" alt="image" style="margin-right: 4px;"> Registered Subject Faculty
                                         </a>
                                     </li>
                                 </ul>
@@ -319,7 +319,7 @@ if (isset($_SESSION['student_ID']) && isset($_SESSION['student_name']) && isset(
                             <table class="table table-bordered" style=" border: 2px solid black;">
                                 <tbody>
                                     <tr>
-                                        <td class="table-success"><center>ID</center></td>
+                                        <td class="table-success">ID</td>
                                         <td><?php echo "{$_SESSION['student_ID']}"; ?></td>
                                     </tr>
                                     <tr>
@@ -368,7 +368,7 @@ if (isset($_SESSION['student_ID']) && isset($_SESSION['student_name']) && isset(
                                 <div>
                                     <label for="stdid">Student ID</label>
                                     <?php
-                                    $id=$_SESSION['student_ID'];
+                                    $id = $_SESSION['student_ID'];
                                     ?>
                                     <input type="text" name="stdid" style="margin-left: 9%;" readonly value="<?php echo $id; ?>" id="" required>
                                 </div>
@@ -389,7 +389,7 @@ if (isset($_SESSION['student_ID']) && isset($_SESSION['student_name']) && isset(
                                 <div>
                                     <label for="stdid">Student ID</label>
                                     <?php
-                                    $id=$_SESSION['student_ID'];
+                                    $id = $_SESSION['student_ID'];
                                     ?>
                                     <input type="text" name="stdid" style="margin-left: 9%;" readonly value="<?php echo $id; ?>" id="" required>
                                 </div>
@@ -416,7 +416,7 @@ if (isset($_SESSION['student_ID']) && isset($_SESSION['student_name']) && isset(
 
                         $row_count = mysqli_num_rows($check_user);
                         if ($row_count == 1) {
-                            $cid= $_SESSION['student_ID'];
+                            $cid = $_SESSION['student_ID'];
                             $sql = "UPDATE student SET password='$pass' WHERE student_ID= '$cid'";
                             $result = mysqli_query($conn, $sql);
                             if ($result) {
@@ -474,7 +474,41 @@ if (isset($_SESSION['student_ID']) && isset($_SESSION['student_name']) && isset(
                 </div>
 
                 <div id="t31" class="container-sm tab-pane fade">
+                    <hr>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 btn-magin">
 
+                            <table class="table table-bordered" style=" border: 2px solid black;">
+                                <tbody>
+                                    <tr>
+                                        <td class="table-success">SDF-1</td>
+                                        <td><?php echo "{$_SESSION['student_ID']}"; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="table-success">ENGLISH</td>
+                                        <td><?php echo "{$_SESSION['student_name']}"; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="table-success">MATHEMATICS</td>
+                                        <td><?php echo "{$_SESSION['academic_year']}"; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="table-success">PHYSICS</td>
+                                        <td><?php echo "{$_SESSION['program']}"; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="table-success">SDF LAB-1</td>
+                                        <td><?php echo "{$_SESSION['semester']}"; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="table-success">PHYSICS LAB-1</td>
+                                        <td><?php echo "{$_SESSION['gender']}"; ?></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <hr>
+                    </div>
                 </div>
 
                 <div id="t32" class="container-sm tab-pane fade">
