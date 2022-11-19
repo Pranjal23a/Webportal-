@@ -37,8 +37,10 @@ if(mysqli_num_rows($result)===1)
     {
         echo "Logged In!";
         $_SESSION['teacher_ID'] = $row['teacher_ID'];
-        // $_SESSION['name'] = $row['name'];
         $_SESSION['teacher_name'] = $row['teacher_name'];
+        $_SESSION['department'] = $row['department'];
+        $_SESSION['gender'] = $row['gender'];
+        $_SESSION['hostal_room_no'] = $row['hostal_room_no'];
         $_SESSION['image_link'] = $row['image_link'];
 
         header("Location: teacher_dashboard.php");
