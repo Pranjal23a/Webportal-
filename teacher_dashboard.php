@@ -430,6 +430,157 @@ if (isset($_SESSION['teacher_ID']) && isset($_SESSION['teacher_name']) && isset(
 
                 </div>
 
+                <div id="t21" class="container-sm tab-pane fade">
+                    <hr>
+                    <h4>Attendance Marking</h4>
+                    <hr>
+                    <button type="button" class="btn btn-primary" style=" background-color: #182747;" data-bs-toggle="collapse" data-bs-target="#demo">Select Year And Batch</button>
+                    <div id="demo" class="collapse">
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-1 col-md-1 btn-magin">
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style=" background-color: #182747;">
+                                        Ist
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+
+                                        <ul class="nav nav-pills flex-column" role="tablist">
+                                            <li class="nav-item">
+                                                <a class="dropdown-item" data-bs-toggle="pill" href="#A11">A1</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="dropdown-item" data-bs-toggle="pill" href="#A12">A2</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="dropdown-item" data-bs-toggle="pill" href="#B11">B1</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="dropdown-item" data-bs-toggle="pill" href="#B12">B2</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="dropdown-item" data-bs-toggle="pill" href="#B13">B3</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="dropdown-item" data-bs-toggle="pill" href="#B14">B4</a>
+                                            </li>
+                                        </ul>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-1 col-md-1 btn-magin">
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style=" background-color: #182747;">
+                                        IInd
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+
+                                        <ul class="nav nav-pills flex-column" role="tablist">
+                                            <li class="nav-item">
+                                                <a class="dropdown-item" data-bs-toggle="pill" href="#A21">A1</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="dropdown-item" data-bs-toggle="pill" href="#B21">B1</a>
+                                            </li>
+                                        </ul>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-1 col-md-1 btn-magin">
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style=" background-color: #182747;">
+                                        IIIrd
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+
+                                        <ul class="nav nav-pills flex-column" role="tablist">
+                                            <li class="nav-item">
+                                                <a class="dropdown-item" data-bs-toggle="pill" href="#A31">A1</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="dropdown-item" data-bs-toggle="pill" href="#B31">B1</a>
+                                            </li>
+                                        </ul>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-1 col-md-1 btn-magin">
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style=" background-color: #182747;">
+                                        IVth
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+
+                                        <ul class="nav nav-pills flex-column" role="tablist">
+                                            <li class="nav-item">
+                                                <a class="dropdown-item" data-bs-toggle="pill" href="#A41">A1</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="dropdown-item" data-bs-toggle="pill" href="#B41">B1</a>
+                                            </li>
+                                        </ul>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="tab-content">
+                        <div id="A11" class="container tab-pane fade">
+
+
+                            <?php
+                            $sql1 = "SELECT * FROM student where batch='A1' AND semester='1'";
+                            $result1 = mysqli_query($conn, $sql1);
+                            ?>
+                            <table id="content" class="table table-bordered table-hover">
+                                <thead class="table-success">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Batch</th>
+                                        <th>Attendance</th>
+                                    </tr>
+                                </thead>
+                                <form action="#" method="POST" autocomplete="off">
+
+                                    <tbody>
+                                        <?php
+                                        while ($info = $result1->fetch_assoc()) {
+
+                                        ?>
+                                            <tr>
+                                                <td>
+                                                    <?php echo "{$info['student_ID']}"; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo "{$info['student_name']}"; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo "{$info['batch']}"; ?>
+                                                </td>
+                                                <td>
+                                                    <div class="row">
+                                                        <div class="col-lg-2 col-md-2 btn-magin">
+                                                            <input type="radio" id="present" name="attendance" value="present" checked="true">
+                                                            <label for="present">Present</label><br>
+                                                        </div>
+
+                                                        <div class="col-lg-2 col-md-2 btn-magin">
+                                                            <input type="radio" id="absent" name="attendance" value="absent">
+                                                            <label for="absent">Absent</label><br>
+                                                        </div>
+                                                </td>
+                                            </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </form>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
 
             </div>
 
