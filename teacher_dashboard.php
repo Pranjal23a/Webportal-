@@ -2,7 +2,7 @@
 session_start();
 include "_dbconnect_teacher.php";
 
-if (isset($_SESSION['teacher_ID']) && isset($_SESSION['teacher_name']) && isset($_SESSION['image_link'])) {
+if (isset($_SESSION['teacher_ID']) && isset($_SESSION['teacher_name']) && isset($_SESSION['image_link']) && isset($_SESSION['subject_taught'])) {
 ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -543,9 +543,11 @@ if (isset($_SESSION['teacher_ID']) && isset($_SESSION['teacher_name']) && isset(
                                     </tr>
                                 </thead>
                                 <form action="#" method="POST" autocomplete="off">
-
+                                    <label for="date">Select Date:</label>
+                                    <input type="date" id="dates" name="Date">
                                     <tbody>
                                         <?php
+                                        $x = 1;
                                         while ($info = $result1->fetch_assoc()) {
 
                                         ?>
@@ -561,27 +563,741 @@ if (isset($_SESSION['teacher_ID']) && isset($_SESSION['teacher_name']) && isset(
                                                 </td>
                                                 <td>
                                                     <div class="row">
-                                                        <div class="col-lg-2 col-md-2 btn-magin">
-                                                            <input type="radio" id="present" name="attendance" value="present" checked="true">
+                                                        <div class="col-lg-3 col-md-3 btn-magin">
+                                                            <input type="radio" id="present" name="<?php echo $x; ?>" value=1 checked="true">
                                                             <label for="present">Present</label><br>
                                                         </div>
 
-                                                        <div class="col-lg-2 col-md-2 btn-magin">
-                                                            <input type="radio" id="absent" name="attendance" value="absent">
+                                                        <div class="col-lg-3 col-md-3 btn-magin">
+                                                            <input type="radio" id="absent" name="<?php echo $x; ?>" value=0>
                                                             <label for="absent">Absent</label><br>
                                                         </div>
                                                 </td>
                                             </tr>
-                                        <?php } ?>
+                                        <?php
+                                            $x++;
+                                        } ?>
                                     </tbody>
-                                </form>
                             </table>
+                            <div>
+                                <input type="submit" class="btn btn-primary" name="attendance_mark" value="Save" style="background-color: #25316D;">
+                            </div>
+                            </form>
+
+
+                            <?php
+                            if (isset($_POST['attendance_mark'])) {
+
+                                $sql1 = "SELECT * FROM student where batch='A1' AND semester='1'";
+                                $result1 = mysqli_query($conn, $sql1);
+                                $x = 1;
+                                $date = $_POST['Date'];
+                                while ($info = $result1->fetch_assoc()) {
+                                    $atten = $_POST[$x];
+                                    $ans = 'Present';
+                                    if ($atten == 0) {
+                                        $ans = 'Absent';
+                                    }
+                                    $subjects = $_SESSION['subject_taught'];
+                                    $ids = $info['student_ID'];
+                                    if ($subjects == 'SDF1') {
+                                        $sql1 = "UPDATE attendance1 SET SDF1=SDF1 +'$atten' WHERE student_ID = '$ids'";
+                                        $sql2 = "UPDATE attendance1 SET TSDF1=TSDF1 + '1' WHERE student_ID = '$ids'";
+                                        if ($x == 1) {
+                                            $sql3 = "INSERT INTO a12201sdf1(date, attendances) VALUES('$date', '$ans')";
+                                        } elseif ($x == 2) {
+                                            $sql3 = "INSERT INTO a12202sdf1(date, attendances) VALUES('$date', '$ans')";
+                                        }
+                                    } elseif ($subjects == 'PHYSICS1') {
+                                        $sql1 = "UPDATE attendance1 SET PHYSICS1=PHYSICS1 +'$atten' WHERE student_ID = '$ids'";
+                                        $sql2 = "UPDATE attendance1 SET TPHYSICS1=TPHYSICS1 + '1' WHERE student_ID = '$ids'";
+                                        if ($x == 1) {
+                                            $sql3 = "INSERT INTO a12201physics1(date, attendances) VALUES('$date', '$ans')";
+                                        } elseif ($x == 2) {
+                                            $sql3 = "INSERT INTO a12202physics1(date, attendances) VALUES('$date', '$ans')";
+                                        }
+                                    } elseif ($subjects == 'SDF(LAB)I') {
+                                        $sql1 = "UPDATE attendance1 SET SDF(LAB)I=SDF(LAB)I + '$atten' WHERE student_ID = '$ids'";
+                                        $sql2 = "UPDATE attendance1 SET TSDF(LAB)I=TSDF(LAB)I + '1' WHERE student_ID = '$ids'";
+                                        if ($x == 1) {
+                                            $sql3 = "INSERT INTO a12201sdf(lab)i(date, attendances) VALUES('$date', '$ans')";
+                                        } elseif ($x == 2) {
+                                            $sql3 = "INSERT INTO a12202sdf(lab)i(date, attendances) VALUES('$date', '$ans')";
+                                        }
+                                    } elseif ($subjects == 'ENGLISH') {
+                                        $sql1 = "UPDATE attendance1 SET ENGLISH=ENGLISH +'$atten' WHERE student_ID = '$ids'";
+                                        $sql2 = "UPDATE attendance1 SET TENGLISH=TENGLISH + '1' WHERE student_ID = '$ids'";
+                                        if ($x == 1) {
+                                            $sql3 = "INSERT INTO a12201english(date, attendances) VALUES('$date', '$ans')";
+                                        } elseif ($x == 2) {
+                                            $sql3 = "INSERT INTO a12202english(date, attendances) VALUES('$date', '$ans')";
+                                        }
+                                    } elseif ($subjects == 'MATHEMATICS1') {
+                                        $sql1 = "UPDATE attendance1 SET MATHEMATICS1= MATHEMATICS1 +'$atten' WHERE student_ID = '$ids'";
+                                        $sql2 = "UPDATE attendance1 SET TMATHEMATICS1=TMATHEMATICS1 + '1' WHERE student_ID = '$ids'";
+                                        if ($x == 1) {
+                                            $sql3 = "INSERT INTO a12201mathematics1(date, attendances) VALUES('$date', '$ans')";
+                                        } elseif ($x == 2) {
+                                            $sql3 = "INSERT INTO a12202mathematics(date, attendances) VALUES('$date', '$ans')";
+                                        }
+                                    } elseif ($subjects == 'PHYSICS(LAB)I') {
+                                        $sql1 = "UPDATE attendance1 SET PHYSICS(LAB)I =PHYSICS(LAB)I + '$atten' WHERE student_ID = '$ids'";
+                                        $sql2 = "UPDATE attendance1 SET TPHYSICS(LAB)I=TPHYSICS(LAB)I + '1' WHERE student_ID = '$ids'";
+                                        if ($x == 1) {
+                                            $sql3 = "INSERT INTO a12201physics(lab)i(date, attendances) VALUES('$date', '$ans')";
+                                        } elseif ($x == 2) {
+                                            $sql3 = "INSERT INTO a12202physics(lab)i(date, attendances) VALUES('$date', '$ans')";
+                                        }
+                                    }
+                                    $result11 = mysqli_query($conn, $sql1);
+                                    $result2 = mysqli_query($conn, $sql2);
+                                    $result3 = mysqli_query($conn, $sql3);
+                                    $x++;
+                                }
+                                if ($result11 &&  $result2) {
+                                    echo ("<script>alert('Attendance Updated Successfully!')</script>");
+                                    echo ("<script>window.location = 'teacher_dashboard.php';</script>");
+                                    exit();
+                                } else {
+                                    echo "<script>alert('Unsuccessfull!')</script>";
+                                    echo ("<script>window.location = 'teacher_dashboard.php';</script>");
+                                    exit();
+                                }
+                            }
+                            ?>
+
                         </div>
+                        <div id="A12" class="container tab-pane fade">
+
+
+                            <?php
+                            $sql1 = "SELECT * FROM student where batch='A2' AND semester='1'";
+                            $result1 = mysqli_query($conn, $sql1);
+                            ?>
+                            <table id="content" class="table table-bordered table-hover">
+                                <thead class="table-success">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Batch</th>
+                                        <th>Attendance</th>
+                                    </tr>
+                                </thead>
+                                <form action="#" method="POST" autocomplete="off">
+                                    <label for="date">Select Date:</label>
+                                    <input type="date" id="dates" name="Date">
+
+                                    <tbody>
+                                        <?php
+                                        $x = 1;
+                                        while ($info = $result1->fetch_assoc()) {
+
+                                        ?>
+                                            <tr>
+                                                <td>
+                                                    <?php echo "{$info['student_ID']}"; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo "{$info['student_name']}"; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo "{$info['batch']}"; ?>
+                                                </td>
+                                                <td>
+                                                    <div class="row">
+                                                        <div class="col-lg-3 col-md-3 btn-magin">
+                                                            <input type="radio" id="present" name="<?php echo $x; ?>" value=1 checked="true">
+                                                            <label for="present">Present</label><br>
+                                                        </div>
+
+                                                        <div class="col-lg-3 col-md-3 btn-magin">
+                                                            <input type="radio" id="absent" name="<?php echo $x; ?>" value=0>
+                                                            <label for="absent">Absent</label><br>
+                                                        </div>
+                                                </td>
+                                            </tr>
+                                        <?php
+                                            $x++;
+                                        } ?>
+                                    </tbody>
+                            </table>
+                            <div>
+                                <input type="submit" class="btn btn-primary" name="attendance_mark" value="Save" style="background-color: #25316D;">
+                            </div>
+                            </form>
+
+
+                            <?php
+                            if (isset($_POST['attendance_mark'])) {
+
+                                $sql1 = "SELECT * FROM student where batch='A2' AND semester='1'";
+                                $result1 = mysqli_query($conn, $sql1);
+                                $x = 1;
+                                while ($info = $result1->fetch_assoc()) {
+                                    $atten = $_POST[$x];
+                                    $subjects = $_SESSION['subject_taught'];
+                                    $ids = $info['student_ID'];
+                                    if ($subjects == 'SDF1') {
+                                        $sql1 = "UPDATE attendance1 SET SDF1=SDF1 +'$atten' WHERE student_ID = '$ids'";
+                                        $sql2 = "UPDATE attendance1 SET TSDF1=TSDF1 + '1' WHERE student_ID = '$ids'";
+                                    } elseif ($subjects == 'PHYSICS1') {
+                                        $sql1 = "UPDATE attendance1 SET PHYSICS1=PHYSICS1 +'$atten' WHERE student_ID = '$ids'";
+                                        $sql2 = "UPDATE attendance1 SET TPHYSICS1=TPHYSICS1 + '1' WHERE student_ID = '$ids'";
+                                    } elseif ($subjects == 'SDF(LAB)I') {
+                                        $sql1 = "UPDATE attendance1 SET SDF(LAB)I=SDF(LAB)I + '$atten' WHERE student_ID = '$ids'";
+                                        $sql2 = "UPDATE attendance1 SET TSDF(LAB)I=TSDF(LAB)I + '1' WHERE student_ID = '$ids'";
+                                    } elseif ($subjects == 'ENGLISH') {
+                                        $sql1 = "UPDATE attendance1 SET ENGLISH=ENGLISH +'$atten' WHERE student_ID = '$ids'";
+                                        $sql2 = "UPDATE attendance1 SET TENGLISH=TENGLISH + '1' WHERE student_ID = '$ids'";
+                                    } elseif ($subjects == 'MATHEMATICS1') {
+                                        $sql1 = "UPDATE attendance1 SET MATHEMATICS1= MATHEMATICS1 +'$atten' WHERE student_ID = '$ids'";
+                                        $sql2 = "UPDATE attendance1 SET TMATHEMATICS1=TMATHEMATICS1 + '1' WHERE student_ID = '$ids'";
+                                    } elseif ($subjects == 'PHYSICS(LAB)I') {
+                                        $sql1 = "UPDATE attendance1 SET PHYSICS(LAB)I =PHYSICS(LAB)I + '$atten' WHERE student_ID = '$ids'";
+                                        $sql2 = "UPDATE attendance1 SET TPHYSICS(LAB)I=TPHYSICS(LAB)I + '1' WHERE student_ID = '$ids'";
+                                    }
+                                    $result11 = mysqli_query($conn, $sql1);
+                                    $result2 = mysqli_query($conn, $sql2);
+                                    $x++;
+                                }
+                                if ($result11 &&  $result2) {
+                                    echo ("<script>alert('Attendance Updated Successfully!')</script>");
+                                    echo ("<script>window.location = 'teacher_dashboard.php';</script>");
+                                    exit();
+                                } else {
+                                    echo "<script>alert('Unsuccessfull!')</script>";
+                                    echo ("<script>window.location = 'teacher_dashboard.php';</script>");
+                                    exit();
+                                }
+                            }
+                            ?>
+
+                        </div>
+                        <div id="B11" class="container tab-pane fade">
+
+
+                            <?php
+                            $sql1 = "SELECT * FROM student where batch='B1' AND semester='1'";
+                            $result1 = mysqli_query($conn, $sql1);
+                            ?>
+                            <table id="content" class="table table-bordered table-hover">
+                                <thead class="table-success">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Batch</th>
+                                        <th>Attendance</th>
+                                    </tr>
+                                </thead>
+                                <form action="#" method="POST" autocomplete="off">
+                                    <label for="date">Select Date:</label>
+                                    <input type="date" id="dates" name="Date">
+                                    <tbody>
+                                        <?php
+                                        $x = 1;
+                                        while ($info = $result1->fetch_assoc()) {
+
+                                        ?>
+                                            <tr>
+                                                <td>
+                                                    <?php echo "{$info['student_ID']}"; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo "{$info['student_name']}"; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo "{$info['batch']}"; ?>
+                                                </td>
+                                                <td>
+                                                    <div class="row">
+                                                        <div class="col-lg-3 col-md-3 btn-magin">
+                                                            <input type="radio" id="present" name="<?php echo $x; ?>" value=1 checked="true">
+                                                            <label for="present">Present</label><br>
+                                                        </div>
+
+                                                        <div class="col-lg-3 col-md-3 btn-magin">
+                                                            <input type="radio" id="absent" name="<?php echo $x; ?>" value=0>
+                                                            <label for="absent">Absent</label><br>
+                                                        </div>
+                                                </td>
+                                            </tr>
+                                        <?php
+                                            $x++;
+                                        } ?>
+                                    </tbody>
+                            </table>
+                            <div>
+                                <input type="submit" class="btn btn-primary" name="attendance_mark" value="Save" style="background-color: #25316D;">
+                            </div>
+                            </form>
+
+
+                            <?php
+                            if (isset($_POST['attendance_mark'])) {
+
+                                $sql1 = "SELECT * FROM student where batch='B1' AND semester='1'";
+                                $result1 = mysqli_query($conn, $sql1);
+                                $x = 1;
+                                while ($info = $result1->fetch_assoc()) {
+                                    $atten = $_POST[$x];
+                                    $subjects = $_SESSION['subject_taught'];
+                                    $ids = $info['student_ID'];
+                                    if ($subjects == 'SDF1') {
+                                        $sql1 = "UPDATE attendance1 SET SDF1=SDF1 +'$atten' WHERE student_ID = '$ids'";
+                                        $sql2 = "UPDATE attendance1 SET TSDF1=TSDF1 + '1' WHERE student_ID = '$ids'";
+                                    } elseif ($subjects == 'PHYSICS1') {
+                                        $sql1 = "UPDATE attendance1 SET PHYSICS1=PHYSICS1 +'$atten' WHERE student_ID = '$ids'";
+                                        $sql2 = "UPDATE attendance1 SET TPHYSICS1=TPHYSICS1 + '1' WHERE student_ID = '$ids'";
+                                    } elseif ($subjects == 'SDF(LAB)I') {
+                                        $sql1 = "UPDATE attendance1 SET SDF(LAB)I=SDF(LAB)I + '$atten' WHERE student_ID = '$ids'";
+                                        $sql2 = "UPDATE attendance1 SET TSDF(LAB)I=TSDF(LAB)I + '1' WHERE student_ID = '$ids'";
+                                    } elseif ($subjects == 'ENGLISH') {
+                                        $sql1 = "UPDATE attendance1 SET ENGLISH=ENGLISH +'$atten' WHERE student_ID = '$ids'";
+                                        $sql2 = "UPDATE attendance1 SET TENGLISH=TENGLISH + '1' WHERE student_ID = '$ids'";
+                                    } elseif ($subjects == 'MATHEMATICS1') {
+                                        $sql1 = "UPDATE attendance1 SET MATHEMATICS1= MATHEMATICS1 +'$atten' WHERE student_ID = '$ids'";
+                                        $sql2 = "UPDATE attendance1 SET TMATHEMATICS1=TMATHEMATICS1 + '1' WHERE student_ID = '$ids'";
+                                    } elseif ($subjects == 'PHYSICS(LAB)I') {
+                                        $sql1 = "UPDATE attendance1 SET PHYSICS(LAB)I =PHYSICS(LAB)I + '$atten' WHERE student_ID = '$ids'";
+                                        $sql2 = "UPDATE attendance1 SET TPHYSICS(LAB)I=TPHYSICS(LAB)I + '1' WHERE student_ID = '$ids'";
+                                    }
+                                    $result11 = mysqli_query($conn, $sql1);
+                                    $result2 = mysqli_query($conn, $sql2);
+                                    $x++;
+                                }
+                                if ($result11 &&  $result2) {
+                                    echo ("<script>alert('Attendance Updated Successfully!')</script>");
+                                    echo ("<script>window.location = 'teacher_dashboard.php';</script>");
+                                    exit();
+                                } else {
+                                    echo "<script>alert('Unsuccessfull!')</script>";
+                                    echo ("<script>window.location = 'teacher_dashboard.php';</script>");
+                                    exit();
+                                }
+                            }
+                            ?>
+
+                        </div>
+
+                        <div id="B12" class="container tab-pane fade">
+
+
+                            <?php
+                            $sql1 = "SELECT * FROM student where batch='B2' AND semester='1'";
+                            $result1 = mysqli_query($conn, $sql1);
+                            ?>
+                            <table id="content" class="table table-bordered table-hover">
+                                <thead class="table-success">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Batch</th>
+                                        <th>Attendance</th>
+                                    </tr>
+                                </thead>
+                                <form action="#" method="POST" autocomplete="off">
+                                    <label for="date">Select Date:</label>
+                                    <input type="date" id="dates" name="Date">
+                                    <tbody>
+                                        <?php
+                                        $x = 1;
+                                        while ($info = $result1->fetch_assoc()) {
+
+                                        ?>
+                                            <tr>
+                                                <td>
+                                                    <?php echo "{$info['student_ID']}"; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo "{$info['student_name']}"; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo "{$info['batch']}"; ?>
+                                                </td>
+                                                <td>
+                                                    <div class="row">
+                                                        <div class="col-lg-3 col-md-3 btn-magin">
+                                                            <input type="radio" id="present" name="<?php echo $x; ?>" value=1 checked="true">
+                                                            <label for="present">Present</label><br>
+                                                        </div>
+
+                                                        <div class="col-lg-3 col-md-3 btn-magin">
+                                                            <input type="radio" id="absent" name="<?php echo $x; ?>" value=0>
+                                                            <label for="absent">Absent</label><br>
+                                                        </div>
+                                                </td>
+                                            </tr>
+                                        <?php
+                                            $x++;
+                                        } ?>
+                                    </tbody>
+                            </table>
+                            <div>
+                                <input type="submit" class="btn btn-primary" name="attendance_mark" value="Save" style="background-color: #25316D;">
+                            </div>
+                            </form>
+
+
+                            <?php
+                            if (isset($_POST['attendance_mark'])) {
+
+                                $sql1 = "SELECT * FROM student where batch='B2' AND semester='1'";
+                                $result1 = mysqli_query($conn, $sql1);
+                                $x = 1;
+                                while ($info = $result1->fetch_assoc()) {
+                                    $atten = $_POST[$x];
+                                    $subjects = $_SESSION['subject_taught'];
+                                    $ids = $info['student_ID'];
+                                    if ($subjects == 'SDF1') {
+                                        $sql1 = "UPDATE attendance1 SET SDF1=SDF1 +'$atten' WHERE student_ID = '$ids'";
+                                        $sql2 = "UPDATE attendance1 SET TSDF1=TSDF1 + '1' WHERE student_ID = '$ids'";
+                                    } elseif ($subjects == 'PHYSICS1') {
+                                        $sql1 = "UPDATE attendance1 SET PHYSICS1=PHYSICS1 +'$atten' WHERE student_ID = '$ids'";
+                                        $sql2 = "UPDATE attendance1 SET TPHYSICS1=TPHYSICS1 + '1' WHERE student_ID = '$ids'";
+                                    } elseif ($subjects == 'SDF(LAB)I') {
+                                        $sql1 = "UPDATE attendance1 SET SDF(LAB)I=SDF(LAB)I + '$atten' WHERE student_ID = '$ids'";
+                                        $sql2 = "UPDATE attendance1 SET TSDF(LAB)I=TSDF(LAB)I + '1' WHERE student_ID = '$ids'";
+                                    } elseif ($subjects == 'ENGLISH') {
+                                        $sql1 = "UPDATE attendance1 SET ENGLISH=ENGLISH +'$atten' WHERE student_ID = '$ids'";
+                                        $sql2 = "UPDATE attendance1 SET TENGLISH=TENGLISH + '1' WHERE student_ID = '$ids'";
+                                    } elseif ($subjects == 'MATHEMATICS1') {
+                                        $sql1 = "UPDATE attendance1 SET MATHEMATICS1= MATHEMATICS1 +'$atten' WHERE student_ID = '$ids'";
+                                        $sql2 = "UPDATE attendance1 SET TMATHEMATICS1=TMATHEMATICS1 + '1' WHERE student_ID = '$ids'";
+                                    } elseif ($subjects == 'PHYSICS(LAB)I') {
+                                        $sql1 = "UPDATE attendance1 SET PHYSICS(LAB)I =PHYSICS(LAB)I + '$atten' WHERE student_ID = '$ids'";
+                                        $sql2 = "UPDATE attendance1 SET TPHYSICS(LAB)I=TPHYSICS(LAB)I + '1' WHERE student_ID = '$ids'";
+                                    }
+                                    $result11 = mysqli_query($conn, $sql1);
+                                    $result2 = mysqli_query($conn, $sql2);
+                                    $x++;
+                                }
+                                if ($result11 &&  $result2) {
+                                    echo ("<script>alert('Attendance Updated Successfully!')</script>");
+                                    echo ("<script>window.location = 'teacher_dashboard.php';</script>");
+                                    exit();
+                                } else {
+                                    echo "<script>alert('Unsuccessfull!')</script>";
+                                    echo ("<script>window.location = 'teacher_dashboard.php';</script>");
+                                    exit();
+                                }
+                            }
+                            ?>
+
+                        </div>
+
+                        <div id="B13" class="container tab-pane fade">
+
+
+                            <?php
+                            $sql1 = "SELECT * FROM student where batch='B3' AND semester='1'";
+                            $result1 = mysqli_query($conn, $sql1);
+                            ?>
+                            <table id="content" class="table table-bordered table-hover">
+                                <thead class="table-success">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Batch</th>
+                                        <th>Attendance</th>
+                                    </tr>
+                                </thead>
+                                <form action="#" method="POST" autocomplete="off">
+                                    <label for="date">Select Date:</label>
+                                    <input type="date" id="dates" name="Date">
+                                    <tbody>
+                                        <?php
+                                        $x = 1;
+                                        while ($info = $result1->fetch_assoc()) {
+
+                                        ?>
+                                            <tr>
+                                                <td>
+                                                    <?php echo "{$info['student_ID']}"; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo "{$info['student_name']}"; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo "{$info['batch']}"; ?>
+                                                </td>
+                                                <td>
+                                                    <div class="row">
+                                                        <div class="col-lg-3 col-md-3 btn-magin">
+                                                            <input type="radio" id="present" name="<?php echo $x; ?>" value=1 checked="true">
+                                                            <label for="present">Present</label><br>
+                                                        </div>
+
+                                                        <div class="col-lg-3 col-md-3 btn-magin">
+                                                            <input type="radio" id="absent" name="<?php echo $x; ?>" value=0>
+                                                            <label for="absent">Absent</label><br>
+                                                        </div>
+                                                </td>
+                                            </tr>
+                                        <?php
+                                            $x++;
+                                        } ?>
+                                    </tbody>
+                            </table>
+                            <div>
+                                <input type="submit" class="btn btn-primary" name="attendance_mark" value="Save" style="background-color: #25316D;">
+                            </div>
+                            </form>
+
+
+                            <?php
+                            if (isset($_POST['attendance_mark'])) {
+
+                                $sql1 = "SELECT * FROM student where batch='B3' AND semester='1'";
+                                $result1 = mysqli_query($conn, $sql1);
+                                $x = 1;
+                                while ($info = $result1->fetch_assoc()) {
+                                    $atten = $_POST[$x];
+                                    $subjects = $_SESSION['subject_taught'];
+                                    $ids = $info['student_ID'];
+                                    if ($subjects == 'SDF1') {
+                                        $sql1 = "UPDATE attendance1 SET SDF1=SDF1 +'$atten' WHERE student_ID = '$ids'";
+                                        $sql2 = "UPDATE attendance1 SET TSDF1=TSDF1 + '1' WHERE student_ID = '$ids'";
+                                    } elseif ($subjects == 'PHYSICS1') {
+                                        $sql1 = "UPDATE attendance1 SET PHYSICS1=PHYSICS1 +'$atten' WHERE student_ID = '$ids'";
+                                        $sql2 = "UPDATE attendance1 SET TPHYSICS1=TPHYSICS1 + '1' WHERE student_ID = '$ids'";
+                                    } elseif ($subjects == 'SDF(LAB)I') {
+                                        $sql1 = "UPDATE attendance1 SET SDF(LAB)I=SDF(LAB)I + '$atten' WHERE student_ID = '$ids'";
+                                        $sql2 = "UPDATE attendance1 SET TSDF(LAB)I=TSDF(LAB)I + '1' WHERE student_ID = '$ids'";
+                                    } elseif ($subjects == 'ENGLISH') {
+                                        $sql1 = "UPDATE attendance1 SET ENGLISH=ENGLISH +'$atten' WHERE student_ID = '$ids'";
+                                        $sql2 = "UPDATE attendance1 SET TENGLISH=TENGLISH + '1' WHERE student_ID = '$ids'";
+                                    } elseif ($subjects == 'MATHEMATICS1') {
+                                        $sql1 = "UPDATE attendance1 SET MATHEMATICS1= MATHEMATICS1 +'$atten' WHERE student_ID = '$ids'";
+                                        $sql2 = "UPDATE attendance1 SET TMATHEMATICS1=TMATHEMATICS1 + '1' WHERE student_ID = '$ids'";
+                                    } elseif ($subjects == 'PHYSICS(LAB)I') {
+                                        $sql1 = "UPDATE attendance1 SET PHYSICS(LAB)I =PHYSICS(LAB)I + '$atten' WHERE student_ID = '$ids'";
+                                        $sql2 = "UPDATE attendance1 SET TPHYSICS(LAB)I=TPHYSICS(LAB)I + '1' WHERE student_ID = '$ids'";
+                                    }
+                                    $result11 = mysqli_query($conn, $sql1);
+                                    $result2 = mysqli_query($conn, $sql2);
+                                    $x++;
+                                }
+                                if ($result11 &&  $result2) {
+                                    echo ("<script>alert('Attendance Updated Successfully!')</script>");
+                                    echo ("<script>window.location = 'teacher_dashboard.php';</script>");
+                                    exit();
+                                } else {
+                                    echo "<script>alert('Unsuccessfull!')</script>";
+                                    echo ("<script>window.location = 'teacher_dashboard.php';</script>");
+                                    exit();
+                                }
+                            }
+                            ?>
+
+                        </div>
+
+                        <div id="B14" class="container tab-pane fade">
+
+
+                            <?php
+                            $sql1 = "SELECT * FROM student where batch='B4' AND semester='1'";
+                            $result1 = mysqli_query($conn, $sql1);
+                            ?>
+                            <table id="content" class="table table-bordered table-hover">
+                                <thead class="table-success">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Batch</th>
+                                        <th>Attendance</th>
+                                    </tr>
+                                </thead>
+                                <form action="#" method="POST" autocomplete="off">
+                                    <label for="date">Select Date:</label>
+                                    <input type="date" id="dates" name="Date">
+                                    <tbody>
+                                        <?php
+                                        $x = 1;
+                                        while ($info = $result1->fetch_assoc()) {
+
+                                        ?>
+                                            <tr>
+                                                <td>
+                                                    <?php echo "{$info['student_ID']}"; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo "{$info['student_name']}"; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo "{$info['batch']}"; ?>
+                                                </td>
+                                                <td>
+                                                    <div class="row">
+                                                        <div class="col-lg-3 col-md-3 btn-magin">
+                                                            <input type="radio" id="present" name="<?php echo $x; ?>" value=1 checked="true">
+                                                            <label for="present">Present</label><br>
+                                                        </div>
+
+                                                        <div class="col-lg-3 col-md-3 btn-magin">
+                                                            <input type="radio" id="absent" name="<?php echo $x; ?>" value=0>
+                                                            <label for="absent">Absent</label><br>
+                                                        </div>
+                                                </td>
+                                            </tr>
+                                        <?php
+                                            $x++;
+                                        } ?>
+                                    </tbody>
+                            </table>
+                            <div>
+                                <input type="submit" class="btn btn-primary" name="attendance_mark" value="Save" style="background-color: #25316D;">
+                            </div>
+                            </form>
+
+
+                            <?php
+                            if (isset($_POST['attendance_mark'])) {
+
+                                $sql1 = "SELECT * FROM student where batch='B4' AND semester='1'";
+                                $result1 = mysqli_query($conn, $sql1);
+                                $x = 1;
+                                while ($info = $result1->fetch_assoc()) {
+                                    $atten = $_POST[$x];
+                                    $subjects = $_SESSION['subject_taught'];
+                                    $ids = $info['student_ID'];
+                                    if ($subjects == 'SDF1') {
+                                        $sql1 = "UPDATE attendance1 SET SDF1=SDF1 +'$atten' WHERE student_ID = '$ids'";
+                                        $sql2 = "UPDATE attendance1 SET TSDF1=TSDF1 + '1' WHERE student_ID = '$ids'";
+                                    } elseif ($subjects == 'PHYSICS1') {
+                                        $sql1 = "UPDATE attendance1 SET PHYSICS1=PHYSICS1 +'$atten' WHERE student_ID = '$ids'";
+                                        $sql2 = "UPDATE attendance1 SET TPHYSICS1=TPHYSICS1 + '1' WHERE student_ID = '$ids'";
+                                    } elseif ($subjects == 'SDF(LAB)I') {
+                                        $sql1 = "UPDATE attendance1 SET SDF(LAB)I=SDF(LAB)I + '$atten' WHERE student_ID = '$ids'";
+                                        $sql2 = "UPDATE attendance1 SET TSDF(LAB)I=TSDF(LAB)I + '1' WHERE student_ID = '$ids'";
+                                    } elseif ($subjects == 'ENGLISH') {
+                                        $sql1 = "UPDATE attendance1 SET ENGLISH=ENGLISH +'$atten' WHERE student_ID = '$ids'";
+                                        $sql2 = "UPDATE attendance1 SET TENGLISH=TENGLISH + '1' WHERE student_ID = '$ids'";
+                                    } elseif ($subjects == 'MATHEMATICS1') {
+                                        $sql1 = "UPDATE attendance1 SET MATHEMATICS1= MATHEMATICS1 +'$atten' WHERE student_ID = '$ids'";
+                                        $sql2 = "UPDATE attendance1 SET TMATHEMATICS1=TMATHEMATICS1 + '1' WHERE student_ID = '$ids'";
+                                    } elseif ($subjects == 'PHYSICS(LAB)I') {
+                                        $sql1 = "UPDATE attendance1 SET PHYSICS(LAB)I =PHYSICS(LAB)I + '$atten' WHERE student_ID = '$ids'";
+                                        $sql2 = "UPDATE attendance1 SET TPHYSICS(LAB)I=TPHYSICS(LAB)I + '1' WHERE student_ID = '$ids'";
+                                    }
+                                    $result11 = mysqli_query($conn, $sql1);
+                                    $result2 = mysqli_query($conn, $sql2);
+                                    $x++;
+                                }
+                                if ($result11 &&  $result2) {
+                                    echo ("<script>alert('Attendance Updated Successfully!')</script>");
+                                    echo ("<script>window.location = 'teacher_dashboard.php';</script>");
+                                    exit();
+                                } else {
+                                    echo "<script>alert('Unsuccessfull!')</script>";
+                                    echo ("<script>window.location = 'teacher_dashboard.php';</script>");
+                                    exit();
+                                }
+                            }
+                            ?>
+
+                        </div>
+
                     </div>
 
                 </div>
+                <div id="t22" class="container-sm tab-pane fade">
+                    <hr>
+                    <h4>Updating Attendance</h4>
+                    <hr>
+                    <form action="#" method="POST" autocomplete="off">
+                        <div>
+                            <label for="student_ID">Student ID</label>
+                            <input type="text" name="studentid" id="" required>
+                        </div>
+                        <div>
+                            <label for="date">Select Date:</label>
+                            <input type="date" id="dates" name="Date">
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-1 col-md-1 btn-magin">
+                                <input type="radio" id="present" name="att" value=1 checked="true">
+                                <label for="present">Present</label><br>
+                            </div>
+
+                            <div class="col-lg-1 col-md-1 btn-magin">
+                                <input type="radio" id="absent" name="att" value=0>
+                                <label for="absent">Absent</label><br>
+                            </div>
+                        </div>
+                        <div>
+                            <input type="submit" class="btn btn-primary" name="attendance_mark" value="Save" style="background-color: #25316D;">
+                        </div>
+                    </form>
 
 
+                    <?php
+                    if (isset($_POST['attendance_mark'])) {
+
+                        $ids = $_POST['studentid'];
+                        $date = $_POST['Date'];
+                        $atten = $_POST['att'];
+                        $ans = 'Present';
+                        if ($atten == '0') {
+                            $ans = 'Absent';
+                        }
+                        $subjects = $_SESSION['subject_taught'];
+                        if ($subjects == 'SDF1') {
+                            $sql1 = "UPDATE attendance1 SET SDF1=SDF1 +'$atten' WHERE student_ID = '$ids'";
+                            if ($ids == '2201') {
+                                $sql3 = "UPDATE a12201sdf1 SET attendances ='$ans' WHERE date='$date'";
+                            } elseif ($ids == '2202') {
+                                $sql3 = "UPDATE a12202sdf1 SET attendances ='$ans' WHERE date='$date'";
+                            }
+                        } elseif ($subjects == 'PHYSICS1') {
+                            $sql1 = "UPDATE attendance1 SET PHYSICS1=PHYSICS1 +'$atten' WHERE student_ID = '$ids'";
+                            if ($ids == '2201') {
+                                $sql3 = "UPDATE a12201physics1 SET attendances ='$ans' WHERE date='$date'";
+                            } elseif ($ids == '2202') {
+                                $sql3 = "UPDATE a12202physics1 SET attendances ='$ans' WHERE date='$date'";
+                            }
+                        } elseif ($subjects == 'SDF(LAB)I') {
+                            $sql1 = "UPDATE attendance1 SET SDF(LAB)I=SDF(LAB)I + '$atten' WHERE student_ID = '$ids'";
+                            if ($ids == '2201') {
+                                $sql3 = "UPDATE a12201sdf(lab)i SET attendances ='$ans' WHERE date='$date'";
+                            } elseif ($ids == '2202') {
+                                $sql3 = "UPDATE a12202sdf(lab)i SET attendances ='$ans' WHERE date='$date'";
+                            }
+                        } elseif ($subjects == 'ENGLISH') {
+                            $sql1 = "UPDATE attendance1 SET ENGLISH=ENGLISH +'$atten' WHERE student_ID = '$ids'";
+                            if ($ids == '2201') {
+                                $sql3 = "UPDATE a12201english SET attendances ='$ans' WHERE date='$date'";
+                            } elseif ($ids == '2202') {
+                                $sql3 = "UPDATE a12202english SET attendances ='$ans' WHERE date='$date'";
+                            }
+                        } elseif ($subjects == 'MATHEMATICS1') {
+                            $sql1 = "UPDATE attendance1 SET MATHEMATICS1= MATHEMATICS1 +'$atten' WHERE student_ID = '$ids'";
+                            if ($ids == '2201') {
+                                $sql3 = "UPDATE a12201mathematics1 SET attendances ='$ans' WHERE date='$date'";
+                            } elseif ($ids == '2202') {
+                                $sql3 = "UPDATE a12202mathematics1 SET attendances ='$ans' WHERE date='$date'";
+                            }
+                        } elseif ($subjects == 'PHYSICS(LAB)I') {
+                            $sql1 = "UPDATE attendance1 SET PHYSICS(LAB)I =PHYSICS(LAB)I + '$atten' WHERE student_ID = '$ids'";
+                            if ($ids == '2201') {
+                                $sql3 = "UPDATE a12201physics(lab)i SET attendances ='$ans' WHERE date='$date'";
+                            } elseif ($ids == '2202') {
+                                $sql3 = "UPDATE a12202physics(lab)i SET attendances ='$ans' WHERE date='$date'";
+                            }
+                        }
+                        $result11 = mysqli_query($conn, $sql1);
+                        $result3 = mysqli_query($conn, $sql3);
+                        if ($result11 && $result3) {
+                            echo ("<script>alert('Attendance Updated Successfully!')</script>");
+                            echo ("<script>window.location = 'teacher_dashboard.php';</script>");
+                            exit();
+                        } else {
+                            echo "<script>alert('Unsuccessfull!')</script>";
+                            echo ("<script>window.location = 'teacher_dashboard.php';</script>");
+                            exit();
+                        }
+                    }
+                    ?>
+                </div>
             </div>
 
 

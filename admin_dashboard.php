@@ -268,7 +268,7 @@ if (isset($_SESSION['admin_ID']) && isset($_SESSION['admin_name']) && isset($_SE
 
 
                     <hr>
-                    <button type="button" class="btn btn-primary" style=" background-color: #182747;" data-bs-toggle="collapse" data-bs-target="#demo">Select Batch And Year</button>
+                    <button type="button" class="btn btn-primary" style=" background-color: #182747;" data-bs-toggle="collapse" data-bs-target="#demo">Select Year And Batch</button>
                     <div id="demo" class="collapse">
                         <br>
                         <div class="row">
@@ -1289,7 +1289,10 @@ if (isset($_SESSION['admin_ID']) && isset($_SESSION['admin_name']) && isset($_SE
                                     <a class="dropdown-item" data-bs-toggle="pill" href="#physics">Physics</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="dropdown-item" data-bs-toggle="pill" href="#it">IT</a>
+                                    <a class="dropdown-item" data-bs-toggle="pill" href="#mathematics">Mathematics</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="dropdown-item" data-bs-toggle="pill" href="#hss">HSS</a>
                                 </li>
                                 <!-- <li class="nav-item">
                                     <a class="dropdown-item" data-bs-toggle="pill" href="#B4">B4</a>
@@ -1398,9 +1401,54 @@ if (isset($_SESSION['admin_ID']) && isset($_SESSION['admin_name']) && isset($_SE
                                 </tbody>
                             </table>
                         </div>
-                        <div id="it" class="container tab-pane fade">
+                        <div id="mathematics" class="container tab-pane fade">
                             <?php
-                            $sql1 = "SELECT * FROM teacher where department='IT'";
+                            $sql1 = "SELECT * FROM teacher where department='Mathematics'";
+                            $result1 = mysqli_query($conn, $sql1);
+                            ?>
+                            <table id="content" class="table table-bordered table-hover">
+                                <thead class="table-success">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Department</th>
+                                        <th>Profile</th>
+                                        <!-- <th>Course</th> -->
+                                        <!-- <th>Gender</th> -->
+                                        <!-- <th>Hostal Room</th> -->
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    while ($info1 = $result1->fetch_assoc()) {
+
+                                    ?>
+                                        <tr>
+                                            <td>
+                                                <?php echo "{$info1['teacher_ID']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo "{$info1['teacher_name']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo "{$info1['department']}"; ?>
+                                            </td>
+                                            <td>
+                                                <img src="<?php echo $info1['image_link']; ?>" alt="Profile" width="80">
+                                            </td>
+
+                                            <!-- <td></td> -->
+                                            <!-- <td></td> -->
+                                            <!-- <td></td> -->
+                                        </tr>
+                                    <?php } ?>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="hss" class="container tab-pane fade">
+                            <?php
+                            $sql1 = "SELECT * FROM teacher where department='HSS'";
                             $result1 = mysqli_query($conn, $sql1);
                             ?>
                             <table id="content" class="table table-bordered table-hover">
@@ -1474,6 +1522,14 @@ if (isset($_SESSION['admin_ID']) && isset($_SESSION['admin_name']) && isset($_SE
                             <input type="text" name="department" style="margin-left: 10px;" id="" required>
                         </div>
                         <div>
+                            <label for="gender">Gender</label>
+                            <input type="text" name="gender" style="margin-left: 10px;" id="" required>
+                        </div>
+                        <div>
+                            <label for="sub">Subject Taught</label>
+                            <input type="text" name="sub" style="margin-left: 10px;" id="" required>
+                        </div>
+                        <div>
                             <label for="img">Image Path</label>
                             <input type="text" name="img" style="margin-left: 10px;" id="" required>
                         </div>
@@ -1490,6 +1546,8 @@ if (isset($_SESSION['admin_ID']) && isset($_SESSION['admin_name']) && isset($_SE
                         $teachername = $_POST['teachername'];
                         $Password = $_POST['password'];
                         $Department = $_POST['department'];
+                        $Gender = $_POST['gender'];
+                        $Sub = $_POST['sub'];
                         $image = $_POST['img'];
 
                         $check = "SELECT * FROM teacher WHERE teacher_ID='$teacherid'";
@@ -1501,7 +1559,7 @@ if (isset($_SESSION['admin_ID']) && isset($_SESSION['admin_name']) && isset($_SE
                             echo ("<script>window.location = 'admin_dashboard.php';</script>");
                             exit();
                         } else {
-                            $sql = "INSERT INTO teacher(teacher_ID, teacher_name, password, department,image_link) VALUES('$teacherid', '$teachername', '$Password', '$Department', '$image')";
+                            $sql = "INSERT INTO teacher(teacher_ID, teacher_name, password, department, gender, subject_taught,image_link) VALUES('$teacherid', '$teachername', '$Password', '$Department', '$Gender', '$Sub', '$image')";
                             $result = mysqli_query($conn, $sql);
                             if ($result) {
                                 echo ("<script>alert('Registered Successfully!')</script>");
