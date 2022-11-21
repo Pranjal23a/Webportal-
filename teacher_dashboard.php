@@ -1487,7 +1487,7 @@ if (isset($_SESSION['teacher_ID']) && isset($_SESSION['teacher_name']) && isset(
                 </div>
                 <div id="t31" class="container-sm tab-pane fade">
                     <hr>
-                    <h4>Updating Marking</h4>
+                    <h4>Marks Updating</h4>
                     <hr>
                     <button type="button" class="btn btn-primary" style=" background-color: #182747;" data-bs-toggle="collapse" data-bs-target="#demo">Select Year And Batch</button>
                     <div id="demo" class="collapse">
@@ -1502,22 +1502,22 @@ if (isset($_SESSION['teacher_ID']) && isset($_SESSION['teacher_name']) && isset(
 
                                         <ul class="nav nav-pills flex-column" role="tablist">
                                             <li class="nav-item">
-                                                <a class="dropdown-item" data-bs-toggle="pill" href="#A11">A1</a>
+                                                <a class="dropdown-item" data-bs-toggle="pill" href="#A111">A1</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="dropdown-item" data-bs-toggle="pill" href="#A12">A2</a>
+                                                <a class="dropdown-item" data-bs-toggle="pill" href="#A122">A2</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="dropdown-item" data-bs-toggle="pill" href="#B11">B1</a>
+                                                <a class="dropdown-item" data-bs-toggle="pill" href="#B111">B1</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="dropdown-item" data-bs-toggle="pill" href="#B12">B2</a>
+                                                <a class="dropdown-item" data-bs-toggle="pill" href="#B122">B2</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="dropdown-item" data-bs-toggle="pill" href="#B13">B3</a>
+                                                <a class="dropdown-item" data-bs-toggle="pill" href="#B133">B3</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="dropdown-item" data-bs-toggle="pill" href="#B14">B4</a>
+                                                <a class="dropdown-item" data-bs-toggle="pill" href="#B144">B4</a>
                                             </li>
                                         </ul>
                                     </ul>
@@ -1532,10 +1532,10 @@ if (isset($_SESSION['teacher_ID']) && isset($_SESSION['teacher_name']) && isset(
 
                                         <ul class="nav nav-pills flex-column" role="tablist">
                                             <li class="nav-item">
-                                                <a class="dropdown-item" data-bs-toggle="pill" href="#A21">A1</a>
+                                                <a class="dropdown-item" data-bs-toggle="pill" href="#A211">A1</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="dropdown-item" data-bs-toggle="pill" href="#B21">B1</a>
+                                                <a class="dropdown-item" data-bs-toggle="pill" href="#B211">B1</a>
                                             </li>
                                         </ul>
                                     </ul>
@@ -1550,10 +1550,10 @@ if (isset($_SESSION['teacher_ID']) && isset($_SESSION['teacher_name']) && isset(
 
                                         <ul class="nav nav-pills flex-column" role="tablist">
                                             <li class="nav-item">
-                                                <a class="dropdown-item" data-bs-toggle="pill" href="#A31">A1</a>
+                                                <a class="dropdown-item" data-bs-toggle="pill" href="#A311">A1</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="dropdown-item" data-bs-toggle="pill" href="#B31">B1</a>
+                                                <a class="dropdown-item" data-bs-toggle="pill" href="#B311">B1</a>
                                             </li>
                                         </ul>
                                     </ul>
@@ -1568,10 +1568,10 @@ if (isset($_SESSION['teacher_ID']) && isset($_SESSION['teacher_name']) && isset(
 
                                         <ul class="nav nav-pills flex-column" role="tablist">
                                             <li class="nav-item">
-                                                <a class="dropdown-item" data-bs-toggle="pill" href="#A41">A1</a>
+                                                <a class="dropdown-item" data-bs-toggle="pill" href="#A411">A1</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="dropdown-item" data-bs-toggle="pill" href="#B41">B1</a>
+                                                <a class="dropdown-item" data-bs-toggle="pill" href="#B411">B1</a>
                                             </li>
                                         </ul>
                                     </ul>
@@ -1580,10 +1580,1614 @@ if (isset($_SESSION['teacher_ID']) && isset($_SESSION['teacher_name']) && isset(
                         </div>
                     </div>
                     <hr>
+                    <div class="tab-content">
+                        <div id="A111" class="container tab-pane fade">
+
+
+                            <?php
+                            $sql1 = "SELECT * FROM student where batch='A1' AND semester='1'";
+                            $result1 = mysqli_query($conn, $sql1);
+                            $subjects = $_SESSION['subject_taught'];
+                            ?>
+                            <table id="content" class="table table-bordered table-hover">
+                                <thead class="table-success">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Batch</th>
+                                        <th>Marks</th>
+                                    </tr>
+                                </thead>
+                                <form action="#" method="POST" autocomplete="off">
+                                    <tbody>
+                                        <?php
+                                        $x = 1;
+                                        $y = 111;
+                                        while ($info = $result1->fetch_assoc()) {
+
+                                        ?>
+                                            <tr>
+                                                <td>
+                                                    <?php echo "{$info['student_ID']}"; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo "{$info['student_name']}"; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo "{$info['batch']}"; ?>
+                                                </td>
+                                                <td>
+                                                    <div class="row">
+
+                                                        <div class="col-lg-1 col-md-1 btn-magin">
+                                                            <input type="radio" id="t1" name="<?php echo $x; ?>" value=1 checked="true">
+                                                            <label for="t1">T1</label><br>
+                                                        </div>
+
+                                                        <div class="col-lg-1 col-md-1 btn-magin">
+                                                            <input type="radio" id="t2" name="<?php echo $x; ?>" value=2>
+                                                            <label for="t2">T2</label><br>
+                                                        </div>
+
+                                                        <div class="col-lg-1 col-md-1 btn-magin">
+                                                            <input type="radio" id="t3" name="<?php echo $x; ?>" value=3>
+                                                            <label for="t3">T3</label><br>
+                                                        </div>
+
+                                                        <div class="col-lg-3 col-md-3 btn-magin">
+                                                            <input type="number" id="quantity" name="<?php echo $y; ?>">
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        <?php
+                                            $x++;
+                                            $y++;
+                                        } ?>
+                                    </tbody>
+                            </table>
+                            <div>
+                                <input type="submit" class="btn btn-primary" name="update_mark" value="Update" style="background-color: #25316D;">
+                            </div>
+                            </form>
+
+
+                            <?php
+                            if (isset($_POST['update_mark'])) {
+
+                                $sql1 = "SELECT * FROM student where batch='A1' AND semester='1'";
+                                $result1 = mysqli_query($conn, $sql1);
+                                $x = 1;
+                                $y = 111;
+                                while ($info = $result1->fetch_assoc()) {
+                                    $number = $_POST[$y];
+                                    $term = $_POST[$x];
+                                    $subjects = $_SESSION['subject_taught'];
+                                    $teach = $_SESSION['teacher_name'];
+                                    $ids = $info['student_ID'];
+
+
+                                    if ($term == 1) {
+                                        if ($subjects == 'SDF1') {
+                                            $sql1 = "UPDATE marks1 SET T1SDF1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'PHYSICS1') {
+                                            $sql1 = "UPDATE marks1 SET T1PHYSICS1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'SDFLAB1') {
+                                            $sql1 = "UPDATE marks1 SET T1SDFLAB1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'ENGLISH') {
+                                            $sql1 = "UPDATE marks1 SET T1ENGLISH='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'MATHEMATICS1') {
+                                            $sql1 = "UPDATE marks1 SET T1MATHEMATICS1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'PHYSICSLAB1') {
+                                            $sql1 = "UPDATE marks1 SET T1PHYSICSLAB1='$number' WHERE student_ID = '$ids'";
+                                        }
+                                    } elseif ($term == 2) {
+                                        if ($subjects == 'SDF1') {
+                                            $sql1 = "UPDATE marks1 SET T2SDF1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'PHYSICS1') {
+                                            $sql1 = "UPDATE marks1 SET T2PHYSICS1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'SDFLAB1') {
+                                            $sql1 = "UPDATE marks1 SET T2SDFLAB1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'ENGLISH') {
+                                            $sql1 = "UPDATE marks1 SET T2ENGLISH='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'MATHEMATICS1') {
+                                            $sql1 = "UPDATE marks1 SET T2MATHEMATICS1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'PHYSICSLAB1') {
+                                            $sql1 = "UPDATE marks1 SET T2PHYSICSLAB1='$number' WHERE student_ID = '$ids'";
+                                        }
+                                    } elseif ($term == 3) {
+                                        if ($subjects == 'SDF1') {
+                                            $sql1 = "UPDATE marks1 SET T3SDF1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'PHYSICS1') {
+                                            $sql1 = "UPDATE marks1 SET T3PHYSICS1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'SDFLAB1') {
+                                            $sql1 = "UPDATE marks1 SET T3SDFLAB1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'ENGLISH') {
+                                            $sql1 = "UPDATE marks1 SET T3ENGLISH='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'MATHEMATICS1') {
+                                            $sql1 = "UPDATE marks1 SET T3MATHEMATICS1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'PHYSICSLAB1') {
+                                            $sql1 = "UPDATE marks1 SET T3PHYSICSLAB1='$number' WHERE student_ID = '$ids'";
+                                        }
+                                    }
+
+                                    $result11 = mysqli_query($conn, $sql1);
+                                    $x++;
+                                    $y++;
+                                }
+                                if ($result11) {
+                                    echo ("<script>alert('Marks Updated Successfully!')</script>");
+                                    echo ("<script>window.location = 'teacher_dashboard.php';</script>");
+                                    exit();
+                                } else {
+                                    echo "<script>alert('Unsuccessfull!')</script>";
+                                    echo ("<script>window.location = 'teacher_dashboard.php';</script>");
+                                    exit();
+                                }
+                            }
+                            ?>
+
+                        </div>
+                        <div id="A122" class="container tab-pane fade">
+
+
+                            <?php
+                            $sql1 = "SELECT * FROM student where batch='A2' AND semester='1'";
+                            $result1 = mysqli_query($conn, $sql1);
+                            $subjects = $_SESSION['subject_taught'];
+                            ?>
+                            <table id="content" class="table table-bordered table-hover">
+                                <thead class="table-success">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Batch</th>
+                                        <th>Marks</th>
+                                    </tr>
+                                </thead>
+                                <form action="#" method="POST" autocomplete="off">
+                                    <tbody>
+                                        <?php
+                                        $x = 1;
+                                        $y = 111;
+                                        while ($info = $result1->fetch_assoc()) {
+
+                                        ?>
+                                            <tr>
+                                                <td>
+                                                    <?php echo "{$info['student_ID']}"; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo "{$info['student_name']}"; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo "{$info['batch']}"; ?>
+                                                </td>
+                                                <td>
+                                                    <div class="row">
+
+                                                        <div class="col-lg-1 col-md-1 btn-magin">
+                                                            <input type="radio" id="t1" name="<?php echo $x; ?>" value=1 checked="true">
+                                                            <label for="t1">T1</label><br>
+                                                        </div>
+
+                                                        <div class="col-lg-1 col-md-1 btn-magin">
+                                                            <input type="radio" id="t2" name="<?php echo $x; ?>" value=2>
+                                                            <label for="t2">T2</label><br>
+                                                        </div>
+
+                                                        <div class="col-lg-1 col-md-1 btn-magin">
+                                                            <input type="radio" id="t3" name="<?php echo $x; ?>" value=3>
+                                                            <label for="t3">T3</label><br>
+                                                        </div>
+
+                                                        <div class="col-lg-3 col-md-3 btn-magin">
+                                                            <input type="number" id="quantity" name="<?php echo $y; ?>">
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        <?php
+                                            $x++;
+                                            $y++;
+                                        } ?>
+                                    </tbody>
+                            </table>
+                            <div>
+                                <input type="submit" class="btn btn-primary" name="update_mark" value="Update" style="background-color: #25316D;">
+                            </div>
+                            </form>
+
+
+                            <?php
+                            if (isset($_POST['update_mark'])) {
+
+                                $sql1 = "SELECT * FROM student where batch='A2' AND semester='1'";
+                                $result1 = mysqli_query($conn, $sql1);
+                                $x = 1;
+                                $y = 111;
+                                while ($info = $result1->fetch_assoc()) {
+                                    $number = $_POST[$y];
+                                    $term = $_POST[$x];
+                                    $subjects = $_SESSION['subject_taught'];
+                                    $teach = $_SESSION['teacher_name'];
+                                    $ids = $info['student_ID'];
+
+
+                                    if ($term == 1) {
+                                        if ($subjects == 'SDF1') {
+                                            $sql1 = "UPDATE marks1 SET T1SDF1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'PHYSICS1') {
+                                            $sql1 = "UPDATE marks1 SET T1PHYSICS1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'SDFLAB1') {
+                                            $sql1 = "UPDATE marks1 SET T1SDFLAB1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'ENGLISH') {
+                                            $sql1 = "UPDATE marks1 SET T1ENGLISH='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'MATHEMATICS1') {
+                                            $sql1 = "UPDATE marks1 SET T1MATHEMATICS1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'PHYSICSLAB1') {
+                                            $sql1 = "UPDATE marks1 SET T1PHYSICSLAB1='$number' WHERE student_ID = '$ids'";
+                                        }
+                                    } elseif ($term == 2) {
+                                        if ($subjects == 'SDF1') {
+                                            $sql1 = "UPDATE marks1 SET T2SDF1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'PHYSICS1') {
+                                            $sql1 = "UPDATE marks1 SET T2PHYSICS1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'SDFLAB1') {
+                                            $sql1 = "UPDATE marks1 SET T2SDFLAB1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'ENGLISH') {
+                                            $sql1 = "UPDATE marks1 SET T2ENGLISH='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'MATHEMATICS1') {
+                                            $sql1 = "UPDATE marks1 SET T2MATHEMATICS1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'PHYSICSLAB1') {
+                                            $sql1 = "UPDATE marks1 SET T2PHYSICSLAB1='$number' WHERE student_ID = '$ids'";
+                                        }
+                                    } elseif ($term == 3) {
+                                        if ($subjects == 'SDF1') {
+                                            $sql1 = "UPDATE marks1 SET T3SDF1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'PHYSICS1') {
+                                            $sql1 = "UPDATE marks1 SET T3PHYSICS1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'SDFLAB1') {
+                                            $sql1 = "UPDATE marks1 SET T3SDFLAB1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'ENGLISH') {
+                                            $sql1 = "UPDATE marks1 SET T3ENGLISH='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'MATHEMATICS1') {
+                                            $sql1 = "UPDATE marks1 SET T3MATHEMATICS1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'PHYSICSLAB1') {
+                                            $sql1 = "UPDATE marks1 SET T3PHYSICSLAB1='$number' WHERE student_ID = '$ids'";
+                                        }
+                                    }
+
+                                    $result11 = mysqli_query($conn, $sql1);
+                                    $x++;
+                                    $y++;
+                                }
+                                if ($result11) {
+                                    echo ("<script>alert('Marks Updated Successfully!')</script>");
+                                    echo ("<script>window.location = 'teacher_dashboard.php';</script>");
+                                    exit();
+                                } else {
+                                    echo "<script>alert('Unsuccessfull!')</script>";
+                                    echo ("<script>window.location = 'teacher_dashboard.php';</script>");
+                                    exit();
+                                }
+                            }
+                            ?>
+
+                        </div>
+                        <div id="B111" class="container tab-pane fade">
+
+
+                            <?php
+                            $sql1 = "SELECT * FROM student where batch='B1' AND semester='1'";
+                            $result1 = mysqli_query($conn, $sql1);
+                            $subjects = $_SESSION['subject_taught'];
+                            ?>
+                            <table id="content" class="table table-bordered table-hover">
+                                <thead class="table-success">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Batch</th>
+                                        <th>Marks</th>
+                                    </tr>
+                                </thead>
+                                <form action="#" method="POST" autocomplete="off">
+                                    <tbody>
+                                        <?php
+                                        $x = 1;
+                                        $y = 111;
+                                        while ($info = $result1->fetch_assoc()) {
+
+                                        ?>
+                                            <tr>
+                                                <td>
+                                                    <?php echo "{$info['student_ID']}"; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo "{$info['student_name']}"; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo "{$info['batch']}"; ?>
+                                                </td>
+                                                <td>
+                                                    <div class="row">
+
+                                                        <div class="col-lg-1 col-md-1 btn-magin">
+                                                            <input type="radio" id="t1" name="<?php echo $x; ?>" value=1 checked="true">
+                                                            <label for="t1">T1</label><br>
+                                                        </div>
+
+                                                        <div class="col-lg-1 col-md-1 btn-magin">
+                                                            <input type="radio" id="t2" name="<?php echo $x; ?>" value=2>
+                                                            <label for="t2">T2</label><br>
+                                                        </div>
+
+                                                        <div class="col-lg-1 col-md-1 btn-magin">
+                                                            <input type="radio" id="t3" name="<?php echo $x; ?>" value=3>
+                                                            <label for="t3">T3</label><br>
+                                                        </div>
+
+                                                        <div class="col-lg-3 col-md-3 btn-magin">
+                                                            <input type="number" id="quantity" name="<?php echo $y; ?>">
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        <?php
+                                            $x++;
+                                            $y++;
+                                        } ?>
+                                    </tbody>
+                            </table>
+                            <div>
+                                <input type="submit" class="btn btn-primary" name="update_mark" value="Update" style="background-color: #25316D;">
+                            </div>
+                            </form>
+
+
+                            <?php
+                            if (isset($_POST['update_mark'])) {
+
+                                $sql1 = "SELECT * FROM student where batch='B1' AND semester='1'";
+                                $result1 = mysqli_query($conn, $sql1);
+                                $x = 1;
+                                $y = 111;
+                                while ($info = $result1->fetch_assoc()) {
+                                    $number = $_POST[$y];
+                                    $term = $_POST[$x];
+                                    $subjects = $_SESSION['subject_taught'];
+                                    $teach = $_SESSION['teacher_name'];
+                                    $ids = $info['student_ID'];
+
+
+                                    if ($term == 1) {
+                                        if ($subjects == 'SDF1') {
+                                            $sql1 = "UPDATE marks1 SET T1SDF1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'PHYSICS1') {
+                                            $sql1 = "UPDATE marks1 SET T1PHYSICS1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'SDFLAB1') {
+                                            $sql1 = "UPDATE marks1 SET T1SDFLAB1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'ENGLISH') {
+                                            $sql1 = "UPDATE marks1 SET T1ENGLISH='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'MATHEMATICS1') {
+                                            $sql1 = "UPDATE marks1 SET T1MATHEMATICS1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'PHYSICSLAB1') {
+                                            $sql1 = "UPDATE marks1 SET T1PHYSICSLAB1='$number' WHERE student_ID = '$ids'";
+                                        }
+                                    } elseif ($term == 2) {
+                                        if ($subjects == 'SDF1') {
+                                            $sql1 = "UPDATE marks1 SET T2SDF1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'PHYSICS1') {
+                                            $sql1 = "UPDATE marks1 SET T2PHYSICS1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'SDFLAB1') {
+                                            $sql1 = "UPDATE marks1 SET T2SDFLAB1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'ENGLISH') {
+                                            $sql1 = "UPDATE marks1 SET T2ENGLISH='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'MATHEMATICS1') {
+                                            $sql1 = "UPDATE marks1 SET T2MATHEMATICS1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'PHYSICSLAB1') {
+                                            $sql1 = "UPDATE marks1 SET T2PHYSICSLAB1='$number' WHERE student_ID = '$ids'";
+                                        }
+                                    } elseif ($term == 3) {
+                                        if ($subjects == 'SDF1') {
+                                            $sql1 = "UPDATE marks1 SET T3SDF1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'PHYSICS1') {
+                                            $sql1 = "UPDATE marks1 SET T3PHYSICS1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'SDFLAB1') {
+                                            $sql1 = "UPDATE marks1 SET T3SDFLAB1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'ENGLISH') {
+                                            $sql1 = "UPDATE marks1 SET T3ENGLISH='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'MATHEMATICS1') {
+                                            $sql1 = "UPDATE marks1 SET T3MATHEMATICS1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'PHYSICSLAB1') {
+                                            $sql1 = "UPDATE marks1 SET T3PHYSICSLAB1='$number' WHERE student_ID = '$ids'";
+                                        }
+                                    }
+
+                                    $result11 = mysqli_query($conn, $sql1);
+                                    $x++;
+                                    $y++;
+                                }
+                                if ($result11) {
+                                    echo ("<script>alert('Marks Updated Successfully!')</script>");
+                                    echo ("<script>window.location = 'teacher_dashboard.php';</script>");
+                                    exit();
+                                } else {
+                                    echo "<script>alert('Unsuccessfull!')</script>";
+                                    echo ("<script>window.location = 'teacher_dashboard.php';</script>");
+                                    exit();
+                                }
+                            }
+                            ?>
+
+                        </div>
+                        <div id="B122" class="container tab-pane fade">
+
+
+                            <?php
+                            $sql1 = "SELECT * FROM student where batch='B2' AND semester='1'";
+                            $result1 = mysqli_query($conn, $sql1);
+                            $subjects = $_SESSION['subject_taught'];
+                            ?>
+                            <table id="content" class="table table-bordered table-hover">
+                                <thead class="table-success">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Batch</th>
+                                        <th>Marks</th>
+                                    </tr>
+                                </thead>
+                                <form action="#" method="POST" autocomplete="off">
+                                    <tbody>
+                                        <?php
+                                        $x = 1;
+                                        $y = 111;
+                                        while ($info = $result1->fetch_assoc()) {
+
+                                        ?>
+                                            <tr>
+                                                <td>
+                                                    <?php echo "{$info['student_ID']}"; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo "{$info['student_name']}"; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo "{$info['batch']}"; ?>
+                                                </td>
+                                                <td>
+                                                    <div class="row">
+
+                                                        <div class="col-lg-1 col-md-1 btn-magin">
+                                                            <input type="radio" id="t1" name="<?php echo $x; ?>" value=1 checked="true">
+                                                            <label for="t1">T1</label><br>
+                                                        </div>
+
+                                                        <div class="col-lg-1 col-md-1 btn-magin">
+                                                            <input type="radio" id="t2" name="<?php echo $x; ?>" value=2>
+                                                            <label for="t2">T2</label><br>
+                                                        </div>
+
+                                                        <div class="col-lg-1 col-md-1 btn-magin">
+                                                            <input type="radio" id="t3" name="<?php echo $x; ?>" value=3>
+                                                            <label for="t3">T3</label><br>
+                                                        </div>
+
+                                                        <div class="col-lg-3 col-md-3 btn-magin">
+                                                            <input type="number" id="quantity" name="<?php echo $y; ?>">
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        <?php
+                                            $x++;
+                                            $y++;
+                                        } ?>
+                                    </tbody>
+                            </table>
+                            <div>
+                                <input type="submit" class="btn btn-primary" name="update_mark" value="Update" style="background-color: #25316D;">
+                            </div>
+                            </form>
+
+
+                            <?php
+                            if (isset($_POST['update_mark'])) {
+
+                                $sql1 = "SELECT * FROM student where batch='B2' AND semester='1'";
+                                $result1 = mysqli_query($conn, $sql1);
+                                $x = 1;
+                                $y = 111;
+                                while ($info = $result1->fetch_assoc()) {
+                                    $number = $_POST[$y];
+                                    $term = $_POST[$x];
+                                    $subjects = $_SESSION['subject_taught'];
+                                    $teach = $_SESSION['teacher_name'];
+                                    $ids = $info['student_ID'];
+
+
+                                    if ($term == 1) {
+                                        if ($subjects == 'SDF1') {
+                                            $sql1 = "UPDATE marks1 SET T1SDF1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'PHYSICS1') {
+                                            $sql1 = "UPDATE marks1 SET T1PHYSICS1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'SDFLAB1') {
+                                            $sql1 = "UPDATE marks1 SET T1SDFLAB1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'ENGLISH') {
+                                            $sql1 = "UPDATE marks1 SET T1ENGLISH='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'MATHEMATICS1') {
+                                            $sql1 = "UPDATE marks1 SET T1MATHEMATICS1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'PHYSICSLAB1') {
+                                            $sql1 = "UPDATE marks1 SET T1PHYSICSLAB1='$number' WHERE student_ID = '$ids'";
+                                        }
+                                    } elseif ($term == 2) {
+                                        if ($subjects == 'SDF1') {
+                                            $sql1 = "UPDATE marks1 SET T2SDF1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'PHYSICS1') {
+                                            $sql1 = "UPDATE marks1 SET T2PHYSICS1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'SDFLAB1') {
+                                            $sql1 = "UPDATE marks1 SET T2SDFLAB1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'ENGLISH') {
+                                            $sql1 = "UPDATE marks1 SET T2ENGLISH='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'MATHEMATICS1') {
+                                            $sql1 = "UPDATE marks1 SET T2MATHEMATICS1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'PHYSICSLAB1') {
+                                            $sql1 = "UPDATE marks1 SET T2PHYSICSLAB1='$number' WHERE student_ID = '$ids'";
+                                        }
+                                    } elseif ($term == 3) {
+                                        if ($subjects == 'SDF1') {
+                                            $sql1 = "UPDATE marks1 SET T3SDF1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'PHYSICS1') {
+                                            $sql1 = "UPDATE marks1 SET T3PHYSICS1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'SDFLAB1') {
+                                            $sql1 = "UPDATE marks1 SET T3SDFLAB1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'ENGLISH') {
+                                            $sql1 = "UPDATE marks1 SET T3ENGLISH='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'MATHEMATICS1') {
+                                            $sql1 = "UPDATE marks1 SET T3MATHEMATICS1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'PHYSICSLAB1') {
+                                            $sql1 = "UPDATE marks1 SET T3PHYSICSLAB1='$number' WHERE student_ID = '$ids'";
+                                        }
+                                    }
+
+                                    $result11 = mysqli_query($conn, $sql1);
+                                    $x++;
+                                    $y++;
+                                }
+                                if ($result11) {
+                                    echo ("<script>alert('Marks Updated Successfully!')</script>");
+                                    echo ("<script>window.location = 'teacher_dashboard.php';</script>");
+                                    exit();
+                                } else {
+                                    echo "<script>alert('Unsuccessfull!')</script>";
+                                    echo ("<script>window.location = 'teacher_dashboard.php';</script>");
+                                    exit();
+                                }
+                            }
+                            ?>
+
+                        </div>
+                        <div id="B133" class="container tab-pane fade">
+
+
+                            <?php
+                            $sql1 = "SELECT * FROM student where batch='B3' AND semester='1'";
+                            $result1 = mysqli_query($conn, $sql1);
+                            $subjects = $_SESSION['subject_taught'];
+                            ?>
+                            <table id="content" class="table table-bordered table-hover">
+                                <thead class="table-success">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Batch</th>
+                                        <th>Marks</th>
+                                    </tr>
+                                </thead>
+                                <form action="#" method="POST" autocomplete="off">
+                                    <tbody>
+                                        <?php
+                                        $x = 1;
+                                        $y = 111;
+                                        while ($info = $result1->fetch_assoc()) {
+
+                                        ?>
+                                            <tr>
+                                                <td>
+                                                    <?php echo "{$info['student_ID']}"; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo "{$info['student_name']}"; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo "{$info['batch']}"; ?>
+                                                </td>
+                                                <td>
+                                                    <div class="row">
+
+                                                        <div class="col-lg-1 col-md-1 btn-magin">
+                                                            <input type="radio" id="t1" name="<?php echo $x; ?>" value=1 checked="true">
+                                                            <label for="t1">T1</label><br>
+                                                        </div>
+
+                                                        <div class="col-lg-1 col-md-1 btn-magin">
+                                                            <input type="radio" id="t2" name="<?php echo $x; ?>" value=2>
+                                                            <label for="t2">T2</label><br>
+                                                        </div>
+
+                                                        <div class="col-lg-1 col-md-1 btn-magin">
+                                                            <input type="radio" id="t3" name="<?php echo $x; ?>" value=3>
+                                                            <label for="t3">T3</label><br>
+                                                        </div>
+
+                                                        <div class="col-lg-3 col-md-3 btn-magin">
+                                                            <input type="number" id="quantity" name="<?php echo $y; ?>">
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        <?php
+                                            $x++;
+                                            $y++;
+                                        } ?>
+                                    </tbody>
+                            </table>
+                            <div>
+                                <input type="submit" class="btn btn-primary" name="update_mark" value="Update" style="background-color: #25316D;">
+                            </div>
+                            </form>
+
+
+                            <?php
+                            if (isset($_POST['update_mark'])) {
+
+                                $sql1 = "SELECT * FROM student where batch='B3' AND semester='1'";
+                                $result1 = mysqli_query($conn, $sql1);
+                                $x = 1;
+                                $y = 111;
+                                while ($info = $result1->fetch_assoc()) {
+                                    $number = $_POST[$y];
+                                    $term = $_POST[$x];
+                                    $subjects = $_SESSION['subject_taught'];
+                                    $teach = $_SESSION['teacher_name'];
+                                    $ids = $info['student_ID'];
+
+
+                                    if ($term == 1) {
+                                        if ($subjects == 'SDF1') {
+                                            $sql1 = "UPDATE marks1 SET T1SDF1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'PHYSICS1') {
+                                            $sql1 = "UPDATE marks1 SET T1PHYSICS1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'SDFLAB1') {
+                                            $sql1 = "UPDATE marks1 SET T1SDFLAB1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'ENGLISH') {
+                                            $sql1 = "UPDATE marks1 SET T1ENGLISH='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'MATHEMATICS1') {
+                                            $sql1 = "UPDATE marks1 SET T1MATHEMATICS1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'PHYSICSLAB1') {
+                                            $sql1 = "UPDATE marks1 SET T1PHYSICSLAB1='$number' WHERE student_ID = '$ids'";
+                                        }
+                                    } elseif ($term == 2) {
+                                        if ($subjects == 'SDF1') {
+                                            $sql1 = "UPDATE marks1 SET T2SDF1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'PHYSICS1') {
+                                            $sql1 = "UPDATE marks1 SET T2PHYSICS1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'SDFLAB1') {
+                                            $sql1 = "UPDATE marks1 SET T2SDFLAB1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'ENGLISH') {
+                                            $sql1 = "UPDATE marks1 SET T2ENGLISH='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'MATHEMATICS1') {
+                                            $sql1 = "UPDATE marks1 SET T2MATHEMATICS1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'PHYSICSLAB1') {
+                                            $sql1 = "UPDATE marks1 SET T2PHYSICSLAB1='$number' WHERE student_ID = '$ids'";
+                                        }
+                                    } elseif ($term == 3) {
+                                        if ($subjects == 'SDF1') {
+                                            $sql1 = "UPDATE marks1 SET T3SDF1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'PHYSICS1') {
+                                            $sql1 = "UPDATE marks1 SET T3PHYSICS1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'SDFLAB1') {
+                                            $sql1 = "UPDATE marks1 SET T3SDFLAB1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'ENGLISH') {
+                                            $sql1 = "UPDATE marks1 SET T3ENGLISH='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'MATHEMATICS1') {
+                                            $sql1 = "UPDATE marks1 SET T3MATHEMATICS1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'PHYSICSLAB1') {
+                                            $sql1 = "UPDATE marks1 SET T3PHYSICSLAB1='$number' WHERE student_ID = '$ids'";
+                                        }
+                                    }
+
+                                    $result11 = mysqli_query($conn, $sql1);
+                                    $x++;
+                                    $y++;
+                                }
+                                if ($result11) {
+                                    echo ("<script>alert('Marks Updated Successfully!')</script>");
+                                    echo ("<script>window.location = 'teacher_dashboard.php';</script>");
+                                    exit();
+                                } else {
+                                    echo "<script>alert('Unsuccessfull!')</script>";
+                                    echo ("<script>window.location = 'teacher_dashboard.php';</script>");
+                                    exit();
+                                }
+                            }
+                            ?>
+
+                        </div>
+                        <div id="B144" class="container tab-pane fade">
+
+
+                            <?php
+                            $sql1 = "SELECT * FROM student where batch='B4' AND semester='1'";
+                            $result1 = mysqli_query($conn, $sql1);
+                            $subjects = $_SESSION['subject_taught'];
+                            ?>
+                            <table id="content" class="table table-bordered table-hover">
+                                <thead class="table-success">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Batch</th>
+                                        <th>Marks</th>
+                                    </tr>
+                                </thead>
+                                <form action="#" method="POST" autocomplete="off">
+                                    <tbody>
+                                        <?php
+                                        $x = 1;
+                                        $y = 111;
+                                        while ($info = $result1->fetch_assoc()) {
+
+                                        ?>
+                                            <tr>
+                                                <td>
+                                                    <?php echo "{$info['student_ID']}"; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo "{$info['student_name']}"; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo "{$info['batch']}"; ?>
+                                                </td>
+                                                <td>
+                                                    <div class="row">
+
+                                                        <div class="col-lg-1 col-md-1 btn-magin">
+                                                            <input type="radio" id="t1" name="<?php echo $x; ?>" value=1 checked="true">
+                                                            <label for="t1">T1</label><br>
+                                                        </div>
+
+                                                        <div class="col-lg-1 col-md-1 btn-magin">
+                                                            <input type="radio" id="t2" name="<?php echo $x; ?>" value=2>
+                                                            <label for="t2">T2</label><br>
+                                                        </div>
+
+                                                        <div class="col-lg-1 col-md-1 btn-magin">
+                                                            <input type="radio" id="t3" name="<?php echo $x; ?>" value=3>
+                                                            <label for="t3">T3</label><br>
+                                                        </div>
+
+                                                        <div class="col-lg-3 col-md-3 btn-magin">
+                                                            <input type="number" id="quantity" name="<?php echo $y; ?>">
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        <?php
+                                            $x++;
+                                            $y++;
+                                        } ?>
+                                    </tbody>
+                            </table>
+                            <div>
+                                <input type="submit" class="btn btn-primary" name="update_mark" value="Update" style="background-color: #25316D;">
+                            </div>
+                            </form>
+
+
+                            <?php
+                            if (isset($_POST['update_mark'])) {
+
+                                $sql1 = "SELECT * FROM student where batch='B4' AND semester='1'";
+                                $result1 = mysqli_query($conn, $sql1);
+                                $x = 1;
+                                $y = 111;
+                                while ($info = $result1->fetch_assoc()) {
+                                    $number = $_POST[$y];
+                                    $term = $_POST[$x];
+                                    $subjects = $_SESSION['subject_taught'];
+                                    $teach = $_SESSION['teacher_name'];
+                                    $ids = $info['student_ID'];
+
+
+                                    if ($term == 1) {
+                                        if ($subjects == 'SDF1') {
+                                            $sql1 = "UPDATE marks1 SET T1SDF1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'PHYSICS1') {
+                                            $sql1 = "UPDATE marks1 SET T1PHYSICS1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'SDFLAB1') {
+                                            $sql1 = "UPDATE marks1 SET T1SDFLAB1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'ENGLISH') {
+                                            $sql1 = "UPDATE marks1 SET T1ENGLISH='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'MATHEMATICS1') {
+                                            $sql1 = "UPDATE marks1 SET T1MATHEMATICS1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'PHYSICSLAB1') {
+                                            $sql1 = "UPDATE marks1 SET T1PHYSICSLAB1='$number' WHERE student_ID = '$ids'";
+                                        }
+                                    } elseif ($term == 2) {
+                                        if ($subjects == 'SDF1') {
+                                            $sql1 = "UPDATE marks1 SET T2SDF1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'PHYSICS1') {
+                                            $sql1 = "UPDATE marks1 SET T2PHYSICS1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'SDFLAB1') {
+                                            $sql1 = "UPDATE marks1 SET T2SDFLAB1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'ENGLISH') {
+                                            $sql1 = "UPDATE marks1 SET T2ENGLISH='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'MATHEMATICS1') {
+                                            $sql1 = "UPDATE marks1 SET T2MATHEMATICS1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'PHYSICSLAB1') {
+                                            $sql1 = "UPDATE marks1 SET T2PHYSICSLAB1='$number' WHERE student_ID = '$ids'";
+                                        }
+                                    } elseif ($term == 3) {
+                                        if ($subjects == 'SDF1') {
+                                            $sql1 = "UPDATE marks1 SET T3SDF1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'PHYSICS1') {
+                                            $sql1 = "UPDATE marks1 SET T3PHYSICS1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'SDFLAB1') {
+                                            $sql1 = "UPDATE marks1 SET T3SDFLAB1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'ENGLISH') {
+                                            $sql1 = "UPDATE marks1 SET T3ENGLISH='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'MATHEMATICS1') {
+                                            $sql1 = "UPDATE marks1 SET T3MATHEMATICS1='$number' WHERE student_ID = '$ids'";
+                                        } elseif ($subjects == 'PHYSICSLAB1') {
+                                            $sql1 = "UPDATE marks1 SET T3PHYSICSLAB1='$number' WHERE student_ID = '$ids'";
+                                        }
+                                    }
+
+                                    $result11 = mysqli_query($conn, $sql1);
+                                    $x++;
+                                    $y++;
+                                }
+                                if ($result11) {
+                                    echo ("<script>alert('Marks Updated Successfully!')</script>");
+                                    echo ("<script>window.location = 'teacher_dashboard.php';</script>");
+                                    exit();
+                                } else {
+                                    echo "<script>alert('Unsuccessfull!')</script>";
+                                    echo ("<script>window.location = 'teacher_dashboard.php';</script>");
+                                    exit();
+                                }
+                            }
+                            ?>
+
+                        </div>
+                        <hr>
+                    </div>
                 </div>
-            </div>
+                <div id="t32" class="container-sm tab-pane fade">
+                    <hr>
+                    <h4>Student Result</h4>
+                    <hr>
+                    <button type="button" class="btn btn-primary" style=" background-color: #182747;" data-bs-toggle="collapse" data-bs-target="#demo">Select Year And Batch</button>
+                    <div id="demo" class="collapse">
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-1 col-md-1 btn-magin">
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style=" background-color: #182747;">
+                                        Ist
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+
+                                        <ul class="nav nav-pills flex-column" role="tablist">
+                                            <li class="nav-item">
+                                                <a class="dropdown-item" data-bs-toggle="pill" href="#A1111">A1</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="dropdown-item" data-bs-toggle="pill" href="#A1222">A2</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="dropdown-item" data-bs-toggle="pill" href="#B1111">B1</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="dropdown-item" data-bs-toggle="pill" href="#B1222">B2</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="dropdown-item" data-bs-toggle="pill" href="#B1333">B3</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="dropdown-item" data-bs-toggle="pill" href="#B1444">B4</a>
+                                            </li>
+                                        </ul>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-1 col-md-1 btn-magin">
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style=" background-color: #182747;">
+                                        IInd
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+
+                                        <ul class="nav nav-pills flex-column" role="tablist">
+                                            <li class="nav-item">
+                                                <a class="dropdown-item" data-bs-toggle="pill" href="#A2111">A1</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="dropdown-item" data-bs-toggle="pill" href="#B2111">B1</a>
+                                            </li>
+                                        </ul>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-1 col-md-1 btn-magin">
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style=" background-color: #182747;">
+                                        IIIrd
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+
+                                        <ul class="nav nav-pills flex-column" role="tablist">
+                                            <li class="nav-item">
+                                                <a class="dropdown-item" data-bs-toggle="pill" href="#A3111">A1</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="dropdown-item" data-bs-toggle="pill" href="#B3111">B1</a>
+                                            </li>
+                                        </ul>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-1 col-md-1 btn-magin">
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style=" background-color: #182747;">
+                                        IVth
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+
+                                        <ul class="nav nav-pills flex-column" role="tablist">
+                                            <li class="nav-item">
+                                                <a class="dropdown-item" data-bs-toggle="pill" href="#A4111">A1</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="dropdown-item" data-bs-toggle="pill" href="#B4111">B1</a>
+                                            </li>
+                                        </ul>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="tab-content">
+                        <div id="A1111" class="container tab-pane fade">
 
 
+                            <?php
+                            $subjects = $_SESSION['subject_taught'];
+                            if ($subjects == 'SDF1') {
+                                $sql1 = "SELECT student.student_ID, student.student_name, student.batch, student.semester, marks1.T1SDF1, marks1.T2SDF1, marks1.T3SDF1 FROM student RIGHT JOIN marks1 ON student.student_ID=marks1.student_ID WHERE student.batch='A1' AND student.semester='1'";
+                            } elseif ($subjects == 'SDFLAB1') {
+                                $sql1 = "SELECT student.student_ID, student.student_name, student.batch, student.semester, marks1.T1SDFLAB1, marks1.T2SDFLAB1, marks1.T3SDFLAB1 FROM student RIGHT JOIN marks1 ON student.student_ID=marks1.student_ID WHERE student.batch='A1' AND student.semester='1'";
+                            } elseif ($subjects == 'PHYSICS1') {
+                                $sql1 = "SELECT student.student_ID, student.student_name, student.batch, student.semester, marks1.T1PHYSICS1, marks1.T2PHYSICS1, marks1.T3PHYSICS1 FROM student RIGHT JOIN marks1 ON student.student_ID=marks1.student_ID WHERE student.batch='A1' AND student.semester='1'";
+                            } elseif ($subjects == 'PHYSICSLAB1') {
+                                $sql1 = "SELECT student.student_ID, student.student_name, student.batch, student.semester, marks1.T1PHYSICSLAB1, marks1.T2PHYSICSLAB1, marks1.T3PHYSICSLAB1 FROM student RIGHT JOIN marks1 ON student.student_ID=marks1.student_ID WHERE student.batch='A1' AND student.semester='1'";
+                            } elseif ($subjects == 'MATHEMATICS1') {
+                                $sql1 = "SELECT student.student_ID, student.student_name, student.batch, student.semester, marks1.T1MATHEMATICS1, marks1.T2MATHEMATICS1, marks1.T3MATHEMATICS1 FROM student RIGHT JOIN marks1 ON student.student_ID=marks1.student_ID WHERE student.batch='A1' AND student.semester='1'";
+                            } elseif ($subjects == 'ENGLISH') {
+                                $sql1 = "SELECT student.student_ID, student.student_name, student.batch, student.semester, marks1.T1ENGLISH, marks1.T2ENGLISH, marks1.T3ENGLISH FROM student RIGHT JOIN marks1 ON student.student_ID=marks1.student_ID WHERE student.batch='A1' AND student.semester='1'";
+                            }
+
+                            $result1 = mysqli_query($conn, $sql1);
+                            ?>
+                            <h5><?php echo $subjects; ?></h5>
+                            <table id="content" class="table table-bordered table-hover">
+                                <thead class="table-success">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Batch</th>
+                                        <th>T1</th>
+                                        <th>T2</th>
+                                        <th>T3</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    while ($info = $result1->fetch_assoc()) {
+
+                                    ?>
+                                        <tr>
+                                            <td>
+                                                <?php echo "{$info['student_ID']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo "{$info['student_name']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo "{$info['batch']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php
+                                                if ($subjects == 'SDF1') {
+                                                    echo "{$info['T1SDF1']}";
+                                                } elseif ($subjects == 'SDFLAB1') {
+                                                    echo "{$info['T1SDFLAB1']}";
+                                                } elseif ($subjects == 'PHYSICS1') {
+                                                    echo "{$info['T1PHYSICS1']}";
+                                                } elseif ($subjects == 'PHYSICSLAB1') {
+                                                    echo "{$info['T1PHYSICSLAB1']}";
+                                                } elseif ($subjects == 'MATHEMATICS1') {
+                                                    echo "{$info['T1MATHEMATICS1']}";
+                                                } elseif ($subjects == 'ENGLISH') {
+                                                    echo "{$info['T1ENGLISH']}";
+                                                }
+                                                ?>
+                                            </td>
+                                            <td>
+                                                <?php
+                                                if ($subjects == 'SDF1') {
+                                                    echo "{$info['T2SDF1']}";
+                                                } elseif ($subjects == 'SDFLAB1') {
+                                                    echo "{$info['T2SDFLAB1']}";
+                                                } elseif ($subjects == 'PHYSICS1') {
+                                                    echo "{$info['T2PHYSICS1']}";
+                                                } elseif ($subjects == 'PHYSICSLAB1') {
+                                                    echo "{$info['T2PHYSICSLAB1']}";
+                                                } elseif ($subjects == 'MATHEMATICS1') {
+                                                    echo "{$info['T2MATHEMATICS1']}";
+                                                } elseif ($subjects == 'ENGLISH') {
+                                                    echo "{$info['T2ENGLISH']}";
+                                                }
+                                                ?>
+                                            </td>
+                                            <td>
+                                                <?php
+                                                if ($subjects == 'SDF1') {
+                                                    echo "{$info['T3SDF1']}";
+                                                } elseif ($subjects == 'SDFLAB1') {
+                                                    echo "{$info['T3SDFLAB1']}";
+                                                } elseif ($subjects == 'PHYSICS1') {
+                                                    echo "{$info['T3PHYSICS1']}";
+                                                } elseif ($subjects == 'PHYSICSLAB1') {
+                                                    echo "{$info['T3PHYSICSLAB1']}";
+                                                } elseif ($subjects == 'MATHEMATICS1') {
+                                                    echo "{$info['T3MATHEMATICS1']}";
+                                                } elseif ($subjects == 'ENGLISH') {
+                                                    echo "{$info['T3ENGLISH']}";
+                                                }
+                                                ?>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="A1222" class="container tab-pane fade">
+
+
+                            <?php
+                            $subjects = $_SESSION['subject_taught'];
+                            if ($subjects == 'SDF1') {
+                                $sql1 = "SELECT student.student_ID, student.student_name, student.batch, student.semester, marks1.T1SDF1, marks1.T2SDF1, marks1.T3SDF1 FROM student RIGHT JOIN marks1 ON student.student_ID=marks1.student_ID WHERE student.batch='A2' AND student.semester='1'";
+                            } elseif ($subjects == 'SDFLAB1') {
+                                $sql1 = "SELECT student.student_ID, student.student_name, student.batch, student.semester, marks1.T1SDFLAB1, marks1.T2SDFLAB1, marks1.T3SDFLAB1 FROM student RIGHT JOIN marks1 ON student.student_ID=marks1.student_ID WHERE student.batch='A2' AND student.semester='1'";
+                            } elseif ($subjects == 'PHYSICS1') {
+                                $sql1 = "SELECT student.student_ID, student.student_name, student.batch, student.semester, marks1.T1PHYSICS1, marks1.T2PHYSICS1, marks1.T3PHYSICS1 FROM student RIGHT JOIN marks1 ON student.student_ID=marks1.student_ID WHERE student.batch='A2' AND student.semester='1'";
+                            } elseif ($subjects == 'PHYSICSLAB1') {
+                                $sql1 = "SELECT student.student_ID, student.student_name, student.batch, student.semester, marks1.T1PHYSICSLAB1, marks1.T2PHYSICSLAB1, marks1.T3PHYSICSLAB1 FROM student RIGHT JOIN marks1 ON student.student_ID=marks1.student_ID WHERE student.batch='A2' AND student.semester='1'";
+                            } elseif ($subjects == 'MATHEMATICS1') {
+                                $sql1 = "SELECT student.student_ID, student.student_name, student.batch, student.semester, marks1.T1MATHEMATICS1, marks1.T2MATHEMATICS1, marks1.T3MATHEMATICS1 FROM student RIGHT JOIN marks1 ON student.student_ID=marks1.student_ID WHERE student.batch='A2' AND student.semester='1'";
+                            } elseif ($subjects == 'ENGLISH') {
+                                $sql1 = "SELECT student.student_ID, student.student_name, student.batch, student.semester, marks1.T1ENGLISH, marks1.T2ENGLISH, marks1.T3ENGLISH FROM student RIGHT JOIN marks1 ON student.student_ID=marks1.student_ID WHERE student.batch='A2' AND student.semester='1'";
+                            }
+
+                            $result1 = mysqli_query($conn, $sql1);
+                            ?>
+                            <h5><?php echo $subjects; ?></h5>
+                            <table id="content" class="table table-bordered table-hover">
+                                <thead class="table-success">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Batch</th>
+                                        <th>T1</th>
+                                        <th>T2</th>
+                                        <th>T3</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    while ($info = $result1->fetch_assoc()) {
+
+                                    ?>
+                                        <tr>
+                                            <td>
+                                                <?php echo "{$info['student_ID']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo "{$info['student_name']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo "{$info['batch']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php
+                                                if ($subjects == 'SDF1') {
+                                                    echo "{$info['T1SDF1']}";
+                                                } elseif ($subjects == 'SDFLAB1') {
+                                                    echo "{$info['T1SDFLAB1']}";
+                                                } elseif ($subjects == 'PHYSICS1') {
+                                                    echo "{$info['T1PHYSICS1']}";
+                                                } elseif ($subjects == 'PHYSICSLAB1') {
+                                                    echo "{$info['T1PHYSICSLAB1']}";
+                                                } elseif ($subjects == 'MATHEMATICS1') {
+                                                    echo "{$info['T1MATHEMATICS1']}";
+                                                } elseif ($subjects == 'ENGLISH') {
+                                                    echo "{$info['T1ENGLISH']}";
+                                                }
+                                                ?>
+                                            </td>
+                                            <td>
+                                                <?php
+                                                if ($subjects == 'SDF1') {
+                                                    echo "{$info['T2SDF1']}";
+                                                } elseif ($subjects == 'SDFLAB1') {
+                                                    echo "{$info['T2SDFLAB1']}";
+                                                } elseif ($subjects == 'PHYSICS1') {
+                                                    echo "{$info['T2PHYSICS1']}";
+                                                } elseif ($subjects == 'PHYSICSLAB1') {
+                                                    echo "{$info['T2PHYSICSLAB1']}";
+                                                } elseif ($subjects == 'MATHEMATICS1') {
+                                                    echo "{$info['T2MATHEMATICS1']}";
+                                                } elseif ($subjects == 'ENGLISH') {
+                                                    echo "{$info['T2ENGLISH']}";
+                                                }
+                                                ?>
+                                            </td>
+                                            <td>
+                                                <?php
+                                                if ($subjects == 'SDF1') {
+                                                    echo "{$info['T3SDF1']}";
+                                                } elseif ($subjects == 'SDFLAB1') {
+                                                    echo "{$info['T3SDFLAB1']}";
+                                                } elseif ($subjects == 'PHYSICS1') {
+                                                    echo "{$info['T3PHYSICS1']}";
+                                                } elseif ($subjects == 'PHYSICSLAB1') {
+                                                    echo "{$info['T3PHYSICSLAB1']}";
+                                                } elseif ($subjects == 'MATHEMATICS1') {
+                                                    echo "{$info['T3MATHEMATICS1']}";
+                                                } elseif ($subjects == 'ENGLISH') {
+                                                    echo "{$info['T3ENGLISH']}";
+                                                }
+                                                ?>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="B1111" class="container tab-pane fade">
+
+
+                            <?php
+                            $subjects = $_SESSION['subject_taught'];
+                            if ($subjects == 'SDF1') {
+                                $sql1 = "SELECT student.student_ID, student.student_name, student.batch, student.semester, marks1.T1SDF1, marks1.T2SDF1, marks1.T3SDF1 FROM student RIGHT JOIN marks1 ON student.student_ID=marks1.student_ID WHERE student.batch='B1' AND student.semester='1'";
+                            } elseif ($subjects == 'SDFLAB1') {
+                                $sql1 = "SELECT student.student_ID, student.student_name, student.batch, student.semester, marks1.T1SDFLAB1, marks1.T2SDFLAB1, marks1.T3SDFLAB1 FROM student RIGHT JOIN marks1 ON student.student_ID=marks1.student_ID WHERE student.batch='B1' AND student.semester='1'";
+                            } elseif ($subjects == 'PHYSICS1') {
+                                $sql1 = "SELECT student.student_ID, student.student_name, student.batch, student.semester, marks1.T1PHYSICS1, marks1.T2PHYSICS1, marks1.T3PHYSICS1 FROM student RIGHT JOIN marks1 ON student.student_ID=marks1.student_ID WHERE student.batch='B1' AND student.semester='1'";
+                            } elseif ($subjects == 'PHYSICSLAB1') {
+                                $sql1 = "SELECT student.student_ID, student.student_name, student.batch, student.semester, marks1.T1PHYSICSLAB1, marks1.T2PHYSICSLAB1, marks1.T3PHYSICSLAB1 FROM student RIGHT JOIN marks1 ON student.student_ID=marks1.student_ID WHERE student.batch='B1' AND student.semester='1'";
+                            } elseif ($subjects == 'MATHEMATICS1') {
+                                $sql1 = "SELECT student.student_ID, student.student_name, student.batch, student.semester, marks1.T1MATHEMATICS1, marks1.T2MATHEMATICS1, marks1.T3MATHEMATICS1 FROM student RIGHT JOIN marks1 ON student.student_ID=marks1.student_ID WHERE student.batch='B1' AND student.semester='1'";
+                            } elseif ($subjects == 'ENGLISH') {
+                                $sql1 = "SELECT student.student_ID, student.student_name, student.batch, student.semester, marks1.T1ENGLISH, marks1.T2ENGLISH, marks1.T3ENGLISH FROM student RIGHT JOIN marks1 ON student.student_ID=marks1.student_ID WHERE student.batch='B1' AND student.semester='1'";
+                            }
+
+                            $result1 = mysqli_query($conn, $sql1);
+                            ?>
+                            <h5><?php echo $subjects; ?></h5>
+                            <table id="content" class="table table-bordered table-hover">
+                                <thead class="table-success">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Batch</th>
+                                        <th>T1</th>
+                                        <th>T2</th>
+                                        <th>T3</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    while ($info = $result1->fetch_assoc()) {
+
+                                    ?>
+                                        <tr>
+                                            <td>
+                                                <?php echo "{$info['student_ID']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo "{$info['student_name']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo "{$info['batch']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php
+                                                if ($subjects == 'SDF1') {
+                                                    echo "{$info['T1SDF1']}";
+                                                } elseif ($subjects == 'SDFLAB1') {
+                                                    echo "{$info['T1SDFLAB1']}";
+                                                } elseif ($subjects == 'PHYSICS1') {
+                                                    echo "{$info['T1PHYSICS1']}";
+                                                } elseif ($subjects == 'PHYSICSLAB1') {
+                                                    echo "{$info['T1PHYSICSLAB1']}";
+                                                } elseif ($subjects == 'MATHEMATICS1') {
+                                                    echo "{$info['T1MATHEMATICS1']}";
+                                                } elseif ($subjects == 'ENGLISH') {
+                                                    echo "{$info['T1ENGLISH']}";
+                                                }
+                                                ?>
+                                            </td>
+                                            <td>
+                                                <?php
+                                                if ($subjects == 'SDF1') {
+                                                    echo "{$info['T2SDF1']}";
+                                                } elseif ($subjects == 'SDFLAB1') {
+                                                    echo "{$info['T2SDFLAB1']}";
+                                                } elseif ($subjects == 'PHYSICS1') {
+                                                    echo "{$info['T2PHYSICS1']}";
+                                                } elseif ($subjects == 'PHYSICSLAB1') {
+                                                    echo "{$info['T2PHYSICSLAB1']}";
+                                                } elseif ($subjects == 'MATHEMATICS1') {
+                                                    echo "{$info['T2MATHEMATICS1']}";
+                                                } elseif ($subjects == 'ENGLISH') {
+                                                    echo "{$info['T2ENGLISH']}";
+                                                }
+                                                ?>
+                                            </td>
+                                            <td>
+                                                <?php
+                                                if ($subjects == 'SDF1') {
+                                                    echo "{$info['T3SDF1']}";
+                                                } elseif ($subjects == 'SDFLAB1') {
+                                                    echo "{$info['T3SDFLAB1']}";
+                                                } elseif ($subjects == 'PHYSICS1') {
+                                                    echo "{$info['T3PHYSICS1']}";
+                                                } elseif ($subjects == 'PHYSICSLAB1') {
+                                                    echo "{$info['T3PHYSICSLAB1']}";
+                                                } elseif ($subjects == 'MATHEMATICS1') {
+                                                    echo "{$info['T3MATHEMATICS1']}";
+                                                } elseif ($subjects == 'ENGLISH') {
+                                                    echo "{$info['T3ENGLISH']}";
+                                                }
+                                                ?>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="B1222" class="container tab-pane fade">
+
+
+                            <?php
+                            $subjects = $_SESSION['subject_taught'];
+                            if ($subjects == 'SDF1') {
+                                $sql1 = "SELECT student.student_ID, student.student_name, student.batch, student.semester, marks1.T1SDF1, marks1.T2SDF1, marks1.T3SDF1 FROM student RIGHT JOIN marks1 ON student.student_ID=marks1.student_ID WHERE student.batch='B2' AND student.semester='1'";
+                            } elseif ($subjects == 'SDFLAB1') {
+                                $sql1 = "SELECT student.student_ID, student.student_name, student.batch, student.semester, marks1.T1SDFLAB1, marks1.T2SDFLAB1, marks1.T3SDFLAB1 FROM student RIGHT JOIN marks1 ON student.student_ID=marks1.student_ID WHERE student.batch='B2' AND student.semester='1'";
+                            } elseif ($subjects == 'PHYSICS1') {
+                                $sql1 = "SELECT student.student_ID, student.student_name, student.batch, student.semester, marks1.T1PHYSICS1, marks1.T2PHYSICS1, marks1.T3PHYSICS1 FROM student RIGHT JOIN marks1 ON student.student_ID=marks1.student_ID WHERE student.batch='B2' AND student.semester='1'";
+                            } elseif ($subjects == 'PHYSICSLAB1') {
+                                $sql1 = "SELECT student.student_ID, student.student_name, student.batch, student.semester, marks1.T1PHYSICSLAB1, marks1.T2PHYSICSLAB1, marks1.T3PHYSICSLAB1 FROM student RIGHT JOIN marks1 ON student.student_ID=marks1.student_ID WHERE student.batch='B2' AND student.semester='1'";
+                            } elseif ($subjects == 'MATHEMATICS1') {
+                                $sql1 = "SELECT student.student_ID, student.student_name, student.batch, student.semester, marks1.T1MATHEMATICS1, marks1.T2MATHEMATICS1, marks1.T3MATHEMATICS1 FROM student RIGHT JOIN marks1 ON student.student_ID=marks1.student_ID WHERE student.batch='B2' AND student.semester='1'";
+                            } elseif ($subjects == 'ENGLISH') {
+                                $sql1 = "SELECT student.student_ID, student.student_name, student.batch, student.semester, marks1.T1ENGLISH, marks1.T2ENGLISH, marks1.T3ENGLISH FROM student RIGHT JOIN marks1 ON student.student_ID=marks1.student_ID WHERE student.batch='B2' AND student.semester='1'";
+                            }
+
+                            $result1 = mysqli_query($conn, $sql1);
+                            ?>
+                            <h5><?php echo $subjects; ?></h5>
+                            <table id="content" class="table table-bordered table-hover">
+                                <thead class="table-success">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Batch</th>
+                                        <th>T1</th>
+                                        <th>T2</th>
+                                        <th>T3</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    while ($info = $result1->fetch_assoc()) {
+
+                                    ?>
+                                        <tr>
+                                            <td>
+                                                <?php echo "{$info['student_ID']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo "{$info['student_name']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo "{$info['batch']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php
+                                                if ($subjects == 'SDF1') {
+                                                    echo "{$info['T1SDF1']}";
+                                                } elseif ($subjects == 'SDFLAB1') {
+                                                    echo "{$info['T1SDFLAB1']}";
+                                                } elseif ($subjects == 'PHYSICS1') {
+                                                    echo "{$info['T1PHYSICS1']}";
+                                                } elseif ($subjects == 'PHYSICSLAB1') {
+                                                    echo "{$info['T1PHYSICSLAB1']}";
+                                                } elseif ($subjects == 'MATHEMATICS1') {
+                                                    echo "{$info['T1MATHEMATICS1']}";
+                                                } elseif ($subjects == 'ENGLISH') {
+                                                    echo "{$info['T1ENGLISH']}";
+                                                }
+                                                ?>
+                                            </td>
+                                            <td>
+                                                <?php
+                                                if ($subjects == 'SDF1') {
+                                                    echo "{$info['T2SDF1']}";
+                                                } elseif ($subjects == 'SDFLAB1') {
+                                                    echo "{$info['T2SDFLAB1']}";
+                                                } elseif ($subjects == 'PHYSICS1') {
+                                                    echo "{$info['T2PHYSICS1']}";
+                                                } elseif ($subjects == 'PHYSICSLAB1') {
+                                                    echo "{$info['T2PHYSICSLAB1']}";
+                                                } elseif ($subjects == 'MATHEMATICS1') {
+                                                    echo "{$info['T2MATHEMATICS1']}";
+                                                } elseif ($subjects == 'ENGLISH') {
+                                                    echo "{$info['T2ENGLISH']}";
+                                                }
+                                                ?>
+                                            </td>
+                                            <td>
+                                                <?php
+                                                if ($subjects == 'SDF1') {
+                                                    echo "{$info['T3SDF1']}";
+                                                } elseif ($subjects == 'SDFLAB1') {
+                                                    echo "{$info['T3SDFLAB1']}";
+                                                } elseif ($subjects == 'PHYSICS1') {
+                                                    echo "{$info['T3PHYSICS1']}";
+                                                } elseif ($subjects == 'PHYSICSLAB1') {
+                                                    echo "{$info['T3PHYSICSLAB1']}";
+                                                } elseif ($subjects == 'MATHEMATICS1') {
+                                                    echo "{$info['T3MATHEMATICS1']}";
+                                                } elseif ($subjects == 'ENGLISH') {
+                                                    echo "{$info['T3ENGLISH']}";
+                                                }
+                                                ?>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="B1333" class="container tab-pane fade">
+
+
+                            <?php
+                            $subjects = $_SESSION['subject_taught'];
+                            if ($subjects == 'SDF1') {
+                                $sql1 = "SELECT student.student_ID, student.student_name, student.batch, student.semester, marks1.T1SDF1, marks1.T2SDF1, marks1.T3SDF1 FROM student RIGHT JOIN marks1 ON student.student_ID=marks1.student_ID WHERE student.batch='B3' AND student.semester='1'";
+                            } elseif ($subjects == 'SDFLAB1') {
+                                $sql1 = "SELECT student.student_ID, student.student_name, student.batch, student.semester, marks1.T1SDFLAB1, marks1.T2SDFLAB1, marks1.T3SDFLAB1 FROM student RIGHT JOIN marks1 ON student.student_ID=marks1.student_ID WHERE student.batch='B3' AND student.semester='1'";
+                            } elseif ($subjects == 'PHYSICS1') {
+                                $sql1 = "SELECT student.student_ID, student.student_name, student.batch, student.semester, marks1.T1PHYSICS1, marks1.T2PHYSICS1, marks1.T3PHYSICS1 FROM student RIGHT JOIN marks1 ON student.student_ID=marks1.student_ID WHERE student.batch='B3' AND student.semester='1'";
+                            } elseif ($subjects == 'PHYSICSLAB1') {
+                                $sql1 = "SELECT student.student_ID, student.student_name, student.batch, student.semester, marks1.T1PHYSICSLAB1, marks1.T2PHYSICSLAB1, marks1.T3PHYSICSLAB1 FROM student RIGHT JOIN marks1 ON student.student_ID=marks1.student_ID WHERE student.batch='B3' AND student.semester='1'";
+                            } elseif ($subjects == 'MATHEMATICS1') {
+                                $sql1 = "SELECT student.student_ID, student.student_name, student.batch, student.semester, marks1.T1MATHEMATICS1, marks1.T2MATHEMATICS1, marks1.T3MATHEMATICS1 FROM student RIGHT JOIN marks1 ON student.student_ID=marks1.student_ID WHERE student.batch='B3' AND student.semester='1'";
+                            } elseif ($subjects == 'ENGLISH') {
+                                $sql1 = "SELECT student.student_ID, student.student_name, student.batch, student.semester, marks1.T1ENGLISH, marks1.T2ENGLISH, marks1.T3ENGLISH FROM student RIGHT JOIN marks1 ON student.student_ID=marks1.student_ID WHERE student.batch='B3' AND student.semester='1'";
+                            }
+
+                            $result1 = mysqli_query($conn, $sql1);
+                            ?>
+                            <h5><?php echo $subjects; ?></h5>
+                            <table id="content" class="table table-bordered table-hover">
+                                <thead class="table-success">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Batch</th>
+                                        <th>T1</th>
+                                        <th>T2</th>
+                                        <th>T3</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    while ($info = $result1->fetch_assoc()) {
+
+                                    ?>
+                                        <tr>
+                                            <td>
+                                                <?php echo "{$info['student_ID']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo "{$info['student_name']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo "{$info['batch']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php
+                                                if ($subjects == 'SDF1') {
+                                                    echo "{$info['T1SDF1']}";
+                                                } elseif ($subjects == 'SDFLAB1') {
+                                                    echo "{$info['T1SDFLAB1']}";
+                                                } elseif ($subjects == 'PHYSICS1') {
+                                                    echo "{$info['T1PHYSICS1']}";
+                                                } elseif ($subjects == 'PHYSICSLAB1') {
+                                                    echo "{$info['T1PHYSICSLAB1']}";
+                                                } elseif ($subjects == 'MATHEMATICS1') {
+                                                    echo "{$info['T1MATHEMATICS1']}";
+                                                } elseif ($subjects == 'ENGLISH') {
+                                                    echo "{$info['T1ENGLISH']}";
+                                                }
+                                                ?>
+                                            </td>
+                                            <td>
+                                                <?php
+                                                if ($subjects == 'SDF1') {
+                                                    echo "{$info['T2SDF1']}";
+                                                } elseif ($subjects == 'SDFLAB1') {
+                                                    echo "{$info['T2SDFLAB1']}";
+                                                } elseif ($subjects == 'PHYSICS1') {
+                                                    echo "{$info['T2PHYSICS1']}";
+                                                } elseif ($subjects == 'PHYSICSLAB1') {
+                                                    echo "{$info['T2PHYSICSLAB1']}";
+                                                } elseif ($subjects == 'MATHEMATICS1') {
+                                                    echo "{$info['T2MATHEMATICS1']}";
+                                                } elseif ($subjects == 'ENGLISH') {
+                                                    echo "{$info['T2ENGLISH']}";
+                                                }
+                                                ?>
+                                            </td>
+                                            <td>
+                                                <?php
+                                                if ($subjects == 'SDF1') {
+                                                    echo "{$info['T3SDF1']}";
+                                                } elseif ($subjects == 'SDFLAB1') {
+                                                    echo "{$info['T3SDFLAB1']}";
+                                                } elseif ($subjects == 'PHYSICS1') {
+                                                    echo "{$info['T3PHYSICS1']}";
+                                                } elseif ($subjects == 'PHYSICSLAB1') {
+                                                    echo "{$info['T3PHYSICSLAB1']}";
+                                                } elseif ($subjects == 'MATHEMATICS1') {
+                                                    echo "{$info['T3MATHEMATICS1']}";
+                                                } elseif ($subjects == 'ENGLISH') {
+                                                    echo "{$info['T3ENGLISH']}";
+                                                }
+                                                ?>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="B1444" class="container tab-pane fade">
+
+
+                            <?php
+                            $subjects = $_SESSION['subject_taught'];
+                            if ($subjects == 'SDF1') {
+                                $sql1 = "SELECT student.student_ID, student.student_name, student.batch, student.semester, marks1.T1SDF1, marks1.T2SDF1, marks1.T3SDF1 FROM student RIGHT JOIN marks1 ON student.student_ID=marks1.student_ID WHERE student.batch='B4' AND student.semester='1'";
+                            } elseif ($subjects == 'SDFLAB1') {
+                                $sql1 = "SELECT student.student_ID, student.student_name, student.batch, student.semester, marks1.T1SDFLAB1, marks1.T2SDFLAB1, marks1.T3SDFLAB1 FROM student RIGHT JOIN marks1 ON student.student_ID=marks1.student_ID WHERE student.batch='B4' AND student.semester='1'";
+                            } elseif ($subjects == 'PHYSICS1') {
+                                $sql1 = "SELECT student.student_ID, student.student_name, student.batch, student.semester, marks1.T1PHYSICS1, marks1.T2PHYSICS1, marks1.T3PHYSICS1 FROM student RIGHT JOIN marks1 ON student.student_ID=marks1.student_ID WHERE student.batch='B4' AND student.semester='1'";
+                            } elseif ($subjects == 'PHYSICSLAB1') {
+                                $sql1 = "SELECT student.student_ID, student.student_name, student.batch, student.semester, marks1.T1PHYSICSLAB1, marks1.T2PHYSICSLAB1, marks1.T3PHYSICSLAB1 FROM student RIGHT JOIN marks1 ON student.student_ID=marks1.student_ID WHERE student.batch='B4' AND student.semester='1'";
+                            } elseif ($subjects == 'MATHEMATICS1') {
+                                $sql1 = "SELECT student.student_ID, student.student_name, student.batch, student.semester, marks1.T1MATHEMATICS1, marks1.T2MATHEMATICS1, marks1.T3MATHEMATICS1 FROM student RIGHT JOIN marks1 ON student.student_ID=marks1.student_ID WHERE student.batch='B4' AND student.semester='1'";
+                            } elseif ($subjects == 'ENGLISH') {
+                                $sql1 = "SELECT student.student_ID, student.student_name, student.batch, student.semester, marks1.T1ENGLISH, marks1.T2ENGLISH, marks1.T3ENGLISH FROM student RIGHT JOIN marks1 ON student.student_ID=marks1.student_ID WHERE student.batch='B4' AND student.semester='1'";
+                            }
+
+                            $result1 = mysqli_query($conn, $sql1);
+                            ?>
+                            <h5><?php echo $subjects; ?></h5>
+                            <table id="content" class="table table-bordered table-hover">
+                                <thead class="table-success">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Batch</th>
+                                        <th>T1</th>
+                                        <th>T2</th>
+                                        <th>T3</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    while ($info = $result1->fetch_assoc()) {
+
+                                    ?>
+                                        <tr>
+                                            <td>
+                                                <?php echo "{$info['student_ID']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo "{$info['student_name']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo "{$info['batch']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php
+                                                if ($subjects == 'SDF1') {
+                                                    echo "{$info['T1SDF1']}";
+                                                } elseif ($subjects == 'SDFLAB1') {
+                                                    echo "{$info['T1SDFLAB1']}";
+                                                } elseif ($subjects == 'PHYSICS1') {
+                                                    echo "{$info['T1PHYSICS1']}";
+                                                } elseif ($subjects == 'PHYSICSLAB1') {
+                                                    echo "{$info['T1PHYSICSLAB1']}";
+                                                } elseif ($subjects == 'MATHEMATICS1') {
+                                                    echo "{$info['T1MATHEMATICS1']}";
+                                                } elseif ($subjects == 'ENGLISH') {
+                                                    echo "{$info['T1ENGLISH']}";
+                                                }
+                                                ?>
+                                            </td>
+                                            <td>
+                                                <?php
+                                                if ($subjects == 'SDF1') {
+                                                    echo "{$info['T2SDF1']}";
+                                                } elseif ($subjects == 'SDFLAB1') {
+                                                    echo "{$info['T2SDFLAB1']}";
+                                                } elseif ($subjects == 'PHYSICS1') {
+                                                    echo "{$info['T2PHYSICS1']}";
+                                                } elseif ($subjects == 'PHYSICSLAB1') {
+                                                    echo "{$info['T2PHYSICSLAB1']}";
+                                                } elseif ($subjects == 'MATHEMATICS1') {
+                                                    echo "{$info['T2MATHEMATICS1']}";
+                                                } elseif ($subjects == 'ENGLISH') {
+                                                    echo "{$info['T2ENGLISH']}";
+                                                }
+                                                ?>
+                                            </td>
+                                            <td>
+                                                <?php
+                                                if ($subjects == 'SDF1') {
+                                                    echo "{$info['T3SDF1']}";
+                                                } elseif ($subjects == 'SDFLAB1') {
+                                                    echo "{$info['T3SDFLAB1']}";
+                                                } elseif ($subjects == 'PHYSICS1') {
+                                                    echo "{$info['T3PHYSICS1']}";
+                                                } elseif ($subjects == 'PHYSICSLAB1') {
+                                                    echo "{$info['T3PHYSICSLAB1']}";
+                                                } elseif ($subjects == 'MATHEMATICS1') {
+                                                    echo "{$info['T3MATHEMATICS1']}";
+                                                } elseif ($subjects == 'ENGLISH') {
+                                                    echo "{$info['T3ENGLISH']}";
+                                                }
+                                                ?>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
         </section>
 
 

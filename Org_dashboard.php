@@ -152,13 +152,19 @@ if (isset($_SESSION['admin_ID']) && isset($_SESSION['admin_name']) && isset($_SE
                                     <li class="nav-item">
                                         <a href="#t11" id="" class="nav-link text-dark  m-1" data-bs-toggle="tab" style="border:1px solid black;">
                                             <!-- <i class="fa fa-th-large mr-3 text-primary fa-fw"></i> -->
-                                            <img src="listimage2.png" alt="image" style="margin-right: 4px;">Event Records
+                                            <img src="listimage2.png" alt="image" style="margin-right: 4px;">Coming Event
                                         </a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="#t12" class="nav-link text-dark m-1" data-bs-toggle="tab" style="border:1px solid black;">
                                             <!-- <i class="fa fa-address-card mr-3 text-primary fa-fw"></i> -->
                                             <img src="listimage2.png" alt="image" style="margin-right: 4px;"> Update Event
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#t13" class="nav-link text-dark m-1" data-bs-toggle="tab" style="border:1px solid black;">
+                                            <!-- <i class="fa fa-address-card mr-3 text-primary fa-fw"></i> -->
+                                            <img src="listimage2.png" alt="image" style="margin-right: 4px;"> Delete Event
                                         </a>
                                     </li>
                                 </ul>
@@ -176,9 +182,9 @@ if (isset($_SESSION['admin_ID']) && isset($_SESSION['admin_name']) && isset($_SE
 
             <div class="page-content tab-content p-2" id="content">
                 <div id="t11" class="container-sm tab-pane fade">
-
+                    <h4>Upcoming Events</h4>
                     <?php
-                    $sql1 = "SELECT student.student_ID, student.student_name, student.academic_year, student.program, placed.Company FROM student RIGHT JOIN placed ON student.student_ID=placed.Student_ID WHERE student.placement='1'";
+                    $sql1 = "SELECT * FROM event ORDER BY Date ASC";
                     $result1 = mysqli_query($conn, $sql1);
                     ?>
                     <hr>
@@ -186,35 +192,40 @@ if (isset($_SESSION['admin_ID']) && isset($_SESSION['admin_name']) && isset($_SE
                         <thead class="table-success">
                             <tr>
                                 <th>ID</th>
-                                <th>Name</th>
-                                <th>Academic Year</th>
-                                <th>Program</th>
-                                <th>Company Name</th>
+                                <th>Event Name</th>
+                                <th>Date</th>
+                                <th>Venue</th>
+                                <th>Time</th>
+                                <th>Event Description</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
+                            $x=1;
                             while ($info = $result1->fetch_assoc()) {
 
                             ?>
                                 <tr>
                                     <td>
-                                        <?php echo "{$info['student_ID']}"; ?>
+                                        <?php echo $x; ?>
                                     </td>
                                     <td>
-                                        <?php echo "{$info['student_name']}"; ?>
+                                        <?php echo "{$info['Event']}"; ?>
                                     </td>
                                     <td>
-                                        <?php echo "{$info['academic_year']}"; ?>
+                                        <?php echo "{$info['Date']}"; ?>
                                     </td>
                                     <td>
-                                        <?php echo "{$info['program']}"; ?>
+                                        <?php echo "{$info['Venue']}"; ?>
                                     </td>
                                     <td>
-                                        <?php echo "{$info['Company']}"; ?>
+                                        <?php echo "{$info['Time']}"; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo "{$info['Description']}"; ?>
                                     </td>
                                 </tr>
-                            <?php } ?>
+                            <?php $x++;} ?>
                         </tbody>
                     </table>
                     <hr>
@@ -227,50 +238,88 @@ if (isset($_SESSION['admin_ID']) && isset($_SESSION['admin_name']) && isset($_SE
                 <!-- Add Placement Record Start -->
                 <div id="t12" class="container-sm tab-pane fade">
                     <hr>
-                    <h2>Add Placement Record</h2>
+                    <h2>Add Event</h2>
                     <hr>
                     <form action="#" method="POST" style=" margin-right: 700px; border: 7px double #182747; border-radius: 10px;">
                         <div>
-                            <label for="student_ID">Student ID</label>
-                            <input type="text" name="studentid" style="margin-left: 9%;" id="" required>
+                            <label for="cname">Event Name</label>
+                            <input type="text" name="cname" id="" required>
                         </div>
                         <div>
-                            <label for="cname">Company Name</label>
-                            <input type="text" name="cname" style="margin-left: 10px;" id="" required>
+                            <label for="date">Date</label>
+                            <input type="date" name="date" id="" required>
                         </div>
                         <div>
-                            <input type="submit" class="btn btn-primary" name="placed_allocation" value="Allocate">
+                            <label for="venue">Venue</label>
+                            <input type="text" name="venue" id="" required>
+                        </div>
+                        <div>
+                            <label for="time">Time</label>
+                            <input type="time" name="time" id="" required>
+                        </div>
+                        <div>
+                            <label for="des">Event Description</label>
+                            <br>
+                            <textarea name="des" id="" rows="3" cols="30" required></textarea>
+                        </div>
+                        <div>
+                            <input type="submit" class="btn btn-primary" name="add" value="Add">
                             <!-- <button id="btn1" type="submit" name="register_student" class="btn " style="margin-top: 35px; margin-bottom: 38px;">Register</button> -->
                         </div>
                     </form>
                     <hr>
                     <?php
-                    if (isset($_POST['placed_allocation'])) {
-                        $studentid = $_POST['studentid'];
-                        $companyname = $_POST['cname'];
+                    if (isset($_POST['add'])) {
+                        $name = $_POST['cname'];
+                        $date = $_POST['date'];
+                        $venue = $_POST['venue'];
+                        $time = $_POST['time'];
+                        $descrip = $_POST['des'];
 
-                        $check = "SELECT * FROM student WHERE student_ID='$studentid' AND placement <> 'NULL'";
-                        $check_user = mysqli_query($conn, $check);
-
-                        $row_count = mysqli_num_rows($check_user);
-                        if ($row_count == 1) {
-                            echo "<script>alert('Student Already Placed!!')</script>";
+                        $sql1 = "INSERT INTO event (Event, Date, Venue, Time, Description) VALUES( '$name', '$date', '$venue', '$time', '$descrip')";
+                        $result1 = mysqli_query($conn, $sql1);
+                        if ($result1) {
+                            echo ("<script>alert('Successfully Event Added!')</script>");
                             echo ("<script>window.location = 'Org_dashboard.php';</script>");
                             exit();
                         } else {
-                            $sql1 = "UPDATE student SET placement= '1' WHERE student_ID = '$studentid'";
-                            $sql2 = "INSERT INTO placed(Student_ID, Company) VALUES('$studentid', '$companyname')";
-                            $result1 = mysqli_query($conn, $sql1);
-                            $result2 = mysqli_query($conn, $sql2);
-                            if ($result1 and $result2) {
-                                echo ("<script>alert('Successfully Records Added!')</script>");
-                                echo ("<script>window.location = 'Org_dashboard.php';</script>");
-                                exit();
-                            } else {
-                                echo "<script>alert('Unsuccessfull!')</script>";
-                                echo ("<script>window.location = 'Org_dashboard.php';</script>");
-                                exit();
-                            }
+                            echo "<script>alert('Unsuccessfull!')</script>";
+                            echo ("<script>window.location = 'Org_dashboard.php';</script>");
+                            exit();
+                        }
+                    }
+                    ?>
+                </div>
+
+                <div id="t13" class="container-sm tab-pane fade">
+                    <hr>
+                    <h2>Delete Event</h2>
+                    <hr>
+                    <form action="#" method="POST" style=" margin-right: 700px; border: 7px double #182747; border-radius: 10px;">
+                        <div>
+                            <label for="cname">Event ID</label>
+                            <input type="number" name="cname" id="" required>
+                        </div>
+                        <div>
+                            <input type="submit" class="btn btn-primary" name="delete" value="Delete">
+                            <!-- <button id="btn1" type="submit" name="register_student" class="btn " style="margin-top: 35px; margin-bottom: 38px;">Register</button> -->
+                        </div>
+                    </form>
+                    <hr>
+                    <?php
+                    if (isset($_POST['delete'])) {
+                        $id = $_POST['cname'];
+
+                        $sql1 = "DELETE FROM event WHERE Sno='$id'";
+                        $result1 = mysqli_query($conn, $sql1);
+                        if ($result1) {
+                            echo ("<script>alert('Successfully Event Added!')</script>");
+                            echo ("<script>window.location = 'Org_dashboard.php';</script>");
+                            exit();
+                        } else {
+                            echo "<script>alert('Unsuccessfull!')</script>";
+                            echo ("<script>window.location = 'Org_dashboard.php';</script>");
+                            exit();
                         }
                     }
                     ?>
