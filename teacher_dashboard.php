@@ -544,7 +544,7 @@ if (isset($_SESSION['teacher_ID']) && isset($_SESSION['teacher_name']) && isset(
                                 </thead>
                                 <form action="#" method="POST" autocomplete="off">
                                     <label for="date">Select Date:</label>
-                                    <input type="date" id="dates" name="Date">
+                                    <input type="date" id="dates" name="Date" required>
                                     <tbody>
                                         <?php
                                         $x = 1;
@@ -599,54 +599,55 @@ if (isset($_SESSION['teacher_ID']) && isset($_SESSION['teacher_name']) && isset(
                                         $ans = 'Absent';
                                     }
                                     $subjects = $_SESSION['subject_taught'];
+                                    $teach = $_SESSION['teacher_name'];
                                     $ids = $info['student_ID'];
                                     if ($subjects == 'SDF1') {
                                         $sql1 = "UPDATE attendance1 SET SDF1=SDF1 +'$atten' WHERE student_ID = '$ids'";
                                         $sql2 = "UPDATE attendance1 SET TSDF1=TSDF1 + '1' WHERE student_ID = '$ids'";
                                         if ($x == 1) {
-                                            $sql3 = "INSERT INTO a12201sdf1(date, attendances) VALUES('$date', '$ans')";
+                                            $sql3 = "INSERT INTO a12201sdf1(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
                                         } elseif ($x == 2) {
-                                            $sql3 = "INSERT INTO a12202sdf1(date, attendances) VALUES('$date', '$ans')";
+                                            $sql3 = "INSERT INTO a12202sdf1(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
                                         }
                                     } elseif ($subjects == 'PHYSICS1') {
                                         $sql1 = "UPDATE attendance1 SET PHYSICS1=PHYSICS1 +'$atten' WHERE student_ID = '$ids'";
                                         $sql2 = "UPDATE attendance1 SET TPHYSICS1=TPHYSICS1 + '1' WHERE student_ID = '$ids'";
                                         if ($x == 1) {
-                                            $sql3 = "INSERT INTO a12201physics1(date, attendances) VALUES('$date', '$ans')";
+                                            $sql3 = "INSERT INTO a12201physics1(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
                                         } elseif ($x == 2) {
-                                            $sql3 = "INSERT INTO a12202physics1(date, attendances) VALUES('$date', '$ans')";
+                                            $sql3 = "INSERT INTO a12202physics1(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
                                         }
-                                    } elseif ($subjects == 'SDF(LAB)I') {
-                                        $sql1 = "UPDATE attendance1 SET SDF(LAB)I=SDF(LAB)I + '$atten' WHERE student_ID = '$ids'";
-                                        $sql2 = "UPDATE attendance1 SET TSDF(LAB)I=TSDF(LAB)I + '1' WHERE student_ID = '$ids'";
+                                    } elseif ($subjects == 'SDFLAB1') {
+                                        $sql1 = "UPDATE attendance1 SET SDFLAB1=SDFLAB1 + '$atten' WHERE student_ID = '$ids'";
+                                        $sql2 = "UPDATE attendance1 SET TSDFLAB1=TSDFLAB1 + '1' WHERE student_ID = '$ids'";
                                         if ($x == 1) {
-                                            $sql3 = "INSERT INTO a12201sdf(lab)i(date, attendances) VALUES('$date', '$ans')";
+                                            $sql3 = "INSERT INTO a12201sdflab1(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
                                         } elseif ($x == 2) {
-                                            $sql3 = "INSERT INTO a12202sdf(lab)i(date, attendances) VALUES('$date', '$ans')";
+                                            $sql3 = "INSERT INTO a12202sdflab1(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
                                         }
                                     } elseif ($subjects == 'ENGLISH') {
                                         $sql1 = "UPDATE attendance1 SET ENGLISH=ENGLISH +'$atten' WHERE student_ID = '$ids'";
                                         $sql2 = "UPDATE attendance1 SET TENGLISH=TENGLISH + '1' WHERE student_ID = '$ids'";
                                         if ($x == 1) {
-                                            $sql3 = "INSERT INTO a12201english(date, attendances) VALUES('$date', '$ans')";
+                                            $sql3 = "INSERT INTO a12201english(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
                                         } elseif ($x == 2) {
-                                            $sql3 = "INSERT INTO a12202english(date, attendances) VALUES('$date', '$ans')";
+                                            $sql3 = "INSERT INTO a12202english(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
                                         }
                                     } elseif ($subjects == 'MATHEMATICS1') {
                                         $sql1 = "UPDATE attendance1 SET MATHEMATICS1= MATHEMATICS1 +'$atten' WHERE student_ID = '$ids'";
                                         $sql2 = "UPDATE attendance1 SET TMATHEMATICS1=TMATHEMATICS1 + '1' WHERE student_ID = '$ids'";
                                         if ($x == 1) {
-                                            $sql3 = "INSERT INTO a12201mathematics1(date, attendances) VALUES('$date', '$ans')";
+                                            $sql3 = "INSERT INTO a12201mathematics1(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
                                         } elseif ($x == 2) {
-                                            $sql3 = "INSERT INTO a12202mathematics(date, attendances) VALUES('$date', '$ans')";
+                                            $sql3 = "INSERT INTO a12202mathematics1(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
                                         }
-                                    } elseif ($subjects == 'PHYSICS(LAB)I') {
-                                        $sql1 = "UPDATE attendance1 SET PHYSICS(LAB)I =PHYSICS(LAB)I + '$atten' WHERE student_ID = '$ids'";
-                                        $sql2 = "UPDATE attendance1 SET TPHYSICS(LAB)I=TPHYSICS(LAB)I + '1' WHERE student_ID = '$ids'";
+                                    } elseif ($subjects == 'PHYSICSLAB1') {
+                                        $sql1 = "UPDATE attendance1 SET PHYSICSLAB1 =PHYSICSLAB1 + '$atten' WHERE student_ID = '$ids'";
+                                        $sql2 = "UPDATE attendance1 SET TPHYSICSLAB1=TPHYSICSLAB1 + '1' WHERE student_ID = '$ids'";
                                         if ($x == 1) {
-                                            $sql3 = "INSERT INTO a12201physics(lab)i(date, attendances) VALUES('$date', '$ans')";
+                                            $sql3 = "INSERT INTO a12201physicslab1(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
                                         } elseif ($x == 2) {
-                                            $sql3 = "INSERT INTO a12202physics(lab)i(date, attendances) VALUES('$date', '$ans')";
+                                            $sql3 = "INSERT INTO a12202physicslab1(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
                                         }
                                     }
                                     $result11 = mysqli_query($conn, $sql1);
@@ -685,7 +686,7 @@ if (isset($_SESSION['teacher_ID']) && isset($_SESSION['teacher_name']) && isset(
                                 </thead>
                                 <form action="#" method="POST" autocomplete="off">
                                     <label for="date">Select Date:</label>
-                                    <input type="date" id="dates" name="Date">
+                                    <input type="date" id="dates" name="Date" required>
 
                                     <tbody>
                                         <?php
@@ -733,31 +734,68 @@ if (isset($_SESSION['teacher_ID']) && isset($_SESSION['teacher_name']) && isset(
                                 $sql1 = "SELECT * FROM student where batch='A2' AND semester='1'";
                                 $result1 = mysqli_query($conn, $sql1);
                                 $x = 1;
+                                $date = $_POST['Date'];
                                 while ($info = $result1->fetch_assoc()) {
                                     $atten = $_POST[$x];
+                                    $ans = 'Present';
+                                    if ($atten == 0) {
+                                        $ans = 'Absent';
+                                    }
                                     $subjects = $_SESSION['subject_taught'];
+                                    $teach = $_SESSION['teacher_name'];
                                     $ids = $info['student_ID'];
                                     if ($subjects == 'SDF1') {
                                         $sql1 = "UPDATE attendance1 SET SDF1=SDF1 +'$atten' WHERE student_ID = '$ids'";
                                         $sql2 = "UPDATE attendance1 SET TSDF1=TSDF1 + '1' WHERE student_ID = '$ids'";
+                                        // if ($x == 1) {
+                                        //     $sql3 = "INSERT INTO a12201sdf1(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
+                                        // } elseif ($x == 2) {
+                                        //     $sql3 = "INSERT INTO a12202sdf1(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
+                                        // }
                                     } elseif ($subjects == 'PHYSICS1') {
                                         $sql1 = "UPDATE attendance1 SET PHYSICS1=PHYSICS1 +'$atten' WHERE student_ID = '$ids'";
                                         $sql2 = "UPDATE attendance1 SET TPHYSICS1=TPHYSICS1 + '1' WHERE student_ID = '$ids'";
-                                    } elseif ($subjects == 'SDF(LAB)I') {
-                                        $sql1 = "UPDATE attendance1 SET SDF(LAB)I=SDF(LAB)I + '$atten' WHERE student_ID = '$ids'";
-                                        $sql2 = "UPDATE attendance1 SET TSDF(LAB)I=TSDF(LAB)I + '1' WHERE student_ID = '$ids'";
+                                        // if ($x == 1) {
+                                        //     $sql3 = "INSERT INTO a12201physics1(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
+                                        // } elseif ($x == 2) {
+                                        //     $sql3 = "INSERT INTO a12202physics1(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
+                                        // }
+                                    } elseif ($subjects == 'SDFLAB1') {
+                                        $sql1 = "UPDATE attendance1 SET SDFLAB1=SDFLAB1 + '$atten' WHERE student_ID = '$ids'";
+                                        $sql2 = "UPDATE attendance1 SET TSDFLAB1=TSDFLAB1 + '1' WHERE student_ID = '$ids'";
+                                        // if ($x == 1) {
+                                        //     $sql3 = "INSERT INTO a12201sdflab1(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
+                                        // } elseif ($x == 2) {
+                                        //     $sql3 = "INSERT INTO a12202sdflab1(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
+                                        // }
                                     } elseif ($subjects == 'ENGLISH') {
                                         $sql1 = "UPDATE attendance1 SET ENGLISH=ENGLISH +'$atten' WHERE student_ID = '$ids'";
                                         $sql2 = "UPDATE attendance1 SET TENGLISH=TENGLISH + '1' WHERE student_ID = '$ids'";
+                                        // if ($x == 1) {
+                                        //     $sql3 = "INSERT INTO a12201english(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
+                                        // } elseif ($x == 2) {
+                                        //     $sql3 = "INSERT INTO a12202english(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
+                                        // }
                                     } elseif ($subjects == 'MATHEMATICS1') {
                                         $sql1 = "UPDATE attendance1 SET MATHEMATICS1= MATHEMATICS1 +'$atten' WHERE student_ID = '$ids'";
                                         $sql2 = "UPDATE attendance1 SET TMATHEMATICS1=TMATHEMATICS1 + '1' WHERE student_ID = '$ids'";
-                                    } elseif ($subjects == 'PHYSICS(LAB)I') {
-                                        $sql1 = "UPDATE attendance1 SET PHYSICS(LAB)I =PHYSICS(LAB)I + '$atten' WHERE student_ID = '$ids'";
-                                        $sql2 = "UPDATE attendance1 SET TPHYSICS(LAB)I=TPHYSICS(LAB)I + '1' WHERE student_ID = '$ids'";
+                                        // if ($x == 1) {
+                                        //     $sql3 = "INSERT INTO a12201mathematics1(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
+                                        // } elseif ($x == 2) {
+                                        //     $sql3 = "INSERT INTO a12202mathematics1(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
+                                        // }
+                                    } elseif ($subjects == 'PHYSICSLAB1') {
+                                        $sql1 = "UPDATE attendance1 SET PHYSICSLAB1 =PHYSICSLAB1 + '$atten' WHERE student_ID = '$ids'";
+                                        $sql2 = "UPDATE attendance1 SET TPHYSICSLAB1=TPHYSICSLAB1 + '1' WHERE student_ID = '$ids'";
+                                        // if ($x == 1) {
+                                        //     $sql3 = "INSERT INTO a12201physicslab1(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
+                                        // } elseif ($x == 2) {
+                                        //     $sql3 = "INSERT INTO a12202physicslab1(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
+                                        // }
                                     }
                                     $result11 = mysqli_query($conn, $sql1);
                                     $result2 = mysqli_query($conn, $sql2);
+                                    // $result3 = mysqli_query($conn, $sql3);
                                     $x++;
                                 }
                                 if ($result11 &&  $result2) {
@@ -791,7 +829,7 @@ if (isset($_SESSION['teacher_ID']) && isset($_SESSION['teacher_name']) && isset(
                                 </thead>
                                 <form action="#" method="POST" autocomplete="off">
                                     <label for="date">Select Date:</label>
-                                    <input type="date" id="dates" name="Date">
+                                    <input type="date" id="dates" name="Date" required>
                                     <tbody>
                                         <?php
                                         $x = 1;
@@ -840,29 +878,65 @@ if (isset($_SESSION['teacher_ID']) && isset($_SESSION['teacher_name']) && isset(
                                 $x = 1;
                                 while ($info = $result1->fetch_assoc()) {
                                     $atten = $_POST[$x];
+                                    $ans = 'Present';
+                                    if ($atten == 0) {
+                                        $ans = 'Absent';
+                                    }
                                     $subjects = $_SESSION['subject_taught'];
+                                    $teach = $_SESSION['teacher_name'];
                                     $ids = $info['student_ID'];
                                     if ($subjects == 'SDF1') {
                                         $sql1 = "UPDATE attendance1 SET SDF1=SDF1 +'$atten' WHERE student_ID = '$ids'";
                                         $sql2 = "UPDATE attendance1 SET TSDF1=TSDF1 + '1' WHERE student_ID = '$ids'";
+                                        // if ($x == 1) {
+                                        //     $sql3 = "INSERT INTO a12201sdf1(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
+                                        // } elseif ($x == 2) {
+                                        //     $sql3 = "INSERT INTO a12202sdf1(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
+                                        // }
                                     } elseif ($subjects == 'PHYSICS1') {
                                         $sql1 = "UPDATE attendance1 SET PHYSICS1=PHYSICS1 +'$atten' WHERE student_ID = '$ids'";
                                         $sql2 = "UPDATE attendance1 SET TPHYSICS1=TPHYSICS1 + '1' WHERE student_ID = '$ids'";
-                                    } elseif ($subjects == 'SDF(LAB)I') {
-                                        $sql1 = "UPDATE attendance1 SET SDF(LAB)I=SDF(LAB)I + '$atten' WHERE student_ID = '$ids'";
-                                        $sql2 = "UPDATE attendance1 SET TSDF(LAB)I=TSDF(LAB)I + '1' WHERE student_ID = '$ids'";
+                                        // if ($x == 1) {
+                                        //     $sql3 = "INSERT INTO a12201physics1(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
+                                        // } elseif ($x == 2) {
+                                        //     $sql3 = "INSERT INTO a12202physics1(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
+                                        // }
+                                    } elseif ($subjects == 'SDFLAB1') {
+                                        $sql1 = "UPDATE attendance1 SET SDFLAB1=SDFLAB1 + '$atten' WHERE student_ID = '$ids'";
+                                        $sql2 = "UPDATE attendance1 SET TSDFLAB1=TSDFLAB1 + '1' WHERE student_ID = '$ids'";
+                                        // if ($x == 1) {
+                                        //     $sql3 = "INSERT INTO a12201sdflab1(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
+                                        // } elseif ($x == 2) {
+                                        //     $sql3 = "INSERT INTO a12202sdflab1(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
+                                        // }
                                     } elseif ($subjects == 'ENGLISH') {
                                         $sql1 = "UPDATE attendance1 SET ENGLISH=ENGLISH +'$atten' WHERE student_ID = '$ids'";
                                         $sql2 = "UPDATE attendance1 SET TENGLISH=TENGLISH + '1' WHERE student_ID = '$ids'";
+                                        // if ($x == 1) {
+                                        //     $sql3 = "INSERT INTO a12201english(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
+                                        // } elseif ($x == 2) {
+                                        //     $sql3 = "INSERT INTO a12202english(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
+                                        // }
                                     } elseif ($subjects == 'MATHEMATICS1') {
                                         $sql1 = "UPDATE attendance1 SET MATHEMATICS1= MATHEMATICS1 +'$atten' WHERE student_ID = '$ids'";
                                         $sql2 = "UPDATE attendance1 SET TMATHEMATICS1=TMATHEMATICS1 + '1' WHERE student_ID = '$ids'";
-                                    } elseif ($subjects == 'PHYSICS(LAB)I') {
-                                        $sql1 = "UPDATE attendance1 SET PHYSICS(LAB)I =PHYSICS(LAB)I + '$atten' WHERE student_ID = '$ids'";
-                                        $sql2 = "UPDATE attendance1 SET TPHYSICS(LAB)I=TPHYSICS(LAB)I + '1' WHERE student_ID = '$ids'";
+                                        // if ($x == 1) {
+                                        //     $sql3 = "INSERT INTO a12201mathematics1(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
+                                        // } elseif ($x == 2) {
+                                        //     $sql3 = "INSERT INTO a12202mathematics1(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
+                                        // }
+                                    } elseif ($subjects == 'PHYSICSLAB1') {
+                                        $sql1 = "UPDATE attendance1 SET PHYSICSLAB1 =PHYSICSLAB1 + '$atten' WHERE student_ID = '$ids'";
+                                        $sql2 = "UPDATE attendance1 SET TPHYSICSLAB1=TPHYSICSLAB1 + '1' WHERE student_ID = '$ids'";
+                                        // if ($x == 1) {
+                                        //     $sql3 = "INSERT INTO a12201physicslab1(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
+                                        // } elseif ($x == 2) {
+                                        //     $sql3 = "INSERT INTO a12202physicslab1(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
+                                        // }
                                     }
                                     $result11 = mysqli_query($conn, $sql1);
                                     $result2 = mysqli_query($conn, $sql2);
+                                    // $result3 = mysqli_query($conn, $sql3);
                                     $x++;
                                 }
                                 if ($result11 &&  $result2) {
@@ -897,7 +971,7 @@ if (isset($_SESSION['teacher_ID']) && isset($_SESSION['teacher_name']) && isset(
                                 </thead>
                                 <form action="#" method="POST" autocomplete="off">
                                     <label for="date">Select Date:</label>
-                                    <input type="date" id="dates" name="Date">
+                                    <input type="date" id="dates" name="Date" required>
                                     <tbody>
                                         <?php
                                         $x = 1;
@@ -946,29 +1020,65 @@ if (isset($_SESSION['teacher_ID']) && isset($_SESSION['teacher_name']) && isset(
                                 $x = 1;
                                 while ($info = $result1->fetch_assoc()) {
                                     $atten = $_POST[$x];
+                                    $ans = 'Present';
+                                    if ($atten == 0) {
+                                        $ans = 'Absent';
+                                    }
                                     $subjects = $_SESSION['subject_taught'];
+                                    $teach = $_SESSION['teacher_name'];
                                     $ids = $info['student_ID'];
                                     if ($subjects == 'SDF1') {
                                         $sql1 = "UPDATE attendance1 SET SDF1=SDF1 +'$atten' WHERE student_ID = '$ids'";
                                         $sql2 = "UPDATE attendance1 SET TSDF1=TSDF1 + '1' WHERE student_ID = '$ids'";
+                                        // if ($x == 1) {
+                                        //     $sql3 = "INSERT INTO a12201sdf1(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
+                                        // } elseif ($x == 2) {
+                                        //     $sql3 = "INSERT INTO a12202sdf1(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
+                                        // }
                                     } elseif ($subjects == 'PHYSICS1') {
                                         $sql1 = "UPDATE attendance1 SET PHYSICS1=PHYSICS1 +'$atten' WHERE student_ID = '$ids'";
                                         $sql2 = "UPDATE attendance1 SET TPHYSICS1=TPHYSICS1 + '1' WHERE student_ID = '$ids'";
-                                    } elseif ($subjects == 'SDF(LAB)I') {
-                                        $sql1 = "UPDATE attendance1 SET SDF(LAB)I=SDF(LAB)I + '$atten' WHERE student_ID = '$ids'";
-                                        $sql2 = "UPDATE attendance1 SET TSDF(LAB)I=TSDF(LAB)I + '1' WHERE student_ID = '$ids'";
+                                        // if ($x == 1) {
+                                        //     $sql3 = "INSERT INTO a12201physics1(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
+                                        // } elseif ($x == 2) {
+                                        //     $sql3 = "INSERT INTO a12202physics1(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
+                                        // }
+                                    } elseif ($subjects == 'SDFLAB1') {
+                                        $sql1 = "UPDATE attendance1 SET SDFLAB1=SDFLAB1 + '$atten' WHERE student_ID = '$ids'";
+                                        $sql2 = "UPDATE attendance1 SET TSDFLAB1=TSDFLAB1 + '1' WHERE student_ID = '$ids'";
+                                        // if ($x == 1) {
+                                        //     $sql3 = "INSERT INTO a12201sdflab1(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
+                                        // } elseif ($x == 2) {
+                                        //     $sql3 = "INSERT INTO a12202sdflab1(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
+                                        // }
                                     } elseif ($subjects == 'ENGLISH') {
                                         $sql1 = "UPDATE attendance1 SET ENGLISH=ENGLISH +'$atten' WHERE student_ID = '$ids'";
                                         $sql2 = "UPDATE attendance1 SET TENGLISH=TENGLISH + '1' WHERE student_ID = '$ids'";
+                                        // if ($x == 1) {
+                                        //     $sql3 = "INSERT INTO a12201english(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
+                                        // } elseif ($x == 2) {
+                                        //     $sql3 = "INSERT INTO a12202english(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
+                                        // }
                                     } elseif ($subjects == 'MATHEMATICS1') {
                                         $sql1 = "UPDATE attendance1 SET MATHEMATICS1= MATHEMATICS1 +'$atten' WHERE student_ID = '$ids'";
                                         $sql2 = "UPDATE attendance1 SET TMATHEMATICS1=TMATHEMATICS1 + '1' WHERE student_ID = '$ids'";
-                                    } elseif ($subjects == 'PHYSICS(LAB)I') {
-                                        $sql1 = "UPDATE attendance1 SET PHYSICS(LAB)I =PHYSICS(LAB)I + '$atten' WHERE student_ID = '$ids'";
-                                        $sql2 = "UPDATE attendance1 SET TPHYSICS(LAB)I=TPHYSICS(LAB)I + '1' WHERE student_ID = '$ids'";
+                                        // if ($x == 1) {
+                                        //     $sql3 = "INSERT INTO a12201mathematics1(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
+                                        // } elseif ($x == 2) {
+                                        //     $sql3 = "INSERT INTO a12202mathematics1(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
+                                        // }
+                                    } elseif ($subjects == 'PHYSICSLAB1') {
+                                        $sql1 = "UPDATE attendance1 SET PHYSICSLAB1 =PHYSICSLAB1 + '$atten' WHERE student_ID = '$ids'";
+                                        $sql2 = "UPDATE attendance1 SET TPHYSICSLAB1=TPHYSICSLAB1 + '1' WHERE student_ID = '$ids'";
+                                        // if ($x == 1) {
+                                        //     $sql3 = "INSERT INTO a12201physicslab1(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
+                                        // } elseif ($x == 2) {
+                                        //     $sql3 = "INSERT INTO a12202physicslab1(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
+                                        // }
                                     }
                                     $result11 = mysqli_query($conn, $sql1);
                                     $result2 = mysqli_query($conn, $sql2);
+                                    // $result3 = mysqli_query($conn, $sql3);
                                     $x++;
                                 }
                                 if ($result11 &&  $result2) {
@@ -1003,7 +1113,7 @@ if (isset($_SESSION['teacher_ID']) && isset($_SESSION['teacher_name']) && isset(
                                 </thead>
                                 <form action="#" method="POST" autocomplete="off">
                                     <label for="date">Select Date:</label>
-                                    <input type="date" id="dates" name="Date">
+                                    <input type="date" id="dates" name="Date" required>
                                     <tbody>
                                         <?php
                                         $x = 1;
@@ -1052,29 +1162,65 @@ if (isset($_SESSION['teacher_ID']) && isset($_SESSION['teacher_name']) && isset(
                                 $x = 1;
                                 while ($info = $result1->fetch_assoc()) {
                                     $atten = $_POST[$x];
+                                    $ans = 'Present';
+                                    if ($atten == 0) {
+                                        $ans = 'Absent';
+                                    }
                                     $subjects = $_SESSION['subject_taught'];
+                                    $teach = $_SESSION['teacher_name'];
                                     $ids = $info['student_ID'];
                                     if ($subjects == 'SDF1') {
                                         $sql1 = "UPDATE attendance1 SET SDF1=SDF1 +'$atten' WHERE student_ID = '$ids'";
                                         $sql2 = "UPDATE attendance1 SET TSDF1=TSDF1 + '1' WHERE student_ID = '$ids'";
+                                        // if ($x == 1) {
+                                        //     $sql3 = "INSERT INTO a12201sdf1(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
+                                        // } elseif ($x == 2) {
+                                        //     $sql3 = "INSERT INTO a12202sdf1(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
+                                        // }
                                     } elseif ($subjects == 'PHYSICS1') {
                                         $sql1 = "UPDATE attendance1 SET PHYSICS1=PHYSICS1 +'$atten' WHERE student_ID = '$ids'";
                                         $sql2 = "UPDATE attendance1 SET TPHYSICS1=TPHYSICS1 + '1' WHERE student_ID = '$ids'";
-                                    } elseif ($subjects == 'SDF(LAB)I') {
-                                        $sql1 = "UPDATE attendance1 SET SDF(LAB)I=SDF(LAB)I + '$atten' WHERE student_ID = '$ids'";
-                                        $sql2 = "UPDATE attendance1 SET TSDF(LAB)I=TSDF(LAB)I + '1' WHERE student_ID = '$ids'";
+                                        // if ($x == 1) {
+                                        //     $sql3 = "INSERT INTO a12201physics1(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
+                                        // } elseif ($x == 2) {
+                                        //     $sql3 = "INSERT INTO a12202physics1(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
+                                        // }
+                                    } elseif ($subjects == 'SDFLAB1') {
+                                        $sql1 = "UPDATE attendance1 SET SDFLAB1=SDFLAB1 + '$atten' WHERE student_ID = '$ids'";
+                                        $sql2 = "UPDATE attendance1 SET TSDFLAB1=TSDFLAB1 + '1' WHERE student_ID = '$ids'";
+                                        // if ($x == 1) {
+                                        //     $sql3 = "INSERT INTO a12201sdflab1(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
+                                        // } elseif ($x == 2) {
+                                        //     $sql3 = "INSERT INTO a12202sdflab1(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
+                                        // }
                                     } elseif ($subjects == 'ENGLISH') {
                                         $sql1 = "UPDATE attendance1 SET ENGLISH=ENGLISH +'$atten' WHERE student_ID = '$ids'";
                                         $sql2 = "UPDATE attendance1 SET TENGLISH=TENGLISH + '1' WHERE student_ID = '$ids'";
+                                        // if ($x == 1) {
+                                        //     $sql3 = "INSERT INTO a12201english(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
+                                        // } elseif ($x == 2) {
+                                        //     $sql3 = "INSERT INTO a12202english(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
+                                        // }
                                     } elseif ($subjects == 'MATHEMATICS1') {
                                         $sql1 = "UPDATE attendance1 SET MATHEMATICS1= MATHEMATICS1 +'$atten' WHERE student_ID = '$ids'";
                                         $sql2 = "UPDATE attendance1 SET TMATHEMATICS1=TMATHEMATICS1 + '1' WHERE student_ID = '$ids'";
-                                    } elseif ($subjects == 'PHYSICS(LAB)I') {
-                                        $sql1 = "UPDATE attendance1 SET PHYSICS(LAB)I =PHYSICS(LAB)I + '$atten' WHERE student_ID = '$ids'";
-                                        $sql2 = "UPDATE attendance1 SET TPHYSICS(LAB)I=TPHYSICS(LAB)I + '1' WHERE student_ID = '$ids'";
+                                        // if ($x == 1) {
+                                        //     $sql3 = "INSERT INTO a12201mathematics1(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
+                                        // } elseif ($x == 2) {
+                                        //     $sql3 = "INSERT INTO a12202mathematics1(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
+                                        // }
+                                    } elseif ($subjects == 'PHYSICSLAB1') {
+                                        $sql1 = "UPDATE attendance1 SET PHYSICSLAB1 =PHYSICSLAB1 + '$atten' WHERE student_ID = '$ids'";
+                                        $sql2 = "UPDATE attendance1 SET TPHYSICSLAB1=TPHYSICSLAB1 + '1' WHERE student_ID = '$ids'";
+                                        // if ($x == 1) {
+                                        //     $sql3 = "INSERT INTO a12201physicslab1(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
+                                        // } elseif ($x == 2) {
+                                        //     $sql3 = "INSERT INTO a12202physicslab1(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
+                                        // }
                                     }
                                     $result11 = mysqli_query($conn, $sql1);
                                     $result2 = mysqli_query($conn, $sql2);
+                                    // $result3 = mysqli_query($conn, $sql3);
                                     $x++;
                                 }
                                 if ($result11 &&  $result2) {
@@ -1109,7 +1255,7 @@ if (isset($_SESSION['teacher_ID']) && isset($_SESSION['teacher_name']) && isset(
                                 </thead>
                                 <form action="#" method="POST" autocomplete="off">
                                     <label for="date">Select Date:</label>
-                                    <input type="date" id="dates" name="Date">
+                                    <input type="date" id="dates" name="Date" required>
                                     <tbody>
                                         <?php
                                         $x = 1;
@@ -1158,29 +1304,65 @@ if (isset($_SESSION['teacher_ID']) && isset($_SESSION['teacher_name']) && isset(
                                 $x = 1;
                                 while ($info = $result1->fetch_assoc()) {
                                     $atten = $_POST[$x];
+                                    $ans = 'Present';
+                                    if ($atten == 0) {
+                                        $ans = 'Absent';
+                                    }
                                     $subjects = $_SESSION['subject_taught'];
+                                    $teach = $_SESSION['teacher_name'];
                                     $ids = $info['student_ID'];
                                     if ($subjects == 'SDF1') {
                                         $sql1 = "UPDATE attendance1 SET SDF1=SDF1 +'$atten' WHERE student_ID = '$ids'";
                                         $sql2 = "UPDATE attendance1 SET TSDF1=TSDF1 + '1' WHERE student_ID = '$ids'";
+                                        // if ($x == 1) {
+                                        //     $sql3 = "INSERT INTO a12201sdf1(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
+                                        // } elseif ($x == 2) {
+                                        //     $sql3 = "INSERT INTO a12202sdf1(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
+                                        // }
                                     } elseif ($subjects == 'PHYSICS1') {
                                         $sql1 = "UPDATE attendance1 SET PHYSICS1=PHYSICS1 +'$atten' WHERE student_ID = '$ids'";
                                         $sql2 = "UPDATE attendance1 SET TPHYSICS1=TPHYSICS1 + '1' WHERE student_ID = '$ids'";
-                                    } elseif ($subjects == 'SDF(LAB)I') {
-                                        $sql1 = "UPDATE attendance1 SET SDF(LAB)I=SDF(LAB)I + '$atten' WHERE student_ID = '$ids'";
-                                        $sql2 = "UPDATE attendance1 SET TSDF(LAB)I=TSDF(LAB)I + '1' WHERE student_ID = '$ids'";
+                                        // if ($x == 1) {
+                                        //     $sql3 = "INSERT INTO a12201physics1(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
+                                        // } elseif ($x == 2) {
+                                        //     $sql3 = "INSERT INTO a12202physics1(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
+                                        // }
+                                    } elseif ($subjects == 'SDFLAB1') {
+                                        $sql1 = "UPDATE attendance1 SET SDFLAB1=SDFLAB1 + '$atten' WHERE student_ID = '$ids'";
+                                        $sql2 = "UPDATE attendance1 SET TSDFLAB1=TSDFLAB1 + '1' WHERE student_ID = '$ids'";
+                                        // if ($x == 1) {
+                                        //     $sql3 = "INSERT INTO a12201sdflab1(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
+                                        // } elseif ($x == 2) {
+                                        //     $sql3 = "INSERT INTO a12202sdflab1(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
+                                        // }
                                     } elseif ($subjects == 'ENGLISH') {
                                         $sql1 = "UPDATE attendance1 SET ENGLISH=ENGLISH +'$atten' WHERE student_ID = '$ids'";
                                         $sql2 = "UPDATE attendance1 SET TENGLISH=TENGLISH + '1' WHERE student_ID = '$ids'";
+                                        // if ($x == 1) {
+                                        //     $sql3 = "INSERT INTO a12201english(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
+                                        // } elseif ($x == 2) {
+                                        //     $sql3 = "INSERT INTO a12202english(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
+                                        // }
                                     } elseif ($subjects == 'MATHEMATICS1') {
                                         $sql1 = "UPDATE attendance1 SET MATHEMATICS1= MATHEMATICS1 +'$atten' WHERE student_ID = '$ids'";
                                         $sql2 = "UPDATE attendance1 SET TMATHEMATICS1=TMATHEMATICS1 + '1' WHERE student_ID = '$ids'";
-                                    } elseif ($subjects == 'PHYSICS(LAB)I') {
-                                        $sql1 = "UPDATE attendance1 SET PHYSICS(LAB)I =PHYSICS(LAB)I + '$atten' WHERE student_ID = '$ids'";
-                                        $sql2 = "UPDATE attendance1 SET TPHYSICS(LAB)I=TPHYSICS(LAB)I + '1' WHERE student_ID = '$ids'";
+                                        // if ($x == 1) {
+                                        //     $sql3 = "INSERT INTO a12201mathematics1(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
+                                        // } elseif ($x == 2) {
+                                        //     $sql3 = "INSERT INTO a12202mathematics1(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
+                                        // }
+                                    } elseif ($subjects == 'PHYSICSLAB1') {
+                                        $sql1 = "UPDATE attendance1 SET PHYSICSLAB1 =PHYSICSLAB1 + '$atten' WHERE student_ID = '$ids'";
+                                        $sql2 = "UPDATE attendance1 SET TPHYSICSLAB1=TPHYSICSLAB1 + '1' WHERE student_ID = '$ids'";
+                                        // if ($x == 1) {
+                                        //     $sql3 = "INSERT INTO a12201physicslab1(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
+                                        // } elseif ($x == 2) {
+                                        //     $sql3 = "INSERT INTO a12202physicslab1(date, attendances, teacher_name) VALUES('$date', '$ans', '$teach')";
+                                        // }
                                     }
                                     $result11 = mysqli_query($conn, $sql1);
                                     $result2 = mysqli_query($conn, $sql2);
+                                    // $result3 = mysqli_query($conn, $sql3);
                                     $x++;
                                 }
                                 if ($result11 &&  $result2) {
@@ -1200,6 +1382,11 @@ if (isset($_SESSION['teacher_ID']) && isset($_SESSION['teacher_name']) && isset(
                     </div>
 
                 </div>
+
+
+                <!-- UPDATE ATTENDANCE -->
+
+
                 <div id="t22" class="container-sm tab-pane fade">
                     <hr>
                     <h4>Updating Attendance</h4>
@@ -1211,27 +1398,27 @@ if (isset($_SESSION['teacher_ID']) && isset($_SESSION['teacher_name']) && isset(
                         </div>
                         <div>
                             <label for="date">Select Date:</label>
-                            <input type="date" id="dates" name="Date">
+                            <input type="date" id="dates" name="Date" required>
                         </div>
                         <div class="row">
                             <div class="col-lg-1 col-md-1 btn-magin">
-                                <input type="radio" id="present" name="att" value=1 checked="true">
+                                <input type="radio" id="present" name="att" value=1>
                                 <label for="present">Present</label><br>
                             </div>
 
                             <div class="col-lg-1 col-md-1 btn-magin">
-                                <input type="radio" id="absent" name="att" value=0>
+                                <input type="radio" id="absent" name="att" value=0 checked="true">
                                 <label for="absent">Absent</label><br>
                             </div>
                         </div>
                         <div>
-                            <input type="submit" class="btn btn-primary" name="attendance_mark" value="Save" style="background-color: #25316D;">
+                            <input type="submit" class="btn btn-primary" name="attendance_marking" value="Save" style="background-color: #25316D;">
                         </div>
                     </form>
 
 
                     <?php
-                    if (isset($_POST['attendance_mark'])) {
+                    if (isset($_POST['attendance_marking'])) {
 
                         $ids = $_POST['studentid'];
                         $date = $_POST['Date'];
@@ -1297,6 +1484,102 @@ if (isset($_SESSION['teacher_ID']) && isset($_SESSION['teacher_name']) && isset(
                         }
                     }
                     ?>
+                </div>
+                <div id="t31" class="container-sm tab-pane fade">
+                    <hr>
+                    <h4>Updating Marking</h4>
+                    <hr>
+                    <button type="button" class="btn btn-primary" style=" background-color: #182747;" data-bs-toggle="collapse" data-bs-target="#demo">Select Year And Batch</button>
+                    <div id="demo" class="collapse">
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-1 col-md-1 btn-magin">
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style=" background-color: #182747;">
+                                        Ist
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+
+                                        <ul class="nav nav-pills flex-column" role="tablist">
+                                            <li class="nav-item">
+                                                <a class="dropdown-item" data-bs-toggle="pill" href="#A11">A1</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="dropdown-item" data-bs-toggle="pill" href="#A12">A2</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="dropdown-item" data-bs-toggle="pill" href="#B11">B1</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="dropdown-item" data-bs-toggle="pill" href="#B12">B2</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="dropdown-item" data-bs-toggle="pill" href="#B13">B3</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="dropdown-item" data-bs-toggle="pill" href="#B14">B4</a>
+                                            </li>
+                                        </ul>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-1 col-md-1 btn-magin">
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style=" background-color: #182747;">
+                                        IInd
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+
+                                        <ul class="nav nav-pills flex-column" role="tablist">
+                                            <li class="nav-item">
+                                                <a class="dropdown-item" data-bs-toggle="pill" href="#A21">A1</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="dropdown-item" data-bs-toggle="pill" href="#B21">B1</a>
+                                            </li>
+                                        </ul>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-1 col-md-1 btn-magin">
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style=" background-color: #182747;">
+                                        IIIrd
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+
+                                        <ul class="nav nav-pills flex-column" role="tablist">
+                                            <li class="nav-item">
+                                                <a class="dropdown-item" data-bs-toggle="pill" href="#A31">A1</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="dropdown-item" data-bs-toggle="pill" href="#B31">B1</a>
+                                            </li>
+                                        </ul>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-1 col-md-1 btn-magin">
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style=" background-color: #182747;">
+                                        IVth
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+
+                                        <ul class="nav nav-pills flex-column" role="tablist">
+                                            <li class="nav-item">
+                                                <a class="dropdown-item" data-bs-toggle="pill" href="#A41">A1</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="dropdown-item" data-bs-toggle="pill" href="#B41">B1</a>
+                                            </li>
+                                        </ul>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
                 </div>
             </div>
 
