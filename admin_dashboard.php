@@ -215,7 +215,13 @@ if (isset($_SESSION['admin_ID']) && isset($_SESSION['admin_name']) && isset($_SE
                                     <li class="nav-item">
                                         <a href="#t32" class="nav-link text-dark m-1" data-bs-toggle="tab" style="border:1px solid black;">
                                             <!-- <i class="fa fa-address-card mr-3 text-primary fa-fw"></i> -->
-                                            <img src="listimage2.png" alt="image" style="margin-right: 4px;"> Hostal Allocation
+                                            <img src="listimage2.png" alt="image" style="margin-right: 4px;"> Allocation(STUDENT)
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#t33" class="nav-link text-dark m-1" data-bs-toggle="tab" style="border:1px solid black;">
+                                            <!-- <i class="fa fa-address-card mr-3 text-primary fa-fw"></i> -->
+                                            <img src="listimage2.png" alt="image" style="margin-right: 4px;"> Allocation(TEACHER)
                                         </a>
                                     </li>
                                 </ul>
@@ -226,7 +232,7 @@ if (isset($_SESSION['admin_ID']) && isset($_SESSION['admin_name']) && isset($_SE
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="headingFour">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
-                                <img src="listimage.png" alt="image" style="margin-right: 8px;"> Placement Details
+                                <img src="listimage.png" alt="image" style="margin-right: 8px;"> Event Details
                             </button>
                         </h2>
                         <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
@@ -235,13 +241,7 @@ if (isset($_SESSION['admin_ID']) && isset($_SESSION['admin_name']) && isset($_SE
                                     <li class="nav-item">
                                         <a href="#t41" id="" class="nav-link text-dark  m-1" data-bs-toggle="tab" style="border:1px solid black;">
                                             <!-- <i class="fa fa-th-large mr-3 text-primary fa-fw"></i> -->
-                                            <img src="listimage2.png" alt="image" style="margin-right: 4px;"> Placement Information
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="#t42" class="nav-link text-dark m-1" data-bs-toggle="tab" style="border:1px solid black;">
-                                            <!-- <i class="fa fa-address-card mr-3 text-primary fa-fw"></i> -->
-                                            <img src="listimage2.png" alt="image" style="margin-right: 4px;"> Add Placement Records
+                                            <img src="listimage2.png" alt="image" style="margin-right: 4px;"> Event Information
                                         </a>
                                     </li>
                                 </ul>
@@ -1067,7 +1067,7 @@ if (isset($_SESSION['admin_ID']) && isset($_SESSION['admin_name']) && isset($_SE
                         <div id="id" class="container tab-pane fade">
 
                             <h2>Search By ID</h2>
-                            <form action="" method="POST" autocomplete="off">
+                            <form action="#" method="POST" autocomplete="off">
                                 <div>
                                     <label for="ids">Student ID</label>
                                     <input type="text" name="ids" style="margin-left: 9%;" id="" required>
@@ -1589,6 +1589,7 @@ if (isset($_SESSION['admin_ID']) && isset($_SESSION['admin_name']) && isset($_SE
                     $result1 = mysqli_query($conn, $sql1);
                     ?>
                     <hr>
+                    <h6>STUDENT</h6>
                     <table id="content" class="table table-bordered table-hover">
                         <thead class="table-success">
                             <tr>
@@ -1637,6 +1638,48 @@ if (isset($_SESSION['admin_ID']) && isset($_SESSION['admin_name']) && isset($_SE
                         </tbody>
                     </table>
                     <hr>
+                    <?php
+                    $sql2 = "SELECT * FROM teacher where hostal_room_no <> 'NULL' ORDER BY hostal_room_no";
+                    $result2 = mysqli_query($conn, $sql2);
+                    ?>
+                    <hr>
+                    <h6>TEACHER</h6>
+                    <table id="content" class="table table-bordered table-hover">
+                        <thead class="table-success">
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Department</th>
+                                <th>Gender</th>
+                                <th>Hostal Room</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            while ($info = $result2->fetch_assoc()) {
+
+                            ?>
+                                <tr>
+                                    <td>
+                                        <?php echo "{$info['teacher_ID']}"; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo "{$info['teacher_name']}"; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo "{$info['department']}"; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo "{$info['gender']}"; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo "{$info['hostal_room_no']}"; ?>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
+                    <hr>
                 </div>
                 <!-- Hostal Information end -->
 
@@ -1645,64 +1688,205 @@ if (isset($_SESSION['admin_ID']) && isset($_SESSION['admin_name']) && isset($_SE
 
                 <!-- Allocate Hostal start -->
                 <div id="t32" class="container-sm tab-pane fade">
-                    <hr>
-                    <h2>Hostal Room Allocation</h2>
-                    <hr>
-                    <form action="#" method="POST" style=" margin-right: 700px; border: 7px double #182747; border-radius: 10px;">
-                        <div>
-                            <label for="student_ID">Student ID</label>
-                            <input type="text" name="studentid" style="margin-left: 9%;" id="" required>
-                        </div>
-                        <div>
-                            <label for="room">Room Number</label>
-                            <input type="text" name="room" style="margin-left: 10px;" id="" required>
-                        </div>
-                        <div>
-                            <input type="submit" class="btn btn-primary" name="allocate_hostal" value="Allocate">
-                            <!-- <button id="btn1" type="submit" name="register_student" class="btn " style="margin-top: 35px; margin-bottom: 38px;">Register</button> -->
-                        </div>
-                    </form>
-                    <hr>
-                    <?php
-                    if (isset($_POST['allocate_hostal'])) {
-                        $studentid = $_POST['studentid'];
-                        $hostalroom = $_POST['room'];
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 btn-magin">
+                            <hr>
+                            <h2>Hostal Room Allocation</h2>
+                            <hr>
+                            <form action="#" method="POST">
+                                <div>
+                                    <label for="student_ID">Student ID</label>
+                                    <input type="text" name="studentid" style="margin-left: 9%;" id="" required>
+                                </div>
+                                <div>
+                                    <label for="room">Room Number</label>
+                                    <input type="text" name="room" style="margin-left: 10px;" id="" required>
+                                </div>
+                                <div>
+                                    <input type="submit" class="btn btn-primary" name="allocate_hostal" value="Allocate">
+                                    <!-- <button id="btn1" type="submit" name="register_student" class="btn " style="margin-top: 35px; margin-bottom: 38px;">Register</button> -->
+                                </div>
+                            </form>
+                            <hr>
+                            <?php
+                            if (isset($_POST['allocate_hostal'])) {
+                                $studentid = $_POST['studentid'];
+                                $hostalroom = $_POST['room'];
 
-                        $check = "SELECT * FROM student WHERE student_ID='$studentid' AND hostal_room_no <> 'NULL'";
-                        $check_user = mysqli_query($conn, $check);
+                                $check = "SELECT * FROM student WHERE student_ID='$studentid' AND hostal_room_no <> 'NULL'";
+                                $check1 = "SELECT * FROM hostal WHERE Room_no = '$hostalroom' AND Vacancy=0";
+                                $check_user = mysqli_query($conn, $check);
+                                $check_user1 = mysqli_query($conn, $check1);
 
-                        $row_count = mysqli_num_rows($check_user);
-                        if ($row_count == 1) {
-                            echo "<script>alert('Student Already Allocated!!')</script>";
-                            echo ("<script>window.location = 'admin_dashboard.php';</script>");
-                            exit();
-                        } else {
-                            $sql = "UPDATE student SET hostal_room_no= '$hostalroom' WHERE student_ID = '$studentid'";
-                            $result = mysqli_query($conn, $sql);
-                            if ($result) {
-                                echo ("<script>alert('Successfully Room Allocated!')</script>");
-                                echo ("<script>window.location = 'admin_dashboard.php';</script>");
-                                exit();
-                            } else {
-                                echo "<script>alert('Unsuccessfull!')</script>";
-                                echo ("<script>window.location = 'admin_dashboard.php';</script>");
-                                exit();
+                                $row_count = mysqli_num_rows($check_user);
+                                $row_count1 = mysqli_num_rows($check_user1);
+                                if ($row_count == 1) {
+                                    echo "<script>alert('Student Already Allocated!!')</script>";
+                                    echo ("<script>window.location = 'admin_dashboard.php';</script>");
+                                    exit();
+                                } elseif ($row_count1 == 1) {
+                                    echo "<script>alert('Hostel Room Already Allocated!!')</script>";
+                                    echo ("<script>window.location = 'admin_dashboard.php';</script>");
+                                    exit();
+                                } else {
+                                    $sql = "UPDATE student SET hostal_room_no= '$hostalroom' WHERE student_ID = '$studentid'";
+                                    $sql11 = "UPDATE hostal SET Vacancy=Vacancy-1 WHERE Room_no='$hostalroom'";
+
+                                    $result = mysqli_query($conn, $sql);
+                                    $result11 = mysqli_query($conn, $sql11);
+                                    if ($result && $result11) {
+                                        echo ("<script>alert('Successfully Room Allocated!')</script>");
+                                        echo ("<script>window.location = 'admin_dashboard.php';</script>");
+                                        exit();
+                                    } else {
+                                        echo "<script>alert('Unsuccessfull!')</script>";
+                                        echo ("<script>window.location = 'admin_dashboard.php';</script>");
+                                        exit();
+                                    }
+                                }
                             }
-                        }
-                    }
-                    ?>
+                            ?>
+                        </div>
+                        <div class="col-lg-6 col-md-6 btn-magin">
+                            <?php
+                            $sql1 = "SELECT * FROM hostal WHERE ts='student'";
+                            $result1 = mysqli_query($conn, $sql1);
+                            ?>
+                            <hr>
+                            <table id="content" class="table table-bordered table-hover">
+                                <thead class="table-success">
+                                    <tr>
+                                        <th>ROOM No.</th>
+                                        <th>Vacancy(Student)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    while ($info = $result1->fetch_assoc()) {
+
+                                    ?>
+                                        <tr>
+                                            <td>
+                                                <?php echo "{$info['Room_no']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo "{$info['Vacancy']}"; ?>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
+
+
+                <div id="t33" class="container-sm tab-pane fade">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 btn-magin">
+                            <hr>
+                            <h2>Hostal Room Allocation</h2>
+                            <hr>
+                            <form action="#" method="POST">
+                                <div>
+                                    <label for="teacherid">Teacher ID</label>
+                                    <input type="text" name="teacherid" style="margin-left: 9%;" id="" required>
+                                </div>
+                                <div>
+                                    <label for="room">Room Number</label>
+                                    <input type="text" name="room" style="margin-left: 10px;" id="" required>
+                                </div>
+                                <div>
+                                    <input type="submit" class="btn btn-primary" name="allocate_hostal_teacher" value="Allocate">
+                                    <!-- <button id="btn1" type="submit" name="register_student" class="btn " style="margin-top: 35px; margin-bottom: 38px;">Register</button> -->
+                                </div>
+                            </form>
+                            <hr>
+                            <?php
+                            if (isset($_POST['allocate_hostal_teacher'])) {
+                                $teacherid = $_POST['teacherid'];
+                                $hostalroom = $_POST['room'];
+
+                                $check = "SELECT * FROM teacher WHERE teacher_ID='$teacherid' AND hostal_room_no <> 'NULL'";
+                                $check1 = "SELECT * FROM hostal WHERE Room_no = '$hostalroom' AND Vacancy=0";
+                                $check_user = mysqli_query($conn, $check);
+                                $check_user1 = mysqli_query($conn, $check1);
+
+                                $row_count = mysqli_num_rows($check_user);
+                                $row_count1 = mysqli_num_rows($check_user1);
+                                if ($row_count == 1) {
+                                    echo "<script>alert('Teacher Already Allocated!!')</script>";
+                                    echo ("<script>window.location = 'admin_dashboard.php';</script>");
+                                    exit();
+                                } elseif ($row_count1 == 1) {
+                                    echo "<script>alert('Hostel Room Already Allocated!!')</script>";
+                                    echo ("<script>window.location = 'admin_dashboard.php';</script>");
+                                    exit();
+                                } else {
+                                    $sql = "UPDATE teacher SET hostal_room_no= '$hostalroom' WHERE teacher_ID = '$teacherid'";
+                                    $sql11 = "UPDATE hostal SET Vacancy=Vacancy-1 WHERE Room_no='$hostalroom'";
+
+                                    $result = mysqli_query($conn, $sql);
+                                    $result11 = mysqli_query($conn, $sql11);
+                                    if ($result && $result11) {
+                                        echo ("<script>alert('Successfully Room Allocated!')</script>");
+                                        echo ("<script>window.location = 'admin_dashboard.php';</script>");
+                                        exit();
+                                    } else {
+                                        echo "<script>alert('Unsuccessfull!')</script>";
+                                        echo ("<script>window.location = 'admin_dashboard.php';</script>");
+                                        exit();
+                                    }
+                                }
+                            }
+                            ?>
+                        </div>
+                        <div class="col-lg-6 col-md-6 btn-magin">
+                            <?php
+                            $sql2 = "SELECT * FROM hostal WHERE ts='teacher'";
+                            $result2 = mysqli_query($conn, $sql2);
+                            ?>
+                            <hr>
+                            <table id="content" class="table table-bordered table-hover">
+                                <thead class="table-success">
+                                    <tr>
+                                        <th>ROOM No.</th>
+                                        <th>Vacancy(Teacher)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    while ($info = $result2->fetch_assoc()) {
+
+                                    ?>
+                                        <tr>
+                                            <td>
+                                                <?php echo "{$info['Room_no']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo "{$info['Vacancy']}"; ?>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+
                 <!-- Allocate Hostal End -->
 
 
 
 
-                <!-- Placement Information Start -->
+                <!-- Event Information Start -->
 
                 <div id="t41" class="container-sm tab-pane fade">
-
+                    <h4>Upcoming Events</h4>
                     <?php
-                    $sql1 = "SELECT student.student_ID, student.student_name, student.academic_year, student.program, placed.Company FROM student RIGHT JOIN placed ON student.student_ID=placed.Student_ID WHERE student.placement='1'";
+                    $sql1 = "SELECT * FROM event ORDER BY Date ASC";
                     $result1 = mysqli_query($conn, $sql1);
                     ?>
                     <hr>
@@ -1710,97 +1894,46 @@ if (isset($_SESSION['admin_ID']) && isset($_SESSION['admin_name']) && isset($_SE
                         <thead class="table-success">
                             <tr>
                                 <th>ID</th>
-                                <th>Name</th>
-                                <th>Academic Year</th>
-                                <th>Program</th>
-                                <th>Company Name</th>
+                                <th>Event Name</th>
+                                <th>Date</th>
+                                <th>Venue</th>
+                                <th>Time</th>
+                                <th>Event Description</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
+                            $x = 1;
                             while ($info = $result1->fetch_assoc()) {
 
                             ?>
                                 <tr>
                                     <td>
-                                        <?php echo "{$info['student_ID']}"; ?>
+                                        <?php echo $x; ?>
                                     </td>
                                     <td>
-                                        <?php echo "{$info['student_name']}"; ?>
+                                        <?php echo "{$info['Event']}"; ?>
                                     </td>
                                     <td>
-                                        <?php echo "{$info['academic_year']}"; ?>
+                                        <?php echo "{$info['Date']}"; ?>
                                     </td>
                                     <td>
-                                        <?php echo "{$info['program']}"; ?>
+                                        <?php echo "{$info['Venue']}"; ?>
                                     </td>
                                     <td>
-                                        <?php echo "{$info['Company']}"; ?>
+                                        <?php echo "{$info['Time']}"; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo "{$info['Description']}"; ?>
                                     </td>
                                 </tr>
-                            <?php } ?>
+                            <?php $x++;
+                            } ?>
                         </tbody>
                     </table>
                     <hr>
                 </div>
-                <!-- Placement Infromation End -->
-
-
-
-
-                <!-- Add Placement Record Start -->
-                <div id="t42" class="container-sm tab-pane fade">
-                    <hr>
-                    <h2>Add Placement Record</h2>
-                    <hr>
-                    <form action="#" method="POST" style=" margin-right: 700px; border: 7px double #182747; border-radius: 10px;">
-                        <div>
-                            <label for="student_ID">Student ID</label>
-                            <input type="text" name="studentid" style="margin-left: 9%;" id="" required>
-                        </div>
-                        <div>
-                            <label for="cname">Company Name</label>
-                            <input type="text" name="cname" style="margin-left: 10px;" id="" required>
-                        </div>
-                        <div>
-                            <input type="submit" class="btn btn-primary" name="placed_allocation" value="Allocate">
-                            <!-- <button id="btn1" type="submit" name="register_student" class="btn " style="margin-top: 35px; margin-bottom: 38px;">Register</button> -->
-                        </div>
-                    </form>
-                    <hr>
-                    <?php
-                    if (isset($_POST['placed_allocation'])) {
-                        $studentid = $_POST['studentid'];
-                        $companyname = $_POST['cname'];
-
-                        $check = "SELECT * FROM student WHERE student_ID='$studentid' AND placement <> 'NULL'";
-                        $check_user = mysqli_query($conn, $check);
-
-                        $row_count = mysqli_num_rows($check_user);
-                        if ($row_count == 1) {
-                            echo "<script>alert('Student Already Placed!!')</script>";
-                            echo ("<script>window.location = 'admin_dashboard.php';</script>");
-                            exit();
-                        } else {
-                            $sql1 = "UPDATE student SET placement= '1' WHERE student_ID = '$studentid'";
-                            $sql2 = "INSERT INTO placed(Student_ID, Company) VALUES('$studentid', '$companyname')";
-                            $result1 = mysqli_query($conn, $sql1);
-                            $result2 = mysqli_query($conn, $sql2);
-                            if ($result1 and $result2) {
-                                echo ("<script>alert('Successfully Records Added!')</script>");
-                                echo ("<script>window.location = 'admin_dashboard.php';</script>");
-                                exit();
-                            } else {
-                                echo "<script>alert('Unsuccessfull!')</script>";
-                                echo ("<script>window.location = 'admin_dashboard.php';</script>");
-                                exit();
-                            }
-                        }
-                    }
-                    ?>
-                </div>
-                <!-- Add Placement Record End -->
-
+                <!-- Event Infromation End -->
 
             </div>
         </section>

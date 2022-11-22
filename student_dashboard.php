@@ -261,12 +261,6 @@ if (isset($_SESSION['student_ID']) && isset($_SESSION['student_name']) && isset(
                                             <img src="listimage2.png" alt="image" data-bs-toggle="tab" style="margin-right: 4px;"> Event Information
                                         </a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a href="#t52" class="nav-link text-dark m-1" data-bs-toggle="tab" style="border:1px solid black;">
-                                            <!-- <i class="fa fa-address-card mr-3 text-primary fa-fw"></i> -->
-                                            <img src="listimage2.png" alt="image" style="margin-right: 4px;"> Event Records
-                                        </a>
-                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -466,46 +460,447 @@ if (isset($_SESSION['student_ID']) && isset($_SESSION['student_name']) && isset(
                 </div>
 
                 <div id="t21" class="container-sm tab-pane fade">
-
+                    <hr>
+                    <h6>Fee Status:</h6>
+                    <hr>
+                    <?php
+                    $id = $_SESSION['student_ID'];
+                    $sql1 = "SELECT student.student_ID, student.student_name, student.academic_year, student.semester, fee.fee_status FROM student RIGHT JOIN fee ON student.student_ID=fee.Student_ID WHERE student.student_ID='$id'";
+                    $result1 = mysqli_query($conn, $sql1);
+                    ?>
+                    <hr>
+                    <table id="content" class="table table-bordered table-hover">
+                        <thead class="table-success">
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Academic Year</th>
+                                <th>Semester</th>
+                                <th>Fee Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            while ($info = $result1->fetch_assoc()) {
+                                $status = $info['fee_status'];
+                            ?>
+                                <tr>
+                                    <td>
+                                        <?php echo "{$info['student_ID']}"; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo "{$info['student_name']}"; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo "{$info['academic_year']}"; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo "{$info['semester']}"; ?>
+                                    </td>
+                                    <td>
+                                        <?php if ($status == 0) {
+                                            echo "Paid";
+                                        } else {
+                                            echo "Unpaid";
+                                        } ?>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
+                    <hr>
                 </div>
 
                 <div id="t22" class="container-sm tab-pane fade">
-
+                    <hr>
+                    <h4>Miscelleneous Fee</h4>
+                    <hr>
+                    <table id="content" class="table table-bordered table-hover">
+                        <thead class="table-success">
+                            <tr>
+                                <th>Any Miscelleneous Fee</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <p>No Record!</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <hr>
                 </div>
 
                 <div id="t31" class="container-sm tab-pane fade">
+
+
+
+                    <div class="modal fade" id="demo1">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content" style="padding: 5px; border: 7px double #182747; border-radius: 10px;background-color: aliceblue; background-size: cover; ">
+                                <div class="modal-body">
+
+                                    <?php if ($_SESSION['student_ID'] == '2201') {
+                                        $sql = "SELECT * FROM a12201sdf1";
+                                        $result = mysqli_query($conn, $sql);
+                                    } else {
+                                        $sql = "SELECT * FROM a12202sdf1";
+                                        $result = mysqli_query($conn, $sql);
+                                    }
+                                    ?>
+                                    <hr>
+                                    <h5>SDF-I</h5>
+                                    <hr>
+                                    <table id="content" class="table table-bordered table-hover">
+                                        <thead class="table-success">
+                                            <tr>
+                                                <th>Sno</th>
+                                                <th>Date</th>
+                                                <th>Status</th>
+                                                <th>Attendent Teacher</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            while ($info = $result->fetch_assoc()) {
+
+                                            ?>
+                                                <tr>
+                                                    <td>
+                                                        <?php echo "{$info['Sno']}"; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo "{$info['date']}"; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo "{$info['attendances']}"; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo "{$info['teacher_name']}"; ?>
+                                                    </td>
+                                                </tr>
+                                            <?php } ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="demo2">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content" style="padding: 5px; border: 7px double #182747; border-radius: 10px;background-color: aliceblue; background-size: cover; ">
+                                <div class="modal-body">
+
+                                    <?php if ($_SESSION['student_ID'] == '2201') {
+                                        $sql = "SELECT * FROM a12201english";
+                                        $result = mysqli_query($conn, $sql);
+                                    } else {
+                                        $sql = "SELECT * FROM a12202english";
+                                        $result = mysqli_query($conn, $sql);
+                                    }
+                                    ?>
+                                    <hr>
+                                    <h5>ENGLISH</h5>
+                                    <hr>
+                                    <table id="content" class="table table-bordered table-hover">
+                                        <thead class="table-success">
+                                            <tr>
+                                                <th>Sno</th>
+                                                <th>Date</th>
+                                                <th>Status</th>
+                                                <th>Attendent Teacher</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            while ($info = $result->fetch_assoc()) {
+
+                                            ?>
+                                                <tr>
+                                                    <td>
+                                                        <?php echo "{$info['Sno']}"; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo "{$info['date']}"; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo "{$info['attendances']}"; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo "{$info['teacher_name']}"; ?>
+                                                    </td>
+                                                </tr>
+                                            <?php } ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="demo3">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content" style="padding: 5px; border: 7px double #182747; border-radius: 10px;background-color: aliceblue; background-size: cover; ">
+                                <div class="modal-body">
+
+                                    <?php if ($_SESSION['student_ID'] == '2201') {
+                                        $sql = "SELECT * FROM a12201mathematics1";
+                                        $result = mysqli_query($conn, $sql);
+                                    } else {
+                                        $sql = "SELECT * FROM a12202mathematics1";
+                                        $result = mysqli_query($conn, $sql);
+                                    }
+                                    ?>
+                                    <hr>
+                                    <h5>MATHEMATICS-I</h5>
+                                    <hr>
+                                    <table id="content" class="table table-bordered table-hover">
+                                        <thead class="table-success">
+                                            <tr>
+                                                <th>Sno</th>
+                                                <th>Date</th>
+                                                <th>Status</th>
+                                                <th>Attendent Teacher</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            while ($info = $result->fetch_assoc()) {
+
+                                            ?>
+                                                <tr>
+                                                    <td>
+                                                        <?php echo "{$info['Sno']}"; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo "{$info['date']}"; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo "{$info['attendances']}"; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo "{$info['teacher_name']}"; ?>
+                                                    </td>
+                                                </tr>
+                                            <?php } ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="demo4">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content" style="padding: 5px; border: 7px double #182747; border-radius: 10px;background-color: aliceblue; background-size: cover; ">
+                                <div class="modal-body">
+
+                                    <?php if ($_SESSION['student_ID'] == '2201') {
+                                        $sql = "SELECT * FROM a12201physics1";
+                                        $result = mysqli_query($conn, $sql);
+                                    } else {
+                                        $sql = "SELECT * FROM a12202physics1";
+                                        $result = mysqli_query($conn, $sql);
+                                    }
+                                    ?>
+                                    <hr>
+                                    <h5>PHYSICS-I</h5>
+                                    <hr>
+                                    <table id="content" class="table table-bordered table-hover">
+                                        <thead class="table-success">
+                                            <tr>
+                                                <th>Sno</th>
+                                                <th>Date</th>
+                                                <th>Status</th>
+                                                <th>Attendent Teacher</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            while ($info = $result->fetch_assoc()) {
+
+                                            ?>
+                                                <tr>
+                                                    <td>
+                                                        <?php echo "{$info['Sno']}"; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo "{$info['date']}"; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo "{$info['attendances']}"; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo "{$info['teacher_name']}"; ?>
+                                                    </td>
+                                                </tr>
+                                            <?php } ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="demo5">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content" style="padding: 5px; border: 7px double #182747; border-radius: 10px;background-color: aliceblue; background-size: cover; ">
+                                <div class="modal-body">
+
+                                    <?php if ($_SESSION['student_ID'] == '2201') {
+                                        $sql = "SELECT * FROM a12201sdflab1";
+                                        $result = mysqli_query($conn, $sql);
+                                    } else {
+                                        $sql = "SELECT * FROM a12202sdflab1";
+                                        $result = mysqli_query($conn, $sql);
+                                    }
+                                    ?>
+                                    <hr>
+                                    <h5>SDF LAB-I</h5>
+                                    <hr>
+                                    <table id="content" class="table table-bordered table-hover">
+                                        <thead class="table-success">
+                                            <tr>
+                                                <th>Sno</th>
+                                                <th>Date</th>
+                                                <th>Status</th>
+                                                <th>Attendent Teacher</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            while ($info = $result->fetch_assoc()) {
+
+                                            ?>
+                                                <tr>
+                                                    <td>
+                                                        <?php echo "{$info['Sno']}"; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo "{$info['date']}"; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo "{$info['attendances']}"; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo "{$info['teacher_name']}"; ?>
+                                                    </td>
+                                                </tr>
+                                            <?php } ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="demo6">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content" style="padding: 5px; border: 7px double #182747; border-radius: 10px;background-color: aliceblue; background-size: cover; ">
+                                <div class="modal-body">
+
+                                    <?php if ($_SESSION['student_ID'] == '2201') {
+                                        $sql = "SELECT * FROM a12201physicslab1";
+                                        $result = mysqli_query($conn, $sql);
+                                    } else {
+                                        $sql = "SELECT * FROM a12202physicslab1";
+                                        $result = mysqli_query($conn, $sql);
+                                    }
+                                    ?>
+                                    <hr>
+                                    <h5>PHYSICS LAB-I</h5>
+                                    <hr>
+                                    <table id="content" class="table table-bordered table-hover">
+                                        <thead class="table-success">
+                                            <tr>
+                                                <th>Sno</th>
+                                                <th>Date</th>
+                                                <th>Status</th>
+                                                <th>Attendent Teacher</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            while ($info = $result->fetch_assoc()) {
+
+                                            ?>
+                                                <tr>
+                                                    <td>
+                                                        <?php echo "{$info['Sno']}"; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo "{$info['date']}"; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo "{$info['attendances']}"; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo "{$info['teacher_name']}"; ?>
+                                                    </td>
+                                                </tr>
+                                            <?php } ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+                    <hr>
+                    <h4>Attendance</h4>
                     <hr>
                     <div class="row">
                         <div class="col-lg-6 col-md-6 btn-magin">
+                            <?php $id = $_SESSION['student_ID'];
+                            $sql1 = "SELECT * FROM attendance1 WHERE student_ID='$id'";
+                            $result1 = mysqli_query($conn, $sql1);
+                            ?>
+                            <?php
+                            while ($info = $result1->fetch_assoc()) {
 
-                            <table class="table table-bordered" style=" border: 2px solid black;">
-                                <tbody>
-                                    <tr>
-                                        <td class="table-success">SDF-1</td>
-                                        <td><?php echo "{$_SESSION['student_ID']}"; ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="table-success">ENGLISH</td>
-                                        <td><?php echo "{$_SESSION['student_name']}"; ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="table-success">MATHEMATICS</td>
-                                        <td><?php echo "{$_SESSION['academic_year']}"; ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="table-success">PHYSICS</td>
-                                        <td><?php echo "{$_SESSION['program']}"; ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="table-success">SDF LAB-1</td>
-                                        <td><?php echo "{$_SESSION['semester']}"; ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="table-success">PHYSICS LAB-1</td>
-                                        <td><?php echo "{$_SESSION['gender']}"; ?></td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            ?>
+                                <table class="table table-bordered" style=" border: 2px solid black;">
+                                    <tbody>
+                                        <tr>
+                                            <td class="table-success">1</td>
+                                            <td class="table-success">SDF-1</td>
+                                            <td><a href="#demo1" data-bs-toggle="modal"><?php $perc = ($info['SDF1'] / $info['TSDF1']) * 100;
+                                                                                        echo $perc; ?></a></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="table-success">2</td>
+                                            <td class="table-success">ENGLISH</td>
+                                            <td><a href="#demo2" data-bs-toggle="modal"><?php $perc = ($info['ENGLISH'] / $info['TENGLISH']) * 100;
+                                                                                        echo $perc; ?></a></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="table-success">3</td>
+                                            <td class="table-success">MATHEMATICS</td>
+                                            <td><a href="#demo3" data-bs-toggle="modal"><?php $perc = ($info['MATHEMATICS1'] / $info['TMATHEMATICS1']) * 100;
+                                                                                        echo $perc; ?></a></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="table-success">4</td>
+                                            <td class="table-success">PHYSICS</td>
+                                            <td><a href="#demo4" data-bs-toggle="modal"><?php $perc = ($info['PHYSICS1'] / $info['TPHYSICS1']) * 100;
+                                                                                        echo $perc; ?></a></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="table-success">5</td>
+                                            <td class="table-success">SDF LAB-1</td>
+                                            <td><a href="#demo5" data-bs-toggle="modal"><?php $perc = ($info['SDFLAB1'] / $info['TSDFLAB1']) * 100;
+                                                                                        echo $perc; ?></a></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="table-success">6</td>
+                                            <td class="table-success">PHYSICS LAB-1</td>
+                                            <td><a href="#demo6" data-bs-toggle="modal"><?php $perc = ($info['PHYSICSLAB1'] / $info['TPHYSICSLAB1']) * 100;
+                                                                                        echo $perc; ?></a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            <?php } ?>
                         </div>
                         <hr>
                     </div>
@@ -513,9 +908,48 @@ if (isset($_SESSION['student_ID']) && isset($_SESSION['student_name']) && isset(
 
                 <div id="t32" class="container-sm tab-pane fade">
 
+                    <?php
+                    $sql1 = "SELECT DISTINCT subject_taught, teacher_name FROM teacher";
+                    $result1 = mysqli_query($conn, $sql1);
+                    ?>
+
+                    <table id="content" class="table table-bordered table-hover">
+                        <thead class="table-success">
+                            <tr>
+                                <th>Sno</th>
+                                <th>Course Name</th>
+                                <th>Teacher Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $x = 1;
+                            while ($info = $result1->fetch_assoc()) {
+
+                            ?>
+                                <tr>
+                                    <td>
+                                        <?php echo $x; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo "{$info['subject_taught']}"; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo "{$info['teacher_name']}"; ?>
+                                    </td>
+                                </tr>
+                            <?php $x++;
+                            } ?>
+                        </tbody>
+                    </table>
+
+
                 </div>
 
                 <div id="t41" class="container-sm tab-pane fade">
+                    <hr>
+                    <h4>Result</h4>
+                    <hr>
 
                 </div>
 
@@ -524,11 +958,54 @@ if (isset($_SESSION['student_ID']) && isset($_SESSION['student_name']) && isset(
                 </div>
 
                 <div id="t51" class="container-sm tab-pane fade">
+                    <h4>Upcoming Events</h4>
+                    <?php
+                    $sql1 = "SELECT * FROM event ORDER BY Date ASC";
+                    $result1 = mysqli_query($conn, $sql1);
+                    ?>
+                    <hr>
+                    <table id="content" class="table table-bordered table-hover">
+                        <thead class="table-success">
+                            <tr>
+                                <th>ID</th>
+                                <th>Event Name</th>
+                                <th>Date</th>
+                                <th>Venue</th>
+                                <th>Time</th>
+                                <th>Event Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $x = 1;
+                            while ($info = $result1->fetch_assoc()) {
 
-                </div>
-
-                <div id="t52" class="container-sm tab-pane fade">
-
+                            ?>
+                                <tr>
+                                    <td>
+                                        <?php echo $x; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo "{$info['Event']}"; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo "{$info['Date']}"; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo "{$info['Venue']}"; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo "{$info['Time']}"; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo "{$info['Description']}"; ?>
+                                    </td>
+                                </tr>
+                            <?php $x++;
+                            } ?>
+                        </tbody>
+                    </table>
+                    <hr>
                 </div>
 
                 <div id="t61" class="container-sm tab-pane fade">

@@ -221,6 +221,12 @@ if (isset($_SESSION['teacher_ID']) && isset($_SESSION['teacher_name']) && isset(
                                             <img src="listimage2.png" alt="image" style="margin-right: 4px;"> Updating Attendance
                                         </a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a href="#t23" class="nav-link text-dark m-1" data-bs-toggle="tab" style="border:1px solid black;">
+                                            <!-- <i class="fa fa-address-card mr-3 text-primary fa-fw"></i> -->
+                                            <img src="listimage2.png" alt="image" style="margin-right: 4px;"> Search Attendance
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -257,7 +263,7 @@ if (isset($_SESSION['teacher_ID']) && isset($_SESSION['teacher_name']) && isset(
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="headingFour">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
-                                <img src="listimage.png" alt="image" style="margin-right: 8px;"> Placement Details
+                                <img src="listimage.png" alt="image" style="margin-right: 8px;"> Event Details
                             </button>
                         </h2>
                         <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
@@ -266,13 +272,7 @@ if (isset($_SESSION['teacher_ID']) && isset($_SESSION['teacher_name']) && isset(
                                     <li class="nav-item">
                                         <a href="#t41" id="" class="nav-link text-dark  m-1" data-bs-toggle="tab" style="border:1px solid black;">
                                             <!-- <i class="fa fa-th-large mr-3 text-primary fa-fw"></i> -->
-                                            <img src="listimage2.png" alt="image" style="margin-right: 4px;"> Placement Information
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="#t42" class="nav-link text-dark m-1" data-bs-toggle="tab" style="border:1px solid black;">
-                                            <!-- <i class="fa fa-address-card mr-3 text-primary fa-fw"></i> -->
-                                            <img src="listimage2.png" alt="image" style="margin-right: 4px;"> Placement Records
+                                            <img src="listimage2.png" alt="image" style="margin-right: 4px;"> Event Information
                                         </a>
                                     </li>
                                 </ul>
@@ -281,14 +281,16 @@ if (isset($_SESSION['teacher_ID']) && isset($_SESSION['teacher_name']) && isset(
                     </div>
                 </div>
             </div>
+
+            <!-- Toggle button -->
             <div class="page-content p-2" id="content">
-                <!-- Toggle button -->
                 <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold  m-2" style="font-size: 30px;">≡</small></button>
             </div>
 
 
             <div class="page-content tab-content p-2" id="content">
 
+                <!-- Personal Information -->
                 <div id="t11" class="container-sm tab-pane fade">
                     <hr>
                     <div class="row">
@@ -322,6 +324,7 @@ if (isset($_SESSION['teacher_ID']) && isset($_SESSION['teacher_name']) && isset(
                         <hr>
                     </div>
                 </div>
+
 
                 <div id="t12" class="container-sm tab-pane fade">
                     <hr>
@@ -429,6 +432,7 @@ if (isset($_SESSION['teacher_ID']) && isset($_SESSION['teacher_name']) && isset(
                     ?>
 
                 </div>
+
 
                 <div id="t21" class="container-sm tab-pane fade">
                     <hr>
@@ -1384,9 +1388,6 @@ if (isset($_SESSION['teacher_ID']) && isset($_SESSION['teacher_name']) && isset(
                 </div>
 
 
-                <!-- UPDATE ATTENDANCE -->
-
-
                 <div id="t22" class="container-sm tab-pane fade">
                     <hr>
                     <h4>Updating Attendance</h4>
@@ -1485,6 +1486,562 @@ if (isset($_SESSION['teacher_ID']) && isset($_SESSION['teacher_name']) && isset(
                     }
                     ?>
                 </div>
+
+
+                <div id="t23" class="container-sm tab-pane fade">
+                    <hr>
+                    <h4>Search Attendance</h4>
+                    <hr>
+                    <form action="#" method="POST" autocomplete="off">
+                        <div>
+                            <label for="student_ID">Student ID</label>
+                            <input type="text" name="studentid" id="" required>
+                        </div>
+                        <div>
+                            <label for="date1">Select Date From:</label>
+                            <input type="date" id="dates1" name="Date1" required>
+                        </div>
+                        <div>
+                            <label for="date2">Select Date To:</label>
+                            <input type="date" id="dates2" name="Date2" required>
+                        </div>
+                        <div>
+                            <input type="submit" class="btn btn-primary" name="attendance_search" value="Save" style="background-color: #25316D;">
+                        </div>
+                    </form>
+
+
+                    <?php
+                    if (isset($_POST['attendance_search'])) {
+
+                        $ids = $_POST['studentid'];
+                        $date1 = $_POST['Date1'];
+                        $date2 = $_POST['Date2'];
+                        $subjects = $_SESSION['subject_taught'];
+                        if ($subjects == 'SDF1') {
+                            if ($ids == '2201') {
+                                $sql3 = "SELECT * FROM a12201sdf1 WHERE date BETWEEN '$date1' AND '$date2'";
+
+
+                                $result3 = mysqli_query($conn, $sql3);
+                    ?>
+                                <hr>
+                                <h6>Student ID: <?php echo "$ids"; ?></h6>
+                                <table id="content" class="table table-bordered table-hover">
+                                    <thead class="table-success">
+                                        <tr>
+                                            <th>Sno</th>
+                                            <th>Date</th>
+                                            <th>Attendance Status</th>
+                                            <th>Teacher Attendent</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $x = 1;
+                                        while ($info = $result3->fetch_assoc()) {
+
+                                        ?>
+                                            <tr>
+                                                <td>
+                                                    <?php echo "{$x}"; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo "{$info['date']}"; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo "{$info['attendances']}"; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo "{$info['teacher_name']}"; ?>
+                                                </td>
+                                            </tr>
+                                        <?php $x++;
+                                        } ?>
+                                    </tbody>
+                                </table>
+                            <?php
+
+
+                            } elseif ($ids == '2202') {
+                                $sql3 = "SELECT * FROM a12202sdf1 WHERE date BETWEEN '$date1' AND '$date2'";
+                                $result3 = mysqli_query($conn, $sql3);
+                            ?>
+                                <hr>
+                                <h6>Student ID: <?php echo "$ids"; ?></h6>
+                                <table id="content" class="table table-bordered table-hover">
+                                    <thead class="table-success">
+                                        <tr>
+                                            <th>Sno</th>
+                                            <th>Date</th>
+                                            <th>Attendance Status</th>
+                                            <th>Teacher Attendent</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $x = 1;
+                                        while ($info = $result3->fetch_assoc()) {
+
+                                        ?>
+                                            <tr>
+                                                <td>
+                                                    <?php echo "{$x}"; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo "{$info['date']}"; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo "{$info['attendances']}"; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo "{$info['teacher_name']}"; ?>
+                                                </td>
+                                            </tr>
+                                        <?php $x++;
+                                        } ?>
+                                    </tbody>
+                                </table>
+                            <?php
+
+                            }
+                        } elseif ($subjects == 'PHYSICS1') {
+                            if ($ids == '2201') {
+                                $sql3 = "SELECT * FROM a12201physics1 WHERE date BETWEEN '$date1' AND '$date2'";
+
+                                $result3 = mysqli_query($conn, $sql3);
+                            ?>
+                                <hr>
+                                <h6>Student ID: <?php echo "$ids"; ?></h6>
+                                <table id="content" class="table table-bordered table-hover">
+                                    <thead class="table-success">
+                                        <tr>
+                                            <th>Sno</th>
+                                            <th>Date</th>
+                                            <th>Attendance Status</th>
+                                            <th>Teacher Attendent</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $x = 1;
+                                        while ($info = $result3->fetch_assoc()) {
+
+                                        ?>
+                                            <tr>
+                                                <td>
+                                                    <?php echo "{$x}"; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo "{$info['date']}"; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo "{$info['attendances']}"; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo "{$info['teacher_name']}"; ?>
+                                                </td>
+                                            </tr>
+                                        <?php $x++;
+                                        } ?>
+                                    </tbody>
+                                </table>
+                            <?php
+
+                            } elseif ($ids == '2202') {
+                                $sql3 = "SELECT * FROM a12202physics1 WHERE date BETWEEN '$date1' AND '$date2'";
+                                $result3 = mysqli_query($conn, $sql3);
+                            ?>
+                                <hr>
+                                <h6>Student ID: <?php echo "$ids"; ?></h6>
+                                <table id="content" class="table table-bordered table-hover">
+                                    <thead class="table-success">
+                                        <tr>
+                                            <th>Sno</th>
+                                            <th>Date</th>
+                                            <th>Attendance Status</th>
+                                            <th>Teacher Attendent</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $x = 1;
+                                        while ($info = $result3->fetch_assoc()) {
+
+                                        ?>
+                                            <tr>
+                                                <td>
+                                                    <?php echo "{$x}"; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo "{$info['date']}"; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo "{$info['attendances']}"; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo "{$info['teacher_name']}"; ?>
+                                                </td>
+                                            </tr>
+                                        <?php $x++;
+                                        } ?>
+                                    </tbody>
+                                </table>
+                            <?php
+
+                            }
+                        } elseif ($subjects == 'SDF(LAB)I') {
+                            if ($ids == '2201') {
+                                $sql3 = "SELECT * FROM a12201sdf(lab)i WHERE date BETWEEN '$date1' AND '$date2'";
+                                $result3 = mysqli_query($conn, $sql3);
+                            ?>
+                                <hr>
+                                <h6>Student ID: <?php echo "$ids"; ?></h6>
+                                <table id="content" class="table table-bordered table-hover">
+                                    <thead class="table-success">
+                                        <tr>
+                                            <th>Sno</th>
+                                            <th>Date</th>
+                                            <th>Attendance Status</th>
+                                            <th>Teacher Attendent</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $x = 1;
+                                        while ($info = $result3->fetch_assoc()) {
+
+                                        ?>
+                                            <tr>
+                                                <td>
+                                                    <?php echo "{$x}"; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo "{$info['date']}"; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo "{$info['attendances']}"; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo "{$info['teacher_name']}"; ?>
+                                                </td>
+                                            </tr>
+                                        <?php $x++;
+                                        } ?>
+                                    </tbody>
+                                </table>
+                            <?php
+
+                            } elseif ($ids == '2202') {
+                                $sql3 = "SELECT * FROM a12202sdf(lab)i WHERE date BETWEEN '$date1' AND '$date2'";
+                                $result3 = mysqli_query($conn, $sql3);
+                            ?>
+                                <hr>
+                                <h6>Student ID: <?php echo "$ids"; ?></h6>
+                                <table id="content" class="table table-bordered table-hover">
+                                    <thead class="table-success">
+                                        <tr>
+                                            <th>Sno</th>
+                                            <th>Date</th>
+                                            <th>Attendance Status</th>
+                                            <th>Teacher Attendent</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $x = 1;
+                                        while ($info = $result3->fetch_assoc()) {
+
+                                        ?>
+                                            <tr>
+                                                <td>
+                                                    <?php echo "{$x}"; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo "{$info['date']}"; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo "{$info['attendances']}"; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo "{$info['teacher_name']}"; ?>
+                                                </td>
+                                            </tr>
+                                        <?php $x++;
+                                        } ?>
+                                    </tbody>
+                                </table>
+                            <?php
+
+                            }
+                        } elseif ($subjects == 'ENGLISH') {
+                            if ($ids == '2201') {
+                                $sql3 = "SELECT * FROM a12201english WHERE date BETWEEN '$date1' AND '$date2'";
+                                $result3 = mysqli_query($conn, $sql3);
+                            ?>
+                                <hr>
+                                <h6>Student ID: <?php echo "$ids"; ?></h6>
+                                <table id="content" class="table table-bordered table-hover">
+                                    <thead class="table-success">
+                                        <tr>
+                                            <th>Sno</th>
+                                            <th>Date</th>
+                                            <th>Attendance Status</th>
+                                            <th>Teacher Attendent</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $x = 1;
+                                        while ($info = $result3->fetch_assoc()) {
+
+                                        ?>
+                                            <tr>
+                                                <td>
+                                                    <?php echo "{$x}"; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo "{$info['date']}"; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo "{$info['attendances']}"; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo "{$info['teacher_name']}"; ?>
+                                                </td>
+                                            </tr>
+                                        <?php $x++;
+                                        } ?>
+                                    </tbody>
+                                </table>
+                            <?php
+
+                            } elseif ($ids == '2202') {
+                                $sql3 = "SELECT * FROM a12202english SET WHERE date BETWEEN '$date1' AND '$date2'";
+                                $result3 = mysqli_query($conn, $sql3);
+                            ?>
+                                <hr>
+                                <h6>Student ID: <?php echo "$ids"; ?></h6>
+                                <table id="content" class="table table-bordered table-hover">
+                                    <thead class="table-success">
+                                        <tr>
+                                            <th>Sno</th>
+                                            <th>Date</th>
+                                            <th>Attendance Status</th>
+                                            <th>Teacher Attendent</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $x = 1;
+                                        while ($info = $result3->fetch_assoc()) {
+
+                                        ?>
+                                            <tr>
+                                                <td>
+                                                    <?php echo "{$x}"; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo "{$info['date']}"; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo "{$info['attendances']}"; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo "{$info['teacher_name']}"; ?>
+                                                </td>
+                                            </tr>
+                                        <?php $x++;
+                                        } ?>
+                                    </tbody>
+                                </table>
+                            <?php
+
+                            }
+                        } elseif ($subjects == 'MATHEMATICS1') {
+                            if ($ids == '2201') {
+                                $sql3 = "SELECT * FROM a12201mathematics1 WHERE date BETWEEN '$date1' AND '$date2'";
+                                $result3 = mysqli_query($conn, $sql3);
+                            ?>
+                                <hr>
+                                <h6>Student ID: <?php echo "$ids"; ?></h6>
+                                <table id="content" class="table table-bordered table-hover">
+                                    <thead class="table-success">
+                                        <tr>
+                                            <th>Sno</th>
+                                            <th>Date</th>
+                                            <th>Attendance Status</th>
+                                            <th>Teacher Attendent</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $x = 1;
+                                        while ($info = $result3->fetch_assoc()) {
+
+                                        ?>
+                                            <tr>
+                                                <td>
+                                                    <?php echo "{$x}"; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo "{$info['date']}"; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo "{$info['attendances']}"; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo "{$info['teacher_name']}"; ?>
+                                                </td>
+                                            </tr>
+                                        <?php $x++;
+                                        } ?>
+                                    </tbody>
+                                </table>
+                            <?php
+
+                            } elseif ($ids == '2202') {
+                                $sql3 = "SELECT * FROM a12202mathematics1 WHERE date BETWEEN '$date1' AND '$date2'";
+                                $result3 = mysqli_query($conn, $sql3);
+                            ?>
+                                <hr>
+                                <h6>Student ID: <?php echo "$ids"; ?></h6>
+                                <table id="content" class="table table-bordered table-hover">
+                                    <thead class="table-success">
+                                        <tr>
+                                            <th>Sno</th>
+                                            <th>Date</th>
+                                            <th>Attendance Status</th>
+                                            <th>Teacher Attendent</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $x = 1;
+                                        while ($info = $result3->fetch_assoc()) {
+
+                                        ?>
+                                            <tr>
+                                                <td>
+                                                    <?php echo "{$x}"; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo "{$info['date']}"; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo "{$info['attendances']}"; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo "{$info['teacher_name']}"; ?>
+                                                </td>
+                                            </tr>
+                                        <?php $x++;
+                                        } ?>
+                                    </tbody>
+                                </table>
+                            <?php
+
+                            }
+                        } elseif ($subjects == 'PHYSICS(LAB)I') {
+                            if ($ids == '2201') {
+                                $sql3 = "SELECT * FROM a12201physics(lab)i WHERE date BETWEEN '$date1' AND '$date2'";
+                                $result3 = mysqli_query($conn, $sql3);
+                            ?>
+                                <hr>
+                                <h6>Student ID: <?php echo "$ids"; ?></h6>
+                                <table id="content" class="table table-bordered table-hover">
+                                    <thead class="table-success">
+                                        <tr>
+                                            <th>Sno</th>
+                                            <th>Date</th>
+                                            <th>Attendance Status</th>
+                                            <th>Teacher Attendent</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $x = 1;
+                                        while ($info = $result3->fetch_assoc()) {
+
+                                        ?>
+                                            <tr>
+                                                <td>
+                                                    <?php echo "{$x}"; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo "{$info['date']}"; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo "{$info['attendances']}"; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo "{$info['teacher_name']}"; ?>
+                                                </td>
+                                            </tr>
+                                        <?php $x++;
+                                        } ?>
+                                    </tbody>
+                                </table>
+                            <?php
+
+                            } elseif ($ids == '2202') {
+                                $sql3 = "SELECT * FROM a12202physics(lab)i WHERE date BETWEEN '$date1' AND '$date2'";
+                                $result3 = mysqli_query($conn, $sql3);
+                            ?>
+                                <hr>
+                                <h6>Student ID: <?php echo "$ids"; ?></h6>
+                                <table id="content" class="table table-bordered table-hover">
+                                    <thead class="table-success">
+                                        <tr>
+                                            <th>Sno</th>
+                                            <th>Date</th>
+                                            <th>Attendance Status</th>
+                                            <th>Teacher Attendent</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $x = 1;
+                                        while ($info = $result3->fetch_assoc()) {
+
+                                        ?>
+                                            <tr>
+                                                <td>
+                                                    <?php echo "{$x}"; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo "{$info['date']}"; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo "{$info['attendances']}"; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo "{$info['teacher_name']}"; ?>
+                                                </td>
+                                            </tr>
+                                        <?php $x++;
+                                        } ?>
+                                    </tbody>
+                                </table>
+                    <?php
+
+                            }
+                        }
+                        $result3 = mysqli_query($conn, $sql3);
+                        if ($result3) {
+                            echo ("<script>alert('Succesfull!')</script>");
+                            // echo ("<script>window.location = 'teacher_dashboard.php';</script>");
+                            exit();
+                        } else {
+                            echo "<script>alert('Unsuccessfull!')</script>";
+                            // echo ("<script>window.location = 'teacher_dashboard.php';</script>");
+                            exit();
+                        }
+                    }
+                    ?>
+                </div>
+
+
                 <div id="t31" class="container-sm tab-pane fade">
                     <hr>
                     <h4>Marks Updating</h4>
@@ -2466,6 +3023,8 @@ if (isset($_SESSION['teacher_ID']) && isset($_SESSION['teacher_name']) && isset(
                         <hr>
                     </div>
                 </div>
+
+
                 <div id="t32" class="container-sm tab-pane fade">
                     <hr>
                     <h4>Student Result</h4>
@@ -3187,6 +3746,58 @@ if (isset($_SESSION['teacher_ID']) && isset($_SESSION['teacher_name']) && isset(
                             </table>
                         </div>
                     </div>
+                </div>
+
+
+                <div id="t41" class="container-sm tab-pane fade">
+                    <h4>Upcoming Events</h4>
+                    <?php
+                    $sql1 = "SELECT * FROM event ORDER BY Date ASC";
+                    $result1 = mysqli_query($conn, $sql1);
+                    ?>
+                    <hr>
+                    <table id="content" class="table table-bordered table-hover">
+                        <thead class="table-success">
+                            <tr>
+                                <th>ID</th>
+                                <th>Event Name</th>
+                                <th>Date</th>
+                                <th>Venue</th>
+                                <th>Time</th>
+                                <th>Event Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $x = 1;
+                            while ($info = $result1->fetch_assoc()) {
+
+                            ?>
+                                <tr>
+                                    <td>
+                                        <?php echo $x; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo "{$info['Event']}"; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo "{$info['Date']}"; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo "{$info['Venue']}"; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo "{$info['Time']}"; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo "{$info['Description']}"; ?>
+                                    </td>
+                                </tr>
+                            <?php $x++;
+                            } ?>
+                        </tbody>
+                    </table>
+                    <hr>
                 </div>
         </section>
 
