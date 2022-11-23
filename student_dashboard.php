@@ -256,9 +256,9 @@ if (isset($_SESSION['student_ID']) && isset($_SESSION['student_name']) && isset(
                             <div class="accordion-body">
                                 <ul class="nav flex-column bg-white mb-0">
                                     <li class="nav-item">
-                                        <a href="#t51" id="" class="nav-link text-dark m-1 " style="border:1px solid black;">
+                                        <a href="#t51" id="" class="nav-link text-dark m-1 " data-bs-toggle="tab" style="border:1px solid black;">
                                             <!-- <i class="fa fa-th-large mr-3 text-primary fa-fw"></i> -->
-                                            <img src="listimage2.png" alt="image" data-bs-toggle="tab" style="margin-right: 4px;"> Event Information
+                                            <img src="listimage2.png" alt="image" style="margin-right: 4px;"> Event Information
                                         </a>
                                     </li>
                                 </ul>
@@ -950,18 +950,97 @@ if (isset($_SESSION['student_ID']) && isset($_SESSION['student_name']) && isset(
                     <hr>
                     <h4>Result</h4>
                     <hr>
+                    <?php
+                    $id = $_SESSION['student_ID'];
+                    $sem = $_SESSION['semester'];
+                    $sql4 = "SELECT * FROM result1 WHERE student_ID='$id'";
+                    $result4 = mysqli_query($conn, $sql4);
+                    ?>
+                    <hr>
+                    <table id="content" class="table table-bordered table-hover">
+                        <thead class="table-success">
+                            <tr>
+                                <th>ID</th>
+                                <th>Semester</th>
+                                <th>SGPA</th>
+                                <th>CGPA</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $x = 1;
+                            while ($info = $result4->fetch_assoc()) {
+
+                            ?>
+                                <tr>
+                                    <td>
+                                        <?php echo "{$info['student_ID']}"; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $sem; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo "{$info['semester1']}"; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo "{$info['cgpa']}"; ?>
+                                    </td>
+                                </tr>
+                            <?php $x++;
+                            } ?>
+                        </tbody>
+                    </table>
+                    <hr>
 
                 </div>
 
                 <div id="t42" class="container-sm tab-pane fade">
+                    <hr>
+                    <h4>Examination Details</h4>
+                    <?php
+                    $id = $_SESSION['student_ID'];
+                    $sem = $_SESSION['semester'];
+                    $sql4 = "SELECT * FROM exam1";
+                    $result4 = mysqli_query($conn, $sql4);
+                    ?>
+                    <hr>
+                    <table id="content" class="table table-bordered table-hover">
+                        <thead class="table-success">
+                            <tr>
+                                <th>Sno</th>
+                                <th>Subject</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $x = 1;
+                            while ($info = $result4->fetch_assoc()) {
 
+                            ?>
+                                <tr>
+                                    <td>
+                                        <?php echo $x; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo "{$info['subject']}"; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo "{$info['date']}"; ?>
+                                    </td>
+                                </tr>
+                            <?php $x++;
+                            } ?>
+                        </tbody>
+                    </table>
+                    <hr>
                 </div>
 
                 <div id="t51" class="container-sm tab-pane fade">
                     <h4>Upcoming Events</h4>
                     <?php
-                    $sql1 = "SELECT * FROM event ORDER BY Date ASC";
-                    $result1 = mysqli_query($conn, $sql1);
+                    $sql4 = "SELECT * FROM event ORDER BY Date ASC";
+                    $result4 = mysqli_query($conn, $sql4);
                     ?>
                     <hr>
                     <table id="content" class="table table-bordered table-hover">
@@ -978,7 +1057,7 @@ if (isset($_SESSION['student_ID']) && isset($_SESSION['student_name']) && isset(
                         <tbody>
                             <?php
                             $x = 1;
-                            while ($info = $result1->fetch_assoc()) {
+                            while ($info = $result4->fetch_assoc()) {
 
                             ?>
                                 <tr>
@@ -1006,10 +1085,10 @@ if (isset($_SESSION['student_ID']) && isset($_SESSION['student_name']) && isset(
                         </tbody>
                     </table>
                     <hr>
+
                 </div>
 
                 <div id="t61" class="container-sm tab-pane fade">
-
                 </div>
 
                 <div id="t62" class="container-sm tab-pane fade">
