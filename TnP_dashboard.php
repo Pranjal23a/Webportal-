@@ -1,8 +1,8 @@
 <?php
 session_start();
-include "_dbconnect_admin.php";
+include "_dbconnect_tnp.php";
 
-if (isset($_SESSION['admin_ID']) && isset($_SESSION['admin_name']) && isset($_SESSION['image_link'])) {
+if (isset($_SESSION['tnp_ID']) && isset($_SESSION['tnp_name']) && isset($_SESSION['image_link'])) {
 ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -133,7 +133,7 @@ if (isset($_SESSION['admin_ID']) && isset($_SESSION['admin_name']) && isset($_SE
                 <div class="py-4 px-3 mb-4 bg-light">
                     <div class="media d-flex align-items-center"> <img src="<?php echo $_SESSION['image_link']; ?>" alt="Profile" width="120" class="mr-3 rounded-circle img-thumbnail shadow-sm">
                         <div class="media-body">
-                            <h4 class="m-0"><?php echo $_SESSION['admin_name']; ?></h4>
+                            <h4 class="m-0"><?php echo $_SESSION['tnp_name']; ?></h4>
                             <p class="font-weight-light text-muted mb-0">TnP Admin</p>
                         </div>
                     </div>

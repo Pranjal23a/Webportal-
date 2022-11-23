@@ -284,7 +284,7 @@ if (isset($_SESSION['student_ID']) && isset($_SESSION['student_name']) && isset(
                                     <li class="nav-item">
                                         <a href="#t62" class="nav-link text-dark m-1" data-bs-toggle="tab" style="border:1px solid black;">
                                             <!-- <i class="fa fa-address-card mr-3 text-primary fa-fw"></i> -->
-                                            <img src="listimage2.png" alt="image" style="margin-right: 4px;"> Placement Records
+                                            <img src="listimage2.png" alt="image" style="margin-right: 4px;"> Apply
                                         </a>
                                     </li>
                                 </ul>
@@ -865,37 +865,37 @@ if (isset($_SESSION['student_ID']) && isset($_SESSION['student_name']) && isset(
                                         <tr>
                                             <td class="table-success">1</td>
                                             <td class="table-success">SDF-1</td>
-                                            <td><a href="#demo1" data-bs-toggle="modal"><?php $perc = ($info['SDF1'] / $info['TSDF1']) * 100;
+                                            <td><a href="#demo1" data-bs-toggle="modal"><?php $perc = (round(($info['SDF1'] / $info['TSDF1']) * 100, 2));
                                                                                         echo $perc; ?></a></td>
                                         </tr>
                                         <tr>
                                             <td class="table-success">2</td>
                                             <td class="table-success">ENGLISH</td>
-                                            <td><a href="#demo2" data-bs-toggle="modal"><?php $perc = ($info['ENGLISH'] / $info['TENGLISH']) * 100;
+                                            <td><a href="#demo2" data-bs-toggle="modal"><?php $perc = (round(($info['ENGLISH'] / $info['TENGLISH']) * 100, 2));
                                                                                         echo $perc; ?></a></td>
                                         </tr>
                                         <tr>
                                             <td class="table-success">3</td>
                                             <td class="table-success">MATHEMATICS</td>
-                                            <td><a href="#demo3" data-bs-toggle="modal"><?php $perc = ($info['MATHEMATICS1'] / $info['TMATHEMATICS1']) * 100;
+                                            <td><a href="#demo3" data-bs-toggle="modal"><?php $perc = (round(($info['MATHEMATICS1'] / $info['TMATHEMATICS1']) * 100, 2));
                                                                                         echo $perc; ?></a></td>
                                         </tr>
                                         <tr>
                                             <td class="table-success">4</td>
                                             <td class="table-success">PHYSICS</td>
-                                            <td><a href="#demo4" data-bs-toggle="modal"><?php $perc = ($info['PHYSICS1'] / $info['TPHYSICS1']) * 100;
+                                            <td><a href="#demo4" data-bs-toggle="modal"><?php $perc = (round(($info['PHYSICS1'] / $info['TPHYSICS1']) * 100, 2));
                                                                                         echo $perc; ?></a></td>
                                         </tr>
                                         <tr>
                                             <td class="table-success">5</td>
                                             <td class="table-success">SDF LAB-1</td>
-                                            <td><a href="#demo5" data-bs-toggle="modal"><?php $perc = ($info['SDFLAB1'] / $info['TSDFLAB1']) * 100;
+                                            <td><a href="#demo5" data-bs-toggle="modal"><?php $perc = (round(($info['SDFLAB1'] / $info['TSDFLAB1']) * 100, 2));
                                                                                         echo $perc; ?></a></td>
                                         </tr>
                                         <tr>
                                             <td class="table-success">6</td>
                                             <td class="table-success">PHYSICS LAB-1</td>
-                                            <td><a href="#demo6" data-bs-toggle="modal"><?php $perc = ($info['PHYSICSLAB1'] / $info['TPHYSICSLAB1']) * 100;
+                                            <td><a href="#demo6" data-bs-toggle="modal"><?php $perc = (round(($info['PHYSICSLAB1'] / $info['TPHYSICSLAB1']) * 100, 2));
                                                                                         echo $perc; ?></a></td>
                                         </tr>
                                     </tbody>
@@ -1089,22 +1089,170 @@ if (isset($_SESSION['student_ID']) && isset($_SESSION['student_name']) && isset(
                 </div>
 
                 <div id="t61" class="container-sm tab-pane fade">
+                    <hr>
+                    <h4>Applied in Companies</h4>
+                    <hr>
+                    <?php
+                    $id = $_SESSION['student_ID'];
+                    $sql5 = "SELECT * FROM placed WHERE student_ID='$id'";
+                    $result4 = mysqli_query($conn, $sql5);
+                    ?>
+                    <hr>
+                    <table id="content" class="table table-bordered table-hover">
+                        <thead class="table-success">
+                            <tr>
+                                <th>Sno</th>
+                                <th>Company Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $x = 1;
+                            while ($info = $result4->fetch_assoc()) {
+
+                            ?>
+                                <tr>
+                                    <td>
+                                        <?php echo $x; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo "{$info['company_name']}"; ?>
+                                    </td>
+                                </tr>
+                            <?php $x++;
+                            } ?>
+                        </tbody>
+                    </table>
+                    <hr>
                 </div>
 
                 <div id="t62" class="container-sm tab-pane fade">
+                    <hr>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 btn-magin">
 
+                            <hr>
+                            <h5>Apply For Placement Test</h5>
+                            <hr>
+                            <?php
+                            $id = $_SESSION['student_ID'];
+                            $sql = "SELECT cgpa FROM result1 WHERE student_ID='$id'";
+                            $result1 = mysqli_query($conn, $sql);
+
+                            $cg = 0;
+                            while ($info = $result1->fetch_assoc()) {
+                                $cg = $info['cgpa'];
+                            } ?>
+
+                            <form action="#" method="POST" autocomplete="off">
+                                <div>
+                                    <label for="userid">Student ID</label>
+                                    <input type="text" name="userid" style="margin-left: 9%;" id="" autofocus required>
+                                </div>
+                                <div>
+                                    <label for="companyid">Company ID</label>
+                                    <input type="text" name="companyid" style="margin-left: 5%;" id="" required>
+                                </div>
+                                <div>
+                                    <label for="cgp">Your CGPA</label>
+                                    <input type="text" name="cgp" style="margin-left: 5%;" id="" readonly value="<?php echo $cg; ?>">
+                                </div>
+                                <div>
+                                    <input type="submit" class="btn btn-primary" name="register_placed" value="Apply">
+                                    <!-- <button id="btn1" type="submit" name="register_student" class="btn " style="margin-top: 35px; margin-bottom: 38px;">Register</button> -->
+
+                                </div>
+                            </form>
+                            <?php
+                            if (isset($_POST['register_placed'])) {
+                                $userid = $_POST['userid'];
+                                $cid = $_POST['companyid'];
+                                $cgpa = $_POST['cgp'];
+
+                                $sql11 = "SELECT * FROM company WHERE Sno='$cid'";
+                                $result11 = mysqli_query($conn, $sql11);
+                                $cg = 0;
+                                while ($info = $result11->fetch_assoc()) {
+                                    $cg = $info['cgpa'];
+                                }
+
+                                $sql = "SELECT * FROM company WHERE Sno='$cid'";
+                                $result1 = mysqli_query($conn, $sql);
+                                $cname = "";
+                                while ($info = $result1->fetch_assoc()) {
+                                    $cname = $info['name'];
+                                }
+
+                                if ($cgpa < $cg) {
+                                    echo "<script>alert('You Are Not Eligible!!')</script>";
+                                    echo ("<script>window.location = 'student_dashboard.php';</script>");
+                                    exit();
+                                } elseif ($cgpa >= $cg) {
+                                    $sql2 = "INSERT INTO placed(student_ID, company_name) VALUES('$userid', '$cname')";
+                                    $result2 = mysqli_query($conn, $sql2);
+                                    if ($result2) {
+                                        echo ("<script>alert('Successfully Applied!')</script>");
+                                        echo ("<script>window.location = 'student_dashboard.php';</script>");
+                                        exit();
+                                    } else {
+                                        echo "<script>alert('Unsuccessfull!')</script>";
+                                        echo ("<script>window.location = 'student_dashboard.php';</script>");
+                                        exit();
+                                    }
+                                }
+                            }
+                            ?>
+                        </div>
+                        <div class="col-lg-8 col-md-8 btn-magin">
+                            <hr>
+                            <h5>Companies On Campus</h5>
+                            <?php
+                            $sql5 = "SELECT * FROM company ORDER BY lastdate ASC";
+                            $result4 = mysqli_query($conn, $sql5);
+                            ?>
+                            <hr>
+                            <table id="content" class="table table-bordered table-hover">
+                                <thead class="table-success">
+                                    <tr>
+                                        <th>Sno</th>
+                                        <th>Company Name</th>
+                                        <th>Last Date to apply</th>
+                                        <th>CGPA Criteria</th>
+                                        <th>Company ID to apply</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $x = 1;
+                                    while ($info = $result4->fetch_assoc()) {
+
+                                    ?>
+                                        <tr>
+                                            <td>
+                                                <?php echo $x; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo "{$info['name']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo "{$info['lastdate']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo "{$info['cgpa']}"; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo "{$info['Sno']}"; ?>
+                                            </td>
+                                        </tr>
+                                    <?php $x++;
+                                    } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <hr>
                 </div>
-
-
-
-
         </section>
-
-
-
-
-
-
     </body>
 
     </html>

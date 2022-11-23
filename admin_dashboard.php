@@ -1067,7 +1067,7 @@ if (isset($_SESSION['admin_ID']) && isset($_SESSION['admin_name']) && isset($_SE
                         <div id="id" class="container tab-pane fade">
 
                             <h2>Search By ID</h2>
-                            <form action="#" method="POST" autocomplete="off">
+                            <form action="<?php echo $_SERVER["PHP_SELF"];?>" method="POST" autocomplete="off">
                                 <div>
                                     <label for="ids">Student ID</label>
                                     <input type="text" name="ids" style="margin-left: 9%;" id="" required>
