@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "_dbconnect_admin.php";
+include "_dbconnect_tnp.php";
 
 if (isset($_POST['username']) && isset($_POST['password']))
 {
@@ -26,17 +26,17 @@ $password = validate($_POST['password']);
 //     exit();
 // }
 
-$sql = "SELECT * FROM admin WHERE admin_ID='$username' AND password='$password'";
+$sql = "SELECT * FROM tnp WHERE tnp_ID='$username' AND password='$password'";
 
 $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) === 1) {
     $row = mysqli_fetch_assoc($result);
-    if ($row['admin_ID'] === $username && $row['password'] === $password) {
+    if ($row['tnp_ID'] === $username && $row['password'] === $password) {
         echo "Logged In!";
-        $_SESSION['admin_ID'] = $row['admin_ID'];
+        $_SESSION['tnp_ID'] = $row['tnp_ID'];
         // $_SESSION['name'] = $row['name'];
-        $_SESSION['admin_name'] = $row['admin_name'];
+        $_SESSION['tnp_name'] = $row['tnp_name'];
         $_SESSION['image_link'] = $row['image_link'];
 
         header("Location: TnP_dashboard.php");
