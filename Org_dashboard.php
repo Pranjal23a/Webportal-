@@ -313,7 +313,7 @@ if (isset($_SESSION['org_ID']) && isset($_SESSION['org_name']) && isset($_SESSIO
                         $sql1 = "DELETE FROM event WHERE Sno='$id'";
                         $result1 = mysqli_query($conn, $sql1);
                         if ($result1) {
-                            echo ("<script>alert('Successfully Event Added!')</script>");
+                            echo ("<script>alert('Successfully Event Deleted!')</script>");
                             echo ("<script>window.location = 'Org_dashboard.php';</script>");
                             exit();
                         } else {

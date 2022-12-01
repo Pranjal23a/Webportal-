@@ -158,7 +158,13 @@ if (isset($_SESSION['tnp_ID']) && isset($_SESSION['tnp_name']) && isset($_SESSIO
                                     <li class="nav-item">
                                         <a href="#t12" class="nav-link text-dark m-1" data-bs-toggle="tab" style="border:1px solid black;">
                                             <!-- <i class="fa fa-address-card mr-3 text-primary fa-fw"></i> -->
-                                            <img src="listimage2.png" alt="image" style="margin-right: 4px;"> Add Placement Record
+                                            <img src="listimage2.png" alt="image" style="margin-right: 4px;"> Add Company
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#t13" class="nav-link text-dark m-1" data-bs-toggle="tab" style="border:1px solid black;">
+                                            <!-- <i class="fa fa-address-card mr-3 text-primary fa-fw"></i> -->
+                                            <img src="listimage2.png" alt="image" style="margin-right: 4px;"> Drop Company
                                         </a>
                                     </li>
                                 </ul>
@@ -178,43 +184,37 @@ if (isset($_SESSION['tnp_ID']) && isset($_SESSION['tnp_name']) && isset($_SESSIO
                 <div id="t11" class="container-sm tab-pane fade">
 
                     <?php
-                    $sql1 = "SELECT student.student_ID, student.student_name, student.academic_year, student.program, placed.Company FROM student RIGHT JOIN placed ON student.student_ID=placed.Student_ID WHERE student.placement='1'";
+                    $sql1 = "SELECT * FROM placed ORDER BY student_ID ASC";
                     $result1 = mysqli_query($conn, $sql1);
                     ?>
                     <hr>
                     <table id="content" class="table table-bordered table-hover">
                         <thead class="table-success">
                             <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Academic Year</th>
-                                <th>Program</th>
+                                <th>Sno</th>
+                                <th>Student ID</th>
                                 <th>Company Name</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
+                            $x = 1;
                             while ($info = $result1->fetch_assoc()) {
 
                             ?>
                                 <tr>
                                     <td>
+                                        <?php echo $x; ?>
+                                    </td>
+                                    <td>
                                         <?php echo "{$info['student_ID']}"; ?>
                                     </td>
                                     <td>
-                                        <?php echo "{$info['student_name']}"; ?>
-                                    </td>
-                                    <td>
-                                        <?php echo "{$info['academic_year']}"; ?>
-                                    </td>
-                                    <td>
-                                        <?php echo "{$info['program']}"; ?>
-                                    </td>
-                                    <td>
-                                        <?php echo "{$info['Company']}"; ?>
+                                        <?php echo "{$info['company_name']}"; ?>
                                     </td>
                                 </tr>
-                            <?php } ?>
+                            <?php $x++;
+                            } ?>
                         </tbody>
                     </table>
                     <hr>
@@ -227,50 +227,81 @@ if (isset($_SESSION['tnp_ID']) && isset($_SESSION['tnp_name']) && isset($_SESSIO
                 <!-- Add Placement Record Start -->
                 <div id="t12" class="container-sm tab-pane fade">
                     <hr>
-                    <h2>Add Placement Record</h2>
+                    <h2>Add Company</h2>
                     <hr>
                     <form action="#" method="POST" style=" margin-right: 700px; border: 7px double #182747; border-radius: 10px;">
                         <div>
-                            <label for="student_ID">Student ID</label>
-                            <input type="text" name="studentid" style="margin-left: 9%;" id="" required>
+                            <label for="companyID">Company ID</label>
+                            <input type="text" name="companyID" style="margin-left: 9%;" id="" required>
                         </div>
                         <div>
                             <label for="cname">Company Name</label>
                             <input type="text" name="cname" style="margin-left: 10px;" id="" required>
                         </div>
                         <div>
-                            <input type="submit" class="btn btn-primary" name="placed_allocation" value="Allocate">
+                            <label for="ldate">Last Date</label>
+                            <input type="date" name="ldate" style="margin-left: 10px;" id="" required>
+                        </div>
+                        <div>
+                            <label for="cret">CGPA Criteria</label>
+                            <input type="text" name="cret" style="margin-left: 10px;" id="" required>
+                        </div>
+                        <div>
+                            <input type="submit" class="btn btn-primary" name="add_company" value="Add">
                             <!-- <button id="btn1" type="submit" name="register_student" class="btn " style="margin-top: 35px; margin-bottom: 38px;">Register</button> -->
                         </div>
                     </form>
                     <hr>
                     <?php
-                    if (isset($_POST['placed_allocation'])) {
-                        $studentid = $_POST['studentid'];
+                    if (isset($_POST['add_company'])) {
+                        $companyid = $_POST['companyID'];
                         $companyname = $_POST['cname'];
+                        $date = $_POST['ldate'];
+                        $crit = $_POST['cret'];
 
-                        $check = "SELECT * FROM student WHERE student_ID='$studentid' AND placement <> 'NULL'";
-                        $check_user = mysqli_query($conn, $check);
-
-                        $row_count = mysqli_num_rows($check_user);
-                        if ($row_count == 1) {
-                            echo "<script>alert('Student Already Placed!!')</script>";
+                        $sql2 = "INSERT INTO company(Sno, name, lastdate, cgpa) VALUES('$companyid', '$companyname', '$date', '$crit')";
+                        $result2 = mysqli_query($conn, $sql2);
+                        if ($result2) {
+                            echo ("<script>alert('Successfully Added!')</script>");
                             echo ("<script>window.location = 'TnP_dashboard.php';</script>");
                             exit();
                         } else {
-                            $sql1 = "UPDATE student SET placement= '1' WHERE student_ID = '$studentid'";
-                            $sql2 = "INSERT INTO placed(Student_ID, Company) VALUES('$studentid', '$companyname')";
-                            $result1 = mysqli_query($conn, $sql1);
-                            $result2 = mysqli_query($conn, $sql2);
-                            if ($result1 and $result2) {
-                                echo ("<script>alert('Successfully Records Added!')</script>");
-                                echo ("<script>window.location = 'TnP_dashboard.php';</script>");
-                                exit();
-                            } else {
-                                echo "<script>alert('Unsuccessfull!')</script>";
-                                echo ("<script>window.location = 'TnP_dashboard.php';</script>");
-                                exit();
-                            }
+                            echo "<script>alert('Unsuccessfull!')</script>";
+                            echo ("<script>window.location = 'TnP_dashboard.php';</script>");
+                            exit();
+                        }
+                    }
+                    ?>
+                </div>
+                <div id="t13" class="container-sm tab-pane fade">
+                    <hr>
+                    <h2>Delete Company</h2>
+                    <hr>
+                    <form action="#" method="POST" style=" margin-right: 700px; border: 7px double #182747; border-radius: 10px;">
+                        <div>
+                            <label for="cname">Company ID</label>
+                            <input type="number" name="cname" id="" required>
+                        </div>
+                        <div>
+                            <input type="submit" class="btn btn-primary" name="delete" value="Delete">
+                            <!-- <button id="btn1" type="submit" name="register_student" class="btn " style="margin-top: 35px; margin-bottom: 38px;">Register</button> -->
+                        </div>
+                    </form>
+                    <hr>
+                    <?php
+                    if (isset($_POST['delete'])) {
+                        $id = $_POST['cname'];
+
+                        $sql1 = "DELETE FROM company WHERE Sno='$id'";
+                        $result1 = mysqli_query($conn, $sql1);
+                        if ($result1) {
+                            echo ("<script>alert('Successfully Company Deleted!')</script>");
+                            echo ("<script>window.location = 'Org_dashboard.php';</script>");
+                            exit();
+                        } else {
+                            echo "<script>alert('Unsuccessfull!')</script>";
+                            echo ("<script>window.location = 'Org_dashboard.php';</script>");
+                            exit();
                         }
                     }
                     ?>

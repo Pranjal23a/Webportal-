@@ -162,6 +162,12 @@ if (isset($_SESSION['admin_ID']) && isset($_SESSION['admin_name']) && isset($_SE
                                             <img src="listimage2.png" alt="image" style="margin-right: 4px;"> Student Registration
                                         </a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a href="#t13" class="nav-link text-dark m-1" data-bs-toggle="tab" style="border:1px solid black;">
+                                            <!-- <i class="fa fa-address-card mr-3 text-primary fa-fw"></i> -->
+                                            <img src="listimage2.png" alt="image" style="margin-right: 4px;"> Drop Student
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -190,11 +196,16 @@ if (isset($_SESSION['admin_ID']) && isset($_SESSION['admin_name']) && isset($_SE
                                             <img src="listimage2.png" alt="image" style="margin-right: 4px;"> Teacher Registration
                                         </a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a href="#t23" class="nav-link text-dark m-1" data-bs-toggle="tab" style="border:1px solid black;">
+                                            <!-- <i class="fa fa-address-card mr-3 text-primary fa-fw"></i> -->
+                                            <img src="listimage2.png" alt="image" style="margin-right: 4px;"> Drop Teacher
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-
 
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="headingThree">
@@ -242,6 +253,58 @@ if (isset($_SESSION['admin_ID']) && isset($_SESSION['admin_name']) && isset($_SE
                                         <a href="#t41" id="" class="nav-link text-dark  m-1" data-bs-toggle="tab" style="border:1px solid black;">
                                             <!-- <i class="fa fa-th-large mr-3 text-primary fa-fw"></i> -->
                                             <img src="listimage2.png" alt="image" style="margin-right: 4px;"> Event Information
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingFive">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
+                                <img src="listimage.png" alt="image" style="margin-right: 8px;">TNP Details
+                            </button>
+                        </h2>
+                        <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <ul class="nav flex-column bg-white mb-0" role="tablist">
+                                    <li class="nav-item">
+                                        <a href="#t51" id="" class="nav-link text-dark  m-1" data-bs-toggle="tab" style="border:1px solid black;">
+                                            <!-- <i class="fa fa-th-large mr-3 text-primary fa-fw"></i> -->
+                                            <img src="listimage2.png" alt="image" style="margin-right: 4px;"> Add TNP Admin
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#t52" class="nav-link text-dark m-1" data-bs-toggle="tab" style="border:1px solid black;">
+                                            <!-- <i class="fa fa-address-card mr-3 text-primary fa-fw"></i> -->
+                                            <img src="listimage2.png" alt="image" style="margin-right: 4px;"> Drop TNP Admin
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingSix">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
+                                <img src="listimage.png" alt="image" style="margin-right: 8px;">Org Details
+                            </button>
+                        </h2>
+                        <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <ul class="nav flex-column bg-white mb-0" role="tablist">
+                                    <li class="nav-item">
+                                        <a href="#t61" id="" class="nav-link text-dark  m-1" data-bs-toggle="tab" style="border:1px solid black;">
+                                            <!-- <i class="fa fa-th-large mr-3 text-primary fa-fw"></i> -->
+                                            <img src="listimage2.png" alt="image" style="margin-right: 4px;">Add Org Admin
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#t62" class="nav-link text-dark m-1" data-bs-toggle="tab" style="border:1px solid black;">
+                                            <!-- <i class="fa fa-address-card mr-3 text-primary fa-fw"></i> -->
+                                            <img src="listimage2.png" alt="image" style="margin-right: 4px;"> Drop Org Admin
                                         </a>
                                     </li>
                                 </ul>
@@ -1067,7 +1130,7 @@ if (isset($_SESSION['admin_ID']) && isset($_SESSION['admin_name']) && isset($_SE
                         <div id="id" class="container tab-pane fade">
 
                             <h2>Search By ID</h2>
-                            <form action="<?php echo $_SERVER["PHP_SELF"];?>" method="POST" autocomplete="off">
+                            <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="POST" autocomplete="off">
                                 <div>
                                     <label for="ids">Student ID</label>
                                     <input type="text" name="ids" style="margin-left: 9%;" id="" required>
@@ -1271,7 +1334,53 @@ if (isset($_SESSION['admin_ID']) && isset($_SESSION['admin_name']) && isset($_SE
 
 
 
+
+
+                <!-- Drop Student Start  -->
+
+                <div id="t13" class="container-sm tab-pane fade">
+                    <hr>
+                    <h2>Delete Student</h2>
+                    <hr>
+                    <form action="#" method="POST" style=" margin-right: 700px; border: 7px double #182747; border-radius: 10px;" autocomplete="off">
+                        <div>
+                            <label for="userid">User ID</label>
+                            <input type="text" name="userid" style="margin-left: 9%;" id="" autofocus required>
+                        </div>
+                        <div>
+                            <input type="submit" class="btn btn-primary" name="delete_student" value="Delete">
+                            <!-- <button id="btn1" type="submit" name="register_student" class="btn " style="margin-top: 35px; margin-bottom: 38px;">Register</button> -->
+
+                        </div>
+                    </form>
+                    <?php
+                    if (isset($_POST['delete_student'])) {
+                        $id = $_POST['userid'];
+
+                        $sql1 = "DELETE FROM student WHERE student_ID='$id'";
+                        $result1 = mysqli_query($conn, $sql1);
+                        if ($result1) {
+                            echo ("<script>alert('Successfully Student Deleted!')</script>");
+                            echo ("<script>window.location = 'admin_dashboard.php';</script>");
+                            exit();
+                        } else {
+                            echo "<script>alert('Unsuccessfull!')</script>";
+                            echo ("<script>window.location = 'admin_dashboard.php';</script>");
+                            exit();
+                        }
+                    }
+                    ?>
+                    <hr>
+                </div>
+
+                <!-- Drop Student End -->
+
+
+
+
+
                 <!-- Teacher Information Start -->
+
                 <div id="t21" class="container-sm tab-pane fade">
                     <hr>
                     <div class="dropdown">
@@ -1494,7 +1603,9 @@ if (isset($_SESSION['admin_ID']) && isset($_SESSION['admin_name']) && isset($_SE
                     </div>
                     <hr>
                 </div>
+
                 <!-- Teacher Information End -->
+
 
 
 
@@ -1575,7 +1686,49 @@ if (isset($_SESSION['admin_ID']) && isset($_SESSION['admin_name']) && isset($_SE
                     ?>
 
                 </div>
+
                 <!-- Teacher Registration End -->
+
+
+
+                <!-- Drop Teacher start -->
+
+                <div id="t23" class="container-sm tab-pane fade">
+                    <hr>
+                    <h2>Delete Teacher</h2>
+                    <hr>
+                    <form action="#" method="POST" style=" margin-right: 700px; border: 7px double #182747; border-radius: 10px;" autocomplete="off">
+                        <div>
+                            <label for="userid">Teacher ID</label>
+                            <input type="text" name="userid" style="margin-left: 9%;" id="" autofocus required>
+                        </div>
+                        <div>
+                            <input type="submit" class="btn btn-primary" name="delete_teacher" value="Delete">
+                            <!-- <button id="btn1" type="submit" name="register_student" class="btn " style="margin-top: 35px; margin-bottom: 38px;">Register</button> -->
+
+                        </div>
+                    </form>
+                    <?php
+                    if (isset($_POST['delete_teacher'])) {
+                        $id = $_POST['userid'];
+
+                        $sql1 = "DELETE FROM teacher WHERE teacher_ID='$id'";
+                        $result1 = mysqli_query($conn, $sql1);
+                        if ($result1) {
+                            echo ("<script>alert('Successfully Teacher Deleted!')</script>");
+                            echo ("<script>window.location = 'admin_dashboard.php';</script>");
+                            exit();
+                        } else {
+                            echo "<script>alert('Unsuccessfull!')</script>";
+                            echo ("<script>window.location = 'admin_dashboard.php';</script>");
+                            exit();
+                        }
+                    }
+                    ?>
+                    <hr>
+                </div>
+
+                <!-- Drop Teacher End -->
 
 
 
@@ -1686,7 +1839,8 @@ if (isset($_SESSION['admin_ID']) && isset($_SESSION['admin_name']) && isset($_SE
 
 
 
-                <!-- Allocate Hostal start -->
+
+                <!-- Allocate Hostal(student) Start -->
                 <div id="t32" class="container-sm tab-pane fade">
                     <div class="row">
                         <div class="col-lg-6 col-md-6 btn-magin">
@@ -1780,6 +1934,12 @@ if (isset($_SESSION['admin_ID']) && isset($_SESSION['admin_name']) && isset($_SE
                     </div>
                 </div>
 
+                <!-- Allocate Hostal(student) End -->
+
+
+
+
+                <!-- Allocate Hostal(teacher) Start -->
 
                 <div id="t33" class="container-sm tab-pane fade">
                     <div class="row">
@@ -1874,9 +2034,7 @@ if (isset($_SESSION['admin_ID']) && isset($_SESSION['admin_name']) && isset($_SE
                     </div>
                 </div>
 
-
-
-                <!-- Allocate Hostal End -->
+                <!-- Allocate Hostal(teacher) End -->
 
 
 
@@ -1933,7 +2091,225 @@ if (isset($_SESSION['admin_ID']) && isset($_SESSION['admin_name']) && isset($_SE
                     </table>
                     <hr>
                 </div>
+
                 <!-- Event Infromation End -->
+
+
+
+                <!-- Add TNP Admin start -->
+
+                <div id="t51" class="container-sm tab-pane fade">
+                    <hr>
+                    <h2>TNP Admin Registration</h2>
+                    <hr>
+                    <form action="#" method="POST" style=" margin-right: 700px; border: 7px double #182747; border-radius: 10px;" autocomplete="off">
+                        <div>
+                            <label for="userid">Admin ID</label>
+                            <input type="text" name="userid" style="margin-left: 9%;" id="" autofocus required>
+                        </div>
+                        <div>
+                            <label for="username">User Name</label>
+                            <input type="text" name="username" style="margin-left: 5%;" id="" required>
+                        </div>
+                        <div>
+                            <label for="password">Password</label>
+                            <input type="password" name="password" style="margin-left: 7%;" id="" required>
+                        </div>
+                        <div>
+                            <label for="img">Image Path</label>
+                            <input type="text" name="img" style="margin-left: 9%;" id="" required>
+                        </div>
+                        <div>
+                            <input type="submit" class="btn btn-primary" name="register_tnp" value="Register">
+                            <!-- <button id="btn1" type="submit" name="register_student" class="btn " style="margin-top: 35px; margin-bottom: 38px;">Register</button> -->
+
+                        </div>
+                    </form>
+                    <?php
+                    if (isset($_POST['register_tnp'])) {
+                        $userid = $_POST['userid'];
+                        $username = $_POST['username'];
+                        $Password = $_POST['password'];
+                        $image = $_POST['img'];
+                        // $Hostel="NULL";
+                        $check = "SELECT * FROM tnp WHERE tnp_ID='$userid'";
+                        $check_user = mysqli_query($conn, $check);
+
+                        $row_count = mysqli_num_rows($check_user);
+                        if ($row_count == 1) {
+                            echo "<script>alert('User ID Already Exists!! Try Another One')</script>";
+                            echo ("<script>window.location = 'admin_dashboard.php';</script>");
+                            exit();
+                        } else {
+                            $sql = "INSERT INTO tnp(tnp_ID, tnp_name, password, image_link) VALUES('$userid', '$username', '$Password','$image')";
+                            $result = mysqli_query($conn, $sql);
+                            if ($result) {
+                                echo ("<script>alert('Added Successfully!')</script>");
+                                echo ("<script>window.location = 'admin_dashboard.php';</script>");
+                                exit();
+                            } else {
+                                echo "<script>alert('Unsuccessfull!')</script>";
+                                echo ("<script>window.location = 'admin_dashboard.php';</script>");
+                                exit();
+                            }
+                        }
+                    }
+                    ?>
+                    <hr>
+                </div>
+
+                <!-- Add TNP Admin END -->
+
+
+
+
+                <!-- Delete TNP Admin Start-->
+                <div id="t52" class="container-sm tab-pane fade">
+                    <hr>
+                    <h2>Delete TNP Admin</h2>
+                    <hr>
+                    <form action="#" method="POST" style=" margin-right: 700px; border: 7px double #182747; border-radius: 10px;">
+                        <div>
+                            <label for="cname">Admin ID</label>
+                            <input type="text" name="cname" id="" required>
+                        </div>
+                        <div>
+                            <input type="submit" class="btn btn-primary" name="delete" value="Delete">
+                            <!-- <button id="btn1" type="submit" name="register_student" class="btn " style="margin-top: 35px; margin-bottom: 38px;">Register</button> -->
+                        </div>
+                    </form>
+                    <hr>
+                    <?php
+                    if (isset($_POST['delete'])) {
+                        $id = $_POST['cname'];
+
+                        $sql1 = "DELETE FROM tnp WHERE tnp_ID='$id'";
+                        $result1 = mysqli_query($conn, $sql1);
+                        if ($result1) {
+                            echo ("<script>alert('Successfully Student Deleted!')</script>");
+                            echo ("<script>window.location = 'Org_dashboard.php';</script>");
+                            exit();
+                        } else {
+                            echo "<script>alert('Unsuccessfull!')</script>";
+                            echo ("<script>window.location = 'Org_dashboard.php';</script>");
+                            exit();
+                        }
+                    }
+                    ?>
+                </div>
+
+                <!-- Delete TNP Admin End -->
+
+
+
+
+
+
+                <!-- Add Org Admin Start -->
+                <div id="t61" class="container-sm tab-pane fade">
+                    <hr>
+                    <h2>TNP Admin Registration</h2>
+                    <hr>
+                    <form action="#" method="POST" style=" margin-right: 700px; border: 7px double #182747; border-radius: 10px;" autocomplete="off">
+                        <div>
+                            <label for="userid">Admin ID</label>
+                            <input type="text" name="userid" style="margin-left: 9%;" id="" autofocus required>
+                        </div>
+                        <div>
+                            <label for="username">User Name</label>
+                            <input type="text" name="username" style="margin-left: 5%;" id="" required>
+                        </div>
+                        <div>
+                            <label for="password">Password</label>
+                            <input type="password" name="password" style="margin-left: 7%;" id="" required>
+                        </div>
+                        <div>
+                            <label for="img">Image Path</label>
+                            <input type="text" name="img" style="margin-left: 9%;" id="" required>
+                        </div>
+                        <div>
+                            <input type="submit" class="btn btn-primary" name="register_org" value="Register">
+                            <!-- <button id="btn1" type="submit" name="register_student" class="btn " style="margin-top: 35px; margin-bottom: 38px;">Register</button> -->
+
+                        </div>
+                    </form>
+                    <?php
+                    if (isset($_POST['register_org'])) {
+                        $userid = $_POST['userid'];
+                        $username = $_POST['username'];
+                        $Password = $_POST['password'];
+                        $image = $_POST['img'];
+                        // $Hostel="NULL";
+                        $check = "SELECT * FROM org WHERE org_ID='$userid'";
+                        $check_user = mysqli_query($conn, $check);
+
+                        $row_count = mysqli_num_rows($check_user);
+                        if ($row_count == 1) {
+                            echo "<script>alert('User ID Already Exists!! Try Another One')</script>";
+                            echo ("<script>window.location = 'admin_dashboard.php';</script>");
+                            exit();
+                        } else {
+                            $sql = "INSERT INTO org(org_ID, org_name, password, image_link) VALUES('$userid', '$username', '$Password','$image')";
+                            $result = mysqli_query($conn, $sql);
+                            if ($result) {
+                                echo ("<script>alert('Admin Added Successfully!')</script>");
+                                echo ("<script>window.location = 'admin_dashboard.php';</script>");
+                                exit();
+                            } else {
+                                echo "<script>alert('Unsuccessfull!')</script>";
+                                echo ("<script>window.location = 'admin_dashboard.php';</script>");
+                                exit();
+                            }
+                        }
+                    }
+                    ?>
+                    <hr>
+                </div>
+
+                <!-- Add Org. Admin END -->
+
+
+
+
+                <!-- Delete org Admin Start-->
+
+                <div id="t52" class="container-sm tab-pane fade">
+                    <hr>
+                    <h2>Delete Or Admin</h2>
+                    <hr>
+                    <form action="#" method="POST" style=" margin-right: 700px; border: 7px double #182747; border-radius: 10px;">
+                        <div>
+                            <label for="cname">Admin ID</label>
+                            <input type="text" name="cname" id="" required>
+                        </div>
+                        <div>
+                            <input type="submit" class="btn btn-primary" name="delete" value="Delete">
+                            <!-- <button id="btn1" type="submit" name="register_student" class="btn " style="margin-top: 35px; margin-bottom: 38px;">Register</button> -->
+                        </div>
+                    </form>
+                    <hr>
+                    <?php
+                    if (isset($_POST['delete'])) {
+                        $id = $_POST['cname'];
+
+                        $sql1 = "DELETE FROM org WHERE org_ID='$id'";
+                        $result1 = mysqli_query($conn, $sql1);
+                        if ($result1) {
+                            echo ("<script>alert('Successfully Admin Deleted!')</script>");
+                            echo ("<script>window.location = 'Org_dashboard.php';</script>");
+                            exit();
+                        } else {
+                            echo "<script>alert('Unsuccessfull!')</script>";
+                            echo ("<script>window.location = 'Org_dashboard.php';</script>");
+                            exit();
+                        }
+                    }
+                    ?>
+                </div>
+
+                <!-- Delete Org Admin End -->
+
+
 
             </div>
         </section>
